@@ -1,0 +1,19 @@
+﻿<Page x:Class="GestionCaisseInterBDE.HomeScreen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GestionCaisseInterBDE"
+      mc:Ignorable="d"
+      Title="Page1" Width="555.875" Height="322.875">
+
+    <Grid>
+        <Button x:Name="navigateConsoBtn" Content="Consommation" Background="#23272A" Foreground="White" HorizontalAlignment="Left" Height="80" Margin="25,45,0,0" VerticalAlignment="Top" Width="137" Click="navigateConsoBtn_MouseClick"/>
+        <Button x:Name="navigateTresorBtn" Content="Tresorie" Background="#23272A" Foreground="White" HorizontalAlignment="Left" Height="80" Margin="204,45,0,0" VerticalAlignment="Top" Width="137" Click="NavigateTresorBtn_Click"/>
+        <Button x:Name="navigateEventsBtn" Content="Events"  Background="#23272A" Foreground="White" HorizontalAlignment="Left" Height="80" Margin="393,45,0,0" VerticalAlignment="Top" Width="137" RenderTransformOrigin="3.283,0.647" Click="NavigateEventsBtn_Click"/>
+        <Button x:Name="navigateAnnoncesBtn" Content="Annonces" Background="#23272A" Foreground="White" HorizontalAlignment="Left" Height="80" Margin="25,214,0,0" VerticalAlignment="Top" Width="137" Click="NavigateAnnoncesBtn_Click"/>
+        <Button x:Name="navigateSauvegardeBtn" Content="Sauvegarde" Background="#23272A" Foreground="White" HorizontalAlignment="Left" Height="80" Margin="204,214,0,0" VerticalAlignment="Top" Width="137" Click="NavigateSauvegardeBtn_Click"/>
+        <Button x:Name="navigateParametreBtn" Content="Parametre" Background="#23272A" Foreground="White" HorizontalAlignment="Left" Height="80" Margin="393,214,0,0" VerticalAlignment="Top" Width="137" Click="NavigateParametreBtn_Click"/>
+
+    </Grid>
+</Page>
