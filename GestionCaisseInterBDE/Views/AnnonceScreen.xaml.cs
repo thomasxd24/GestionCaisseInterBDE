@@ -18,9 +18,9 @@ namespace GestionCaisseInterBDE.Views
     /// <summary>
     /// Interaction logic for Annonce.xaml
     /// </summary>
-    public partial class Annonce : Page
+    public partial class AnnonceScreen : Page
     {
-        public Annonce()
+        public AnnonceScreen()
         {
             InitializeComponent();
         }
