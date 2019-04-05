@@ -5,21 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:GestionCaisseInterBDE"
+                      
+                      BorderThickness="0" 
+                      GlowBrush="Black"
         mc:Ignorable="d"
         Title="MainWindow" Height="591.934" Width="1146.666">
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout Header="Réglage" Position="Right" Width="200">
+                <!-- Your custom content here -->
+            </Controls:Flyout>
+
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Content="settings" />
+            <Button Content="settings"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 
     <DockPanel>
-        <Controls:MetroAnimatedTabControl>
+        <Controls:MetroAnimatedSingleRowTabControl DockPanel.Dock="Top">
             <TabItem Header="Acceuil">
-                <Label Content="Content goes here..." />
+                <Frame Source="HomeScreen.xaml"></Frame>
             </TabItem>
-            <TabItem Header="Security" />
-            <TabItem Header="Details" />
-        </Controls:MetroAnimatedTabControl>
+            <TabItem Header="Consommations">
+                <Frame Source="CaisseScreen.xaml"></Frame>
+            </TabItem>
+            <TabItem Header="Trésorerie">
+                <Frame Source="Tresorie.xaml"></Frame>
+            </TabItem>
+            <TabItem Header="Events">
+                <Frame Source="EventScreen.xaml"></Frame>
+            </TabItem>
+            <TabItem Header="Annonces">
+                <Frame Source="AnnonceScreen.xaml"></Frame>
+            </TabItem>
+            <TabItem Header="Sauvegarde">
+                <Controls:Tile Title="Hello!" 
+               Width="100"
+               Height="100" 
+               Count="1" />
+
+            </TabItem>
+        </Controls:MetroAnimatedSingleRowTabControl>
     </DockPanel>
+    
+
 </Controls:MetroWindow>

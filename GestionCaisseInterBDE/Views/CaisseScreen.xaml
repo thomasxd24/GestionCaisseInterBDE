@@ -6,24 +6,45 @@
       xmlns:local="clr-namespace:GestionCaisseInterBDE.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page1">
 
-    <Grid Height="466" VerticalAlignment="Bottom" Margin="0,-16,0,0">
+      Title="Page1">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition MaxWidth="200" MinWidth="200"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox HorizontalAlignment="Left" Height="359" Margin="10,81,0,0" VerticalAlignment="Top" Width="218">
-            <ListBoxItem Content="hi"/>
-            <ListBoxItem Content="hi2"/>
-            <ListBoxItem Content="hi3"/>
-            <ListBoxItem/>
-        </ListBox>
-        <Button Content="Revenir au Menu Principale" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="218" Height="66" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="331,12,0,0" VerticalAlignment="Top" Width="75" Height="75"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="2.667,12,0,0" VerticalAlignment="Top" Width="75" Height="75" Grid.Column="1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="87.667,12,0,0" VerticalAlignment="Top" Width="75" Height="75" Grid.Column="1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="173.667,12,0,0" VerticalAlignment="Top" Width="75" Height="75" Grid.Column="1"/>
+        <ListView>
+            <ListViewItem>
+                <Label Content="test">
+                    
+                </Label>
+            </ListViewItem>
+            <ListViewItem>
+                <Label Content="test">
+
+                </Label>
+            </ListViewItem>
+            <ListViewItem>
+                <Label Content="test">
+
+                </Label>
+            </ListViewItem>
+            <ListViewItem>
+                <Label Content="test">
+
+                </Label>
+            </ListViewItem>
+            <ListViewItem>
+                <Label Content="test">
+
+                </Label>
+            </ListViewItem>
+        </ListView>
+        <WrapPanel Grid.Column="1">
+
+
+            <Button Content="dhfd" Margin="5" Height="75" Width="75"></Button>
+        </WrapPanel>
 
     </Grid>
 </Page>

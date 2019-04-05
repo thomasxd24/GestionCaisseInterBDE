@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       xmlns:local="clr-namespace:GestionCaisseInterBDE"
       mc:Ignorable="d"
       Title="Home" Width="555.875" Height="322.875">
@@ -17,16 +18,26 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="navigateConsoBtn" HorizontalAlignment="Left" Height="80" Margin="32,52,0,0" VerticalAlignment="Top" Width="137" Click="navigateConsoBtn_MouseClick" Grid.Row="0" Grid.Column="0">
-            <StackPanel>
-                <TextBlock>My text here</TextBlock>
-            </StackPanel>
-        </Button>
-        <Button x:Name="navigateTresorBtn" Content="Tresorie" HorizontalAlignment="Left" Height="80" Margin="29,52,0,0" VerticalAlignment="Top" Width="137" Click="NavigateTresorBtn_Click" Grid.Row="0" Grid.Column="1" />
-        <Button x:Name="navigateEventsBtn" Content="Events" HorizontalAlignment="Left" Height="80" Margin="22,52,0,0" VerticalAlignment="Top" Width="137" RenderTransformOrigin="3.283,0.647" Click="NavigateEventsBtn_Click" Grid.Column="2" Grid.Row="0"/>
-        <Button x:Name="navigateAnnoncesBtn" Content="Annonces" HorizontalAlignment="Left" Height="80" Margin="32,52,0,0" VerticalAlignment="Top" Width="137" Click="NavigateAnnoncesBtn_Click"  Grid.Column="0" Grid.Row="1"/>
-        <Button x:Name="navigateSauvegardeBtn" Content="Sauvegarde" HorizontalAlignment="Left" Height="80" Margin="29,52,0,0" VerticalAlignment="Top" Width="137" Click="NavigateSauvegardeBtn_Click"  Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="navigateParametreBtn" Content="Parametre" HorizontalAlignment="Left" Height="80" Margin="27,52,0,0" VerticalAlignment="Top" Width="137" Click="NavigateParametreBtn_Click" Grid.Column="2" Grid.Row="1"/>
+
+        <Controls:Tile Title="Mail"
+                               Margin="3"
+                               Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}"
+                               Background="Teal"
+                               HorizontalTitleAlignment="Right">
+            <Label Content="lol"></Label>
+        </Controls:Tile>
+        <Controls:Tile Title="Hello!" Grid.Row="0" Grid.Column="1" 
+               Width="200"
+               Height="200"  />
+        <Controls:Tile Title="Hello!" Grid.Row="0" Grid.Column="2" 
+               Width="200"
+               Height="200"  />
+        <Controls:Tile Title="Hello!" Grid.Row="1" Grid.Column="0" 
+               Width="200"
+               Height="200"  />
+        <Controls:Tile Title="Hello!" Grid.Row="1" Grid.Column="1" 
+               Width="200"
+               Height="200"  />
 
     </Grid>
 </Page>
