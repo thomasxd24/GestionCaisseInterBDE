@@ -24,5 +24,6 @@ namespace GestionCaisseInterBDE
         {
             InitializeComponent();
         }
+
     }
 }

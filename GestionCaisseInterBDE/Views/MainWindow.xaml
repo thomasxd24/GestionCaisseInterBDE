@@ -25,23 +25,23 @@
     </Controls:MetroWindow.RightWindowCommands>
 
     <DockPanel>
-        <Controls:MetroAnimatedSingleRowTabControl DockPanel.Dock="Top">
-            <TabItem Header="Acceuil">
+        <Controls:MetroAnimatedSingleRowTabControl DockPanel.Dock="Top" Margin="0,10,0,0" x:Name="mainTab">
+            <TabItem x:Name="homeTab" Header="Acceuil">
                 <Frame Source="HomeScreen.xaml"></Frame>
             </TabItem>
-            <TabItem Header="Consommations">
+            <TabItem x:Name="caisseTab" Header="Consommations">
                 <Frame Source="CaisseScreen.xaml"></Frame>
             </TabItem>
-            <TabItem Header="Trésorerie">
+            <TabItem x:Name="tresorerieTab" Header="Trésorerie">
                 <Frame Source="Tresorie.xaml"></Frame>
             </TabItem>
-            <TabItem Header="Events">
+            <TabItem x:Name="eventsTab" Header="Events">
                 <Frame Source="EventScreen.xaml"></Frame>
             </TabItem>
-            <TabItem Header="Annonces">
+            <TabItem x:Name="annoncesTab" Header="Annonces">
                 <Frame Source="AnnonceScreen.xaml"></Frame>
             </TabItem>
-            <TabItem Header="Sauvegarde">
+            <TabItem x:Name="sauvegardeTab" Header="Sauvegarde">
                 <Controls:Tile Title="Hello!" 
                Width="100"
                Height="100" 

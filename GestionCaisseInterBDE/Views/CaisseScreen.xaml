@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       xmlns:local="clr-namespace:GestionCaisseInterBDE.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -10,41 +11,156 @@
       Title="Page1">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="200" MinWidth="200"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*" MinWidth="300"/>
+            <ColumnDefinition  Width="4*"/>
         </Grid.ColumnDefinitions>
-        <ListView>
-            <ListViewItem>
-                <Label Content="test">
-                    
-                </Label>
-            </ListViewItem>
-            <ListViewItem>
-                <Label Content="test">
+        <Grid  Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Panier" FontSize="20" HorizontalAlignment="Center"></Label>
+            <StackPanel Grid.Row="1">
+                <Button Margin="5">Vider le panier</Button>
+            </StackPanel>
+            <ListView Grid.Row="2">
+                <ListViewItem>
+                    <DockPanel>
+                        <Label DockPanel.Dock="Right">35.5 EUR</Label>
+                        <Label DockPanel.Dock="Right" >x2</Label>
+                        <Label>Bone Apple Tea</Label>
+                    </DockPanel>
+                </ListViewItem>
+            </ListView>
+            <DockPanel  Grid.Row="3">
+                <Label FontSize="30" DockPanel.Dock="Left" Content="Totale:"></Label>
+                <Label FontSize="30" DockPanel.Dock="Right">€</Label>
+                <Label FontSize="30" HorizontalAlignment="Center">35</Label>
 
-                </Label>
-            </ListViewItem>
-            <ListViewItem>
-                <Label Content="test">
+            </DockPanel>
+            
+        </Grid>
+        <DockPanel Grid.Column="1" >
+            <Grid DockPanel.Dock="Bottom" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="4" Margin="5">Historique</Button>
+                <Button Grid.Column="3" Margin="5">Gérer les produits</Button>
+                <Button Grid.Column="2" Margin="5">Réapprovisionnement</Button>
+            </Grid>
+            <ScrollViewer >
+                <WrapPanel>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                    <Controls:Tile Title="Test" Width="100" Height="100" Margin="10">
+                        <Image Source="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"></Image>
+                    </Controls:Tile>
+                </WrapPanel>
+            </ScrollViewer>
 
-                </Label>
-            </ListViewItem>
-            <ListViewItem>
-                <Label Content="test">
-
-                </Label>
-            </ListViewItem>
-            <ListViewItem>
-                <Label Content="test">
-
-                </Label>
-            </ListViewItem>
-        </ListView>
-        <WrapPanel Grid.Column="1">
-
-
-            <Button Content="dhfd" Margin="5" Height="75" Width="75"></Button>
-        </WrapPanel>
+        </DockPanel>
+        
+        
+        
 
     </Grid>
 </Page>

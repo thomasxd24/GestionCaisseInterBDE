@@ -12,11 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MahApps.Metro.Controls;
 namespace GestionCaisseInterBDE
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for HomeScreen.xaml
     /// </summary>
     public partial class HomeScreen : Page
     {
@@ -24,34 +24,12 @@ namespace GestionCaisseInterBDE
         {
             InitializeComponent();
         }
-        private void navigateConsoBtn_MouseClick(Object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("Views\\Tresorie.xaml", UriKind.Relative));
-        }
 
-        private void NavigateTresorBtn_Click(object sender, RoutedEventArgs e)
+        private void Tile_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("Views\\Tresorie.xaml", UriKind.Relative));
-        }
-
-        private void NavigateEventsBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("Views\\Tresorie.xaml", UriKind.Relative));
-        }
-
-        private void NavigateAnnoncesBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("Views\\Tresorie.xaml", UriKind.Relative));
-        }
-
-        private void NavigateSauvegardeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("Views\\Tresorie.xaml", UriKind.Relative));
-        }
-
-        private void NavigateParametreBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("Views\\Tresorie.xaml", UriKind.Relative));
+            int i;
+            int.TryParse((sender as Tile).Uid,out i);
+            ((MainWindow)Application.Current.MainWindow).mainTab.SelectedIndex = i;
         }
     }
 }
