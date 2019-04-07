@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.Controls;
+using GestionCaisseInterBDE.Model;
 
 namespace GestionCaisseInterBDE.Views
 {
@@ -20,13 +23,29 @@ namespace GestionCaisseInterBDE.Views
     /// </summary>
     public partial class CaisseScreen : Page
     {
+        MainWindow window;
         public CaisseScreen()
         {
+            window = (MainWindow)Application.Current.MainWindow;
+
             InitializeComponent();
+            List<Product> listProd = Product.getProductList();
+            productPanel.Children.Clear();
+            foreach (Product p in listProd)
+            {
+                Tile tile = new Tile();
+                tile.Height = 150;
+                tile.Width = 150;
+                tile.Title = p.name;
+                tile.Tag = p.id;
+                productPanel.Children.Add(tile);
+            }
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            
 
         }
     }

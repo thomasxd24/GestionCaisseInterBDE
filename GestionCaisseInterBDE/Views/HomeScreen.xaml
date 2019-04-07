@@ -39,7 +39,7 @@
         <Controls:Tile Title="Consommations" Grid.Row="0" Grid.Column="0" Background="red" Click="Tile_Click" x:Uid="1" >
             <iconPacks:PackIconMaterial Kind="FoodForkDrink"/>
         </Controls:Tile>
-        <Controls:Tile Title="Trésorerie" Grid.Row="0" Grid.Column="1" Background="Purple" Click="Tile_Click" x:Uid="2" >
+        <Controls:Tile Title="Dettes" Grid.Row="0" Grid.Column="1" Background="Purple" Click="Tile_Click" x:Uid="2" >
             <iconPacks:PackIconMaterial Kind="Bank" />
         </Controls:Tile>
         <Controls:Tile Title="Events" Grid.Row="0" Grid.Column="2" Background="DarkCyan" Click="Tile_Click" x:Uid="3">

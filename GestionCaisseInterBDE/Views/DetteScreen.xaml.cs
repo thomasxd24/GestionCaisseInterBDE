@@ -18,9 +18,9 @@ namespace GestionCaisseInterBDE.Views
     /// <summary>
     /// Interaction logic for Tresorie.xaml
     /// </summary>
-    public partial class Tresorie : Page
+    public partial class DetteScreen : Page
     {
-        public Tresorie()
+        public DetteScreen()
         {
             InitializeComponent();
         }

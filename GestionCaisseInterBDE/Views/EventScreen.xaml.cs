@@ -36,6 +36,7 @@ namespace GestionCaisseInterBDE.Views
             password = "412qIrJSUkM0";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "Database=" + database + ";" + "Uid=" + uid + ";" + "Pwd=" + password + ";";
+            Console.WriteLine(connectionString);
             connection = new MySqlConnection(connectionString);
             OpenConnection();
             InitializeComponent();

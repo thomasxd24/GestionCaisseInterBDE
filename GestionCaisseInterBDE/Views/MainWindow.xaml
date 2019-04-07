@@ -32,8 +32,8 @@
             <TabItem x:Name="caisseTab" Header="Consommations">
                 <Frame Source="CaisseScreen.xaml"></Frame>
             </TabItem>
-            <TabItem x:Name="tresorerieTab" Header="Trésorerie">
-                <Frame Source="Tresorie.xaml"></Frame>
+            <TabItem x:Name="detteTab" Header="Dettes">
+                <Frame Source="DetteScreen.xaml"></Frame>
             </TabItem>
             <TabItem x:Name="eventsTab" Header="Events">
                 <Frame Source="EventScreen.xaml"></Frame>

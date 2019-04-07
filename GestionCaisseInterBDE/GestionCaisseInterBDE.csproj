@@ -70,6 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\BDE.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Utilities\Database.cs" />
+    <Compile Include="Utilities\MySQLDatabase.cs" />
     <Compile Include="Views\AnnonceScreen.xaml.cs">
       <DependentUpon>AnnonceScreen.xaml</DependentUpon>
     </Compile>
@@ -85,8 +89,8 @@
     <Compile Include="Views\SettingsScreen.xaml.cs">
       <DependentUpon>SettingsScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Tresorie.xaml.cs">
-      <DependentUpon>Tresorie.xaml</DependentUpon>
+    <Compile Include="Views\DetteScreen.xaml.cs">
+      <DependentUpon>DetteScreen.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AnnonceScreen.xaml">
       <SubType>Designer</SubType>
@@ -124,7 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Tresorie.xaml">
+    <Page Include="Views\DetteScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
