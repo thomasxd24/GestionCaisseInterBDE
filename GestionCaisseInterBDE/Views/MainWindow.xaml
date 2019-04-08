@@ -4,12 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:GestionCaisseInterBDE"
                       
                       BorderThickness="0" 
                       GlowBrush="Black"
         mc:Ignorable="d"
         Title="MainWindow" Height="591.934" Width="1146.666">
+    <Controls:MetroWindow.OverlayFadeIn>
+        <Storyboard
+             AccelerationRatio=".97" 
+             BeginTime="0:0:0" 
+             SpeedRatio="7" 
+             Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation To=".7" />
+        </Storyboard>
+        </Controls:MetroWindow.OverlayFadeIn>
+    <Controls:MetroWindow.OverlayFadeOut>
+        <Storyboard
+             AccelerationRatio=".97" 
+             BeginTime="0:0:0" 
+             SpeedRatio="7" 
+             Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation To="0.0" />
+        </Storyboard>
+    </Controls:MetroWindow.OverlayFadeOut>
+    <Window.Resources>
+        
+    </Window.Resources>
+    
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
             <Controls:Flyout Header="Réglage" Position="Right" Width="200">
@@ -43,8 +66,8 @@
             </TabItem>
             <TabItem x:Name="sauvegardeTab" Header="Sauvegarde">
                 <Controls:Tile Title="Hello!" 
-               Width="100"
-               Height="100" 
+               Width="150"
+               Height="150" 
                Count="1" />
 
             </TabItem>

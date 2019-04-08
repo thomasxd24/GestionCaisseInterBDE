@@ -5,10 +5,43 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       xmlns:local="clr-namespace:GestionCaisseInterBDE.Views"
+      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1200"
 
       Title="Page1">
+    <Page.Resources>
+        <ResourceDictionary>
+            <Dialog:CustomDialog x:Key="CustomCloseDialogTest"
+                                 x:Name="CustomCloseDialogTest"
+                                 Title="Choissisez le BDE a encaisser">
+                <DockPanel>
+                    <Button x:Name="cancelBtn" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="10" FontSize="15" Padding="7" Click="CancelBtn_Click">Annuler</Button>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <Controls:Tile x:Name="bdeChoiceBtn" Width="150" Height="150" Title="BDE Info" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
+                        <Controls:Tile Width="150" Height="150" Title="BDE Bio" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
+                        <Controls:Tile Width="150" Height="150" Title="BDE MP" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
+                        <Controls:Tile Width="150" Height="150" Title="BDE GEA" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
+                        <Controls:Tile Width="150" Height="150" Title="BDE RT" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
+                        <Controls:Tile Width="150" Height="150" Title="BDE Gym" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
+
+                    </WrapPanel>
+                </DockPanel>
+                
+
+
+            </Dialog:CustomDialog>
+            <Dialog:CustomDialog x:Key="FinalCaisseDialog"
+                                 x:Name="FinalCaisseDialog"
+                                 Title="Encaissement Réussi">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="Auto">
+
+                </StackPanel>
+
+
+            </Dialog:CustomDialog>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="150"/>
@@ -32,10 +65,10 @@
             <DockPanel  Grid.Row="3">
                 <Label FontSize="30" DockPanel.Dock="Left" Content="Totale:"></Label>
                 <Label FontSize="30" DockPanel.Dock="Right">€</Label>
-                <Label FontSize="30" HorizontalAlignment="Center">35</Label>
+                <Label FontSize="30" HorizontalAlignment="Center" x:Name="totalPrice">0</Label>
 
             </DockPanel>
-            <Button Grid.Row="4" Margin="7" FontSize="20" Click="Button_Click_1">Encaisser</Button>
+            <Button Grid.Row="4" Margin="7" FontSize="20" x:Name="encaisserBtn" Click="EncaisserBtn_Click">Encaisser</Button>
             
         </Grid>
         <DockPanel Grid.Column="1" >

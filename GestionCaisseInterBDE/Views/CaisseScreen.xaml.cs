@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Controls;
 using GestionCaisseInterBDE.Model;
+using MahApps.Metro.Controls.Dialogs;
+using System.Globalization;
 
 namespace GestionCaisseInterBDE.Views
 {
@@ -92,21 +94,30 @@ namespace GestionCaisseInterBDE.Views
             {
                 if (anItem.Content.GetType() != typeof(DockPanel)) return;
                 DockPanel dp = (DockPanel)anItem.Content;
-                foreach(Label lb in dp.Children)
+                int oldQuantity = 1;
+                foreach (Label lb in dp.Children)
                 {
                     
                     if (lb.Tag == null) continue;
-
                     if (lb.Tag.ToString() == "productName")
                     {
-                        if (lb.Content.ToString() != p.name) break;
+                        if (lb.Content.ToString() != p.name)
+                        {
+                            break;
+                        }
+
+                    }
+                    else if (lb.Tag.ToString() == "Price")
+                    {
+                        lb.Content = (p.price*(oldQuantity+1)).ToString("C2");
+                        return;
                     }
                     else if (lb.Tag.ToString() == "Quantity")
                     {
-                        int oldQuantity = int.Parse(lb.Content.ToString().Remove(0, 1)); //TODO EXCPETIONS
+                        oldQuantity = int.Parse(lb.Content.ToString().Remove(0, 1)); //TODO EXCPETIONS
                         string newString = "x" + (oldQuantity + 1).ToString();
                         lb.Content = newString;
-                        return;
+                        totalPrice.Content = (float.Parse(totalPrice.Content.ToString())+p.price).ToString("0.00");
                     }
                     
                 }
@@ -120,25 +131,47 @@ namespace GestionCaisseInterBDE.Views
             labelName.Tag = "productName";
             dpProd.Children.Add(labelName);
             labelPrice.Content = p.price.ToString("C2");
+            labelPrice.Tag = "Price";
             DockPanel.SetDock(labelPrice, Dock.Right);
-            dpProd.Children.Add(labelPrice);
+
             var labelQuanity = new Label();
             labelQuanity.Content = "x1";
             labelQuanity.Tag = "Quantity";
             DockPanel.SetDock(labelQuanity, Dock.Right);
             dpProd.Children.Add(labelQuanity);
-           
+            dpProd.Children.Add(labelPrice);
+
             itemProduct.Content = dpProd;
             basketListView.Items.Add(itemProduct);
-
-
-
-
+            totalPrice.Content = (float.Parse(totalPrice.Content.ToString()) + p.price).ToString("0.00");
         }
 
         private void clearBasketBtn_Click(object sender, RoutedEventArgs e)
         {
             basketListView.Items.Clear();
+        }
+
+        private async void EncaisserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
+            await this.window.ShowMetroDialogAsync(dialog);
+
+        }
+
+        private async void BdeChoiceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
+
+            await this.window.HideMetroDialogAsync(dialog);
+            await this.window.ShowMessageAsync("Encaissement Réussi", "Un montant de 13.5 EURO a été encaissé");
+
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
+
+            this.window.HideMetroDialogAsync(dialog);
         }
     }
 }
