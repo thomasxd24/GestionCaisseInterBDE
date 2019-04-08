@@ -26,11 +26,11 @@
             <StackPanel Grid.Row="1">
                 <Button Margin="5">Vider le panier</Button>
             </StackPanel>
-            <ListView Grid.Row="2">
+            <ListView Grid.Row="2" x:Name="basketListView">
                 <ListViewItem>
                     <DockPanel>
                         <Label DockPanel.Dock="Right">35.5 EUR</Label>
-                        <Label DockPanel.Dock="Right" >x2</Label>
+                        <Label DockPanel.Dock="Right" Tag="Quantity" >x2</Label>
                         <Label>Bone Apple Tea</Label>
                     </DockPanel>
                 </ListViewItem>
@@ -60,11 +60,10 @@
             <ScrollViewer >
                 <WrapPanel x:Name="productPanel">
                     <Controls:Tile Title="HI" Width="150" Height="150">
-                        <Controls:Tile.Background>
-                            <ImageBrush ImageSource="https://pbs.twimg.com/profile_images/1103801093782495232/BeF6bRph_400x400.jpg"/>
-                        </Controls:Tile.Background>
-                        <DockPanel VerticalAlignment="Top">
-                            <Label DockPanel.Dock="Top" VerticalAlignment="Top">35.5 EURO</Label>
+                        <DockPanel VerticalAlignment="Top" Width="150" HorizontalAlignment="Center" Margin="0,0,0,26">
+                            <Label DockPanel.Dock="Top" HorizontalAlignment="Right">0.70 €</Label>
+                            <Image Source="http://pngimg.com/uploads/cocacola/cocacola_PNG22.png" VerticalAlignment="Bottom">
+                            </Image>
                         </DockPanel>
                         
                     </Controls:Tile>
