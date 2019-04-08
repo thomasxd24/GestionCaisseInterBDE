@@ -41,6 +41,13 @@ namespace GestionCaisseInterBDE.Views
             addProductToBasket(new Product(1, "ds", 5.50f, ""));
         }
 
+        private void productItem_Click(object sender, RoutedEventArgs e)
+        {
+            Tile tile = (Tile)sender;
+            
+            addProductToBasket((Product)tile.Tag);
+        }
+
         private void fillProductPanel(List<Product> listProd)
         {
             productPanel.Children.Clear();
@@ -50,7 +57,17 @@ namespace GestionCaisseInterBDE.Views
                 tile.Height = 150;
                 tile.Width = 150;
                 tile.Title = p.name;
-                tile.Tag = p.id;
+                tile.Tag = p;
+                Random random = new Random();
+                SolidColorBrush brush =
+                    new SolidColorBrush(
+                        Color.FromRgb(
+                        (byte)random.Next(255),
+                        (byte)random.Next(255),
+                        (byte)random.Next(255)
+                        ));
+                tile.Background = brush;
+                tile.Click += productItem_Click;
                 var dp = new DockPanel();
                 dp.Width = 150;
                 dp.Margin = new Thickness(0, 0, 0, 30);
@@ -77,15 +94,25 @@ namespace GestionCaisseInterBDE.Views
                 DockPanel dp = (DockPanel)anItem.Content;
                 foreach(Label lb in dp.Children)
                 {
+                    
                     if (lb.Tag == null) continue;
+
                     if (lb.Tag.ToString() == "Quantity")
                     {
                         int oldQuantity = int.Parse(lb.Content.ToString().Remove(0, 1)); //TODO EXCPETIONS
                         string newString = "x" + (oldQuantity + 1).ToString();
                         lb.Content = newString;
-                    } 
+                        return;
+                    }
+                    else if(lb.Tag.ToString() == "productName")
+                    {
+                        if (lb.Content.ToString() != p.name) break;
+                    }
                 }
             }
+            var 
+            basketListView.Items.Add()
+
         }
     }
 }
