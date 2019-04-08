@@ -97,22 +97,48 @@ namespace GestionCaisseInterBDE.Views
                     
                     if (lb.Tag == null) continue;
 
-                    if (lb.Tag.ToString() == "Quantity")
+                    if (lb.Tag.ToString() == "productName")
+                    {
+                        if (lb.Content.ToString() != p.name) break;
+                    }
+                    else if (lb.Tag.ToString() == "Quantity")
                     {
                         int oldQuantity = int.Parse(lb.Content.ToString().Remove(0, 1)); //TODO EXCPETIONS
                         string newString = "x" + (oldQuantity + 1).ToString();
                         lb.Content = newString;
                         return;
                     }
-                    else if(lb.Tag.ToString() == "productName")
-                    {
-                        if (lb.Content.ToString() != p.name) break;
-                    }
+                    
                 }
             }
-            var 
-            basketListView.Items.Add()
+            var itemProduct = new ListViewItem();
+            var dpProd = new DockPanel();
+            dpProd.LastChildFill = false;
+            var labelPrice = new Label();
+            var labelName = new Label();
+            labelName.Content = p.name;
+            labelName.Tag = "productName";
+            dpProd.Children.Add(labelName);
+            labelPrice.Content = p.price.ToString("C2");
+            DockPanel.SetDock(labelPrice, Dock.Right);
+            dpProd.Children.Add(labelPrice);
+            var labelQuanity = new Label();
+            labelQuanity.Content = "x1";
+            labelQuanity.Tag = "Quantity";
+            DockPanel.SetDock(labelQuanity, Dock.Right);
+            dpProd.Children.Add(labelQuanity);
+           
+            itemProduct.Content = dpProd;
+            basketListView.Items.Add(itemProduct);
 
+
+
+
+        }
+
+        private void clearBasketBtn_Click(object sender, RoutedEventArgs e)
+        {
+            basketListView.Items.Clear();
         }
     }
 }
