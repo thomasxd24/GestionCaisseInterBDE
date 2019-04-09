@@ -32,7 +32,7 @@ namespace GestionCaisseInterBDE.Views
             InitializeComponent();
             List<Product> listProd = Product.getProductList();
             fillProductPanel(listProd);
-            
+
 
         }
 
@@ -45,7 +45,7 @@ namespace GestionCaisseInterBDE.Views
         private void productItem_Click(object sender, RoutedEventArgs e)
         {
             Tile tile = (Tile)sender;
-            
+
             addProductToBasket((Product)tile.Tag);
         }
 
@@ -96,7 +96,7 @@ namespace GestionCaisseInterBDE.Views
                 int oldQuantity = 1;
                 foreach (Label lb in dp.Children)
                 {
-                    
+
                     if (lb.Tag == null) continue;
                     if (lb.Tag.ToString() == "productName")
                     {
@@ -108,7 +108,7 @@ namespace GestionCaisseInterBDE.Views
                     }
                     else if (lb.Tag.ToString() == "Price")
                     {
-                        lb.Content = (p.price*(oldQuantity+1)).ToString("C2");
+                        lb.Content = (p.price * (oldQuantity + 1)).ToString("C2");
                         return;
                     }
                     else if (lb.Tag.ToString() == "Quantity")
@@ -116,9 +116,9 @@ namespace GestionCaisseInterBDE.Views
                         oldQuantity = int.Parse(lb.Content.ToString().Remove(0, 1)); //TODO EXCPETIONS
                         string newString = "x" + (oldQuantity + 1).ToString();
                         lb.Content = newString;
-                        totalPrice.Content = (float.Parse(totalPrice.Content.ToString())+p.price).ToString("0.00");
+                        totalPrice.Content = (float.Parse(totalPrice.Content.ToString()) + p.price).ToString("0.00");
                     }
-                    
+
                 }
             }
             var itemProduct = new ListViewItem();
@@ -153,6 +153,26 @@ namespace GestionCaisseInterBDE.Views
         private async void EncaisserBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
+            List<BDE> listBDE = BDE.getBDEList();
+            var wp = new WrapPanel();
+            wp.HorizontalAlignment = HorizontalAlignment.Center;
+            wp.Orientation = Orientation.Horizontal;
+            wp.Name = "panelBDE";
+            foreach(BDE bde in listBDE)
+            {
+                Tile tile = new Tile();
+                tile.Title = bde.name;
+                tile.Width = 150;
+                tile.Height = 150;
+                tile.Margin = new Thickness(7);
+                tile.Click += BdeChoiceBtn_Click;
+                tile.Tag = bde;
+
+                wp.Children.Add(tile);
+            }
+            var dp = ((DockPanel)dialog.Content);
+            if(dp.Children.Count == 2) dp.Children.Remove(dp.Children[1]); 
+            dp.Children.Add(wp);
             await this.window.ShowMetroDialogAsync(dialog);
 
         }

@@ -17,15 +17,6 @@
                                  Title="Choissisez le BDE a encaisser">
                 <DockPanel>
                     <Button x:Name="cancelBtn" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="10" FontSize="15" Padding="7" Click="CancelBtn_Click">Annuler</Button>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                        <Controls:Tile x:Name="bdeChoiceBtn" Width="150" Height="150" Title="BDE Info" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
-                        <Controls:Tile Width="150" Height="150" Title="BDE Bio" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
-                        <Controls:Tile Width="150" Height="150" Title="BDE MP" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
-                        <Controls:Tile Width="150" Height="150" Title="BDE GEA" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
-                        <Controls:Tile Width="150" Height="150" Title="BDE RT" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
-                        <Controls:Tile Width="150" Height="150" Title="BDE Gym" Margin="7" Click="BdeChoiceBtn_Click"></Controls:Tile>
-
-                    </WrapPanel>
                 </DockPanel>
                 
 
