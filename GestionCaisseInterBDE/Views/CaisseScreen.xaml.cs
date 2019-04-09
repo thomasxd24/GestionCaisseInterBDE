@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Controls;
 using GestionCaisseInterBDE.Model;
-using MahApps.Metro.Controls.Dialogs;
 using System.Globalization;
 
 namespace GestionCaisseInterBDE.Views

@@ -15,7 +15,7 @@
         <Storyboard
              AccelerationRatio=".97" 
              BeginTime="0:0:0" 
-             SpeedRatio="7" 
+             SpeedRatio="10" 
              Storyboard.TargetProperty="Opacity">
             <DoubleAnimation To=".7" />
         </Storyboard>
@@ -24,7 +24,7 @@
         <Storyboard
              AccelerationRatio=".97" 
              BeginTime="0:0:0" 
-             SpeedRatio="7" 
+             SpeedRatio="10" 
              Storyboard.TargetProperty="Opacity">
             <DoubleAnimation To="0.0" />
         </Storyboard>
@@ -50,19 +50,19 @@
     <DockPanel>
         <Controls:MetroAnimatedSingleRowTabControl DockPanel.Dock="Top" Margin="0,10,0,0" x:Name="mainTab">
             <TabItem x:Name="homeTab" Header="Acceuil">
-                <Frame Source="HomeScreen.xaml"></Frame>
+                <Frame Source="Views/HomeScreen.xaml"></Frame>
             </TabItem>
             <TabItem x:Name="caisseTab" Header="Consommations">
-                <Frame Source="CaisseScreen.xaml"></Frame>
+                <Frame Source="Views/CaisseScreen.xaml"></Frame>
             </TabItem>
             <TabItem x:Name="detteTab" Header="Dettes">
-                <Frame Source="DetteScreen.xaml"></Frame>
+                <Frame Source="Views/DetteScreen.xaml"></Frame>
             </TabItem>
             <TabItem x:Name="eventsTab" Header="Events">
-                <Frame Source="EventScreen.xaml"></Frame>
+                <Frame Source="Views/EventScreen.xaml"></Frame>
             </TabItem>
             <TabItem x:Name="annoncesTab" Header="Annonces">
-                <Frame Source="AnnonceScreen.xaml"></Frame>
+                <Frame Source="Views/AnnonceScreen.xaml"></Frame>
             </TabItem>
             <TabItem x:Name="sauvegardeTab" Header="Sauvegarde">
                 <Controls:Tile Title="Hello!" 
