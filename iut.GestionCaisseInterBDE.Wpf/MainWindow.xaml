@@ -10,7 +10,7 @@
                       BorderThickness="0" 
                       GlowBrush="Black"
         mc:Ignorable="d"
-        Title="MainWindow" Height="591.934" Width="1146.666">
+        Title="Gestion Caisse Inter BDE" Height="591.934" Width="1146.666">
     <Controls:MetroWindow.OverlayFadeIn>
         <Storyboard
              AccelerationRatio=".97" 

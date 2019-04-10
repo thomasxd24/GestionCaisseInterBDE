@@ -8,7 +8,6 @@
       xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1200"
-
       Title="Page1">
     <Page.Resources>
         <ResourceDictionary>
@@ -54,9 +53,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-                            <Label Content="{Binding ProductName}"/>
+
                             <Label DockPanel.Dock="Right" Content="{Binding TotalPriceString}" />
                             <Label DockPanel.Dock="Right" Content="{Binding Quantity}"/>
+                            <Label Content="{Binding ProductName}"/>
                         </DockPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -91,7 +91,6 @@
                             <Image Source="http://pngimg.com/uploads/cocacola/cocacola_PNG22.png" VerticalAlignment="Bottom">
                             </Image>
                         </DockPanel>
-                        
                     </Controls:Tile>
                 </WrapPanel>
             </ScrollViewer>

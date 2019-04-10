@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,11 @@ namespace iut.GestionCaisseInterBDE.Models
             this.departement = departement;
         }
 
-        public static List<BDE> getBDEList()
+        public static Collection<BDE> getBDEList()
         {
-            var db = new MySQLDatabase("SERVER=51.68.230.58;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
+            var db = new MySQLDatabase("SERVER=51.68.230.58;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
             DataTable dt = db.Select("SELECT * FROM bde");
-            List<BDE> bdeList = new List<BDE>();
+            Collection<BDE> bdeList = new Collection<BDE>();
             foreach (DataRow dr in dt.Rows)
             {
                 BDE bde = new BDE(dr["name"].ToString(), dr["departement"].ToString());

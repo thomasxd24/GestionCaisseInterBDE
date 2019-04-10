@@ -27,18 +27,26 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
     {
         MainWindow window;
         ObservableCollection<BasketItem> basketItems;
+        Collection<Product> Products;
         public CaisseScreen()
         {
             window = (MainWindow)Application.Current.MainWindow;
-
             InitializeComponent();
+            LoadComponent();
+        }
+        
 
-            Collection<Product> listProd = Product.getProductList();
-            fillProductPanel(listProd);
 
+        private async void LoadComponent()
+        {
+            Products = Product.getProductList();
+            fillProductPanel();
             basketItems = new ObservableCollection<BasketItem>();
             basketListView.ItemsSource = basketItems;
-
+            var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
+            var dp = ((DockPanel)dialog.Content);
+            var wp = fillBDEPanel();
+            dp.Children.Add(wp);
         }
 
         private void productItem_Click(object sender, RoutedEventArgs e)
@@ -48,10 +56,10 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             addProductToBasket((Product)tile.Tag);
         }
 
-        private void fillProductPanel(Collection<Product> listProd)
+        private void fillProductPanel()
         {
             productPanel.Children.Clear();
-            foreach (Product p in listProd)
+            foreach (Product p in Products)
             {
                 Tile tile = new Tile();
                 tile.Height = 150;
@@ -110,12 +118,18 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
         private async void EncaisserBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
-            List<BDE> listBDE = BDE.getBDEList();
+
+            await this.window.ShowMetroDialogAsync(dialog);
+
+        }
+
+        private WrapPanel fillBDEPanel()
+        {
             var wp = new WrapPanel();
             wp.HorizontalAlignment = HorizontalAlignment.Center;
             wp.Orientation = Orientation.Horizontal;
             wp.Name = "panelBDE";
-            foreach(BDE bde in listBDE)
+            foreach (BDE bde in window.BDEs)
             {
                 Tile tile = new Tile();
                 tile.Title = bde.name;
@@ -127,11 +141,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
 
                 wp.Children.Add(tile);
             }
-            var dp = ((DockPanel)dialog.Content);
-            if(dp.Children.Count == 2) dp.Children.Remove(dp.Children[1]); 
-            dp.Children.Add(wp);
-            await this.window.ShowMetroDialogAsync(dialog);
-
+            return wp;
         }
 
         private async void BdeChoiceBtn_Click(object sender, RoutedEventArgs e)
