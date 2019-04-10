@@ -1,0 +1,56 @@
+﻿<Page x:Class="iut.GestionCaisseInterBDE.Wpf.HomeScreen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf"
+      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d"
+      Title="Home" Width="600" Height="400">
+    <Page.Resources>
+        <Style TargetType="Controls:Tile">
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="200" />
+            <Setter Property="HorizontalTitleAlignment" Value="Left" />
+            <Setter Property="HorizontalTitleAlignment" Value="Left" />
+            <Setter Property="TitleFontSize" Value="20" />
+            <Setter Property="VerticalTitleAlignment" Value="Bottom" />
+        </Style>
+        <Style TargetType="iconPacks:PackIconMaterial">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Controls:Tile Title="Consommations" Grid.Row="0" Grid.Column="0" Background="red" Click="Tile_Click" x:Uid="1" >
+            <iconPacks:PackIconMaterial Kind="FoodForkDrink"/>
+        </Controls:Tile>
+        <Controls:Tile Title="Dettes" Grid.Row="0" Grid.Column="1" Background="Purple" Click="Tile_Click" x:Uid="2" >
+            <iconPacks:PackIconMaterial Kind="Bank" />
+        </Controls:Tile>
+        <Controls:Tile Title="Events" Grid.Row="0" Grid.Column="2" Background="DarkCyan" Click="Tile_Click" x:Uid="3">
+            <iconPacks:PackIconMaterial Kind="EmoticonCool" />
+        </Controls:Tile>
+        <Controls:Tile Title="Annonces" Grid.Row="1" Grid.Column="0" Background="Green" Click="Tile_Click" x:Uid="4">
+            <iconPacks:PackIconMaterial Kind="VolumeHigh" />
+        </Controls:Tile>
+        <Controls:Tile Title="Sauvegarde" Grid.Row="1" Grid.Column="1" Click="Tile_Click" x:Uid="5">
+            <iconPacks:PackIconMaterial Kind="ContentSave" />
+        </Controls:Tile>
+
+    </Grid>
+</Page>

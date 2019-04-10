@@ -1,0 +1,105 @@
+﻿<Page x:Class="iut.GestionCaisseInterBDE.Wpf.Views.CaisseScreen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views"
+      xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1200"
+
+      Title="Page1">
+    <Page.Resources>
+        <ResourceDictionary>
+            <Dialog:CustomDialog x:Key="CustomCloseDialogTest"
+                                 x:Name="CustomCloseDialogTest"
+                                 Title="Choissisez le BDE a encaisser">
+                <DockPanel>
+                    <Button x:Name="cancelBtn" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="10" FontSize="15" Padding="7" Click="CancelBtn_Click">Annuler</Button>
+                </DockPanel>
+                
+
+
+            </Dialog:CustomDialog>
+            <Dialog:CustomDialog x:Key="FinalCaisseDialog"
+                                 x:Name="FinalCaisseDialog"
+                                 Title="Encaissement Réussi">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="Auto">
+
+                </StackPanel>
+
+
+            </Dialog:CustomDialog>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="150"/>
+            <ColumnDefinition  Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid  Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Panier" FontSize="20" HorizontalAlignment="Center"></Label>
+            <StackPanel Grid.Row="1">
+                <Button x:Name="clearBasket" Margin="5" Click="clearBasketBtn_Click">Vider le panier</Button>
+            </StackPanel>
+            <ListView Grid.Row="2" x:Name="basketListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Label Content="{Binding ProductName}"/>
+                            <Label DockPanel.Dock="Right" Content="{Binding TotalPriceString}" />
+                            <Label DockPanel.Dock="Right" Content="{Binding Quantity}"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <DockPanel  Grid.Row="3">
+                <Label FontSize="30" DockPanel.Dock="Left" Content="Totale:"></Label>
+                <Label FontSize="30" DockPanel.Dock="Right">€</Label>
+                <Label FontSize="30" HorizontalAlignment="Center" x:Name="totalPrice">0</Label>
+
+            </DockPanel>
+            <Button Grid.Row="4" Margin="7" FontSize="20" x:Name="encaisserBtn" Click="EncaisserBtn_Click">Encaisser</Button>
+            
+        </Grid>
+        <DockPanel Grid.Column="1" >
+            <Grid DockPanel.Dock="Bottom" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="4" Margin="5">Historique</Button>
+                <Button Grid.Column="3" Margin="5">Gérer les produits</Button>
+                <Button Grid.Column="2" Margin="5">Réapprovisionnement</Button>
+            </Grid>
+            <ScrollViewer >
+                <WrapPanel x:Name="productPanel">
+                    <Controls:Tile Title="HI" Width="150" Height="150">
+                        <DockPanel VerticalAlignment="Top" Width="150" HorizontalAlignment="Center" Margin="0,0,0,26">
+                            <Label DockPanel.Dock="Top" HorizontalAlignment="Right">0.70 €</Label>
+                            <Image Source="http://pngimg.com/uploads/cocacola/cocacola_PNG22.png" VerticalAlignment="Bottom">
+                            </Image>
+                        </DockPanel>
+                        
+                    </Controls:Tile>
+                </WrapPanel>
+            </ScrollViewer>
+
+        </DockPanel>
+        
+        
+        
+
+    </Grid>
+</Page>
