@@ -29,7 +29,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("fr-FR");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fr-FR");
             InitializeComponent();
-            BDEs = BDE.getBDEList();
+            BDEs = BDEManager.GetBDEList();
         }
 
     }

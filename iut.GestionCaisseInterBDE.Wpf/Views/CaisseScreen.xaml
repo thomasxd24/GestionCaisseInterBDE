@@ -14,9 +14,25 @@
             <Dialog:CustomDialog x:Key="CustomCloseDialogTest"
                                  x:Name="CustomCloseDialogTest"
                                  Title="Choissisez le BDE a encaisser">
-                <DockPanel>
+                <StackPanel Orientation="Vertical">
+                    
+                    <ItemsControl  x:Name="BDEList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Controls:Tile Title="{Binding Name}" Width="175" Height="175" Click="BdeChoiceBtn_Click" Tag="{Binding Path=.}">
+                                    <Image Source="{Binding ImageURL}" VerticalAlignment="Top" Margin="0,0,0,40" />
+                                </Controls:Tile>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel x:Name="BDEPanel" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl> 
                     <Button x:Name="cancelBtn" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="10" FontSize="15" Padding="7" Click="CancelBtn_Click">Annuler</Button>
-                </DockPanel>
+
+                </StackPanel>
                 
 
 
@@ -53,19 +69,26 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
-
                             <Label DockPanel.Dock="Right" Content="{Binding TotalPriceString}" />
-                            <Label DockPanel.Dock="Right" Content="{Binding Quantity}"/>
+                            <Label DockPanel.Dock="Right">
+                                <Label.Content>
+                                    <TextBlock>
+                                        <Run Text="x"/>
+                                        <Run Text="{Binding Quantity}"/>
+                                    </TextBlock>
+                                </Label.Content>
+
+                                
+                            </Label>
                             <Label Content="{Binding ProductName}"/>
                         </DockPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
             <DockPanel  Grid.Row="3">
-                <Label FontSize="30" DockPanel.Dock="Left" Content="Totale:"></Label>
-                <Label FontSize="30" DockPanel.Dock="Right">€</Label>
-                <Label FontSize="30" HorizontalAlignment="Center" x:Name="totalPrice">0</Label>
-
+                
+                <Label FontSize="30" DockPanel.Dock="Right" x:Name="totalPriceLabel"></Label>
+                <Label FontSize="30"  Content="Total:"></Label>
             </DockPanel>
             <Button Grid.Row="4" Margin="7" FontSize="20" x:Name="encaisserBtn" Click="EncaisserBtn_Click">Encaisser</Button>
             
@@ -79,21 +102,34 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="4" Margin="5">Historique</Button>
-                <Button Grid.Column="3" Margin="5">Gérer les produits</Button>
+                <Button Grid.Column="4" Margin="5" x:Name="historyBtn">Historique</Button>
+                <Button Grid.Column="3" Margin="5" x:Name="productListBtn" Click="ProductListBtn_Click">Gérer les produits</Button>
                 <Button Grid.Column="2" Margin="5">Réapprovisionnement</Button>
             </Grid>
-            <ScrollViewer >
-                <WrapPanel x:Name="productPanel">
-                    <Controls:Tile Title="HI" Width="150" Height="150">
-                        <DockPanel VerticalAlignment="Top" Width="150" HorizontalAlignment="Center" Margin="0,0,0,26">
-                            <Label DockPanel.Dock="Top" HorizontalAlignment="Right">0.70 €</Label>
-                            <Image Source="http://pngimg.com/uploads/cocacola/cocacola_PNG22.png" VerticalAlignment="Bottom">
-                            </Image>
-                        </DockPanel>
-                    </Controls:Tile>
-                </WrapPanel>
-            </ScrollViewer>
+            <DockPanel>
+                <TextBox Width="200" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5">Rechercher...</TextBox>
+                <ScrollViewer >
+                    <ItemsControl x:Name="productList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Click="productItem_Click" Tag="{Binding Path=.}">
+                                    <DockPanel VerticalAlignment="Top" Width="150" HorizontalAlignment="Center" Margin="0,0,0,35">
+                                        <Label DockPanel.Dock="Top" HorizontalAlignment="Right" Content="{Binding PriceString}"></Label>
+                                        <Image Source="{Binding ImageURL}" VerticalAlignment="Bottom">
+                                        </Image>
+                                    </DockPanel>
+                                </Controls:Tile>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel x:Name="productPanel" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+            
 
         </DockPanel>
         

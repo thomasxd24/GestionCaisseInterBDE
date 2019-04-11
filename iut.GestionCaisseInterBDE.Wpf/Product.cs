@@ -43,11 +43,6 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
-        public string PriceString
-        {
-            get { return price.ToString("C2"); }
-        }
-
         private string imageUrl;
 
         public string ImageURL
@@ -66,7 +61,24 @@ namespace iut.GestionCaisseInterBDE.Models
             this.price = price;
             this.imageUrl = imageUrl;
         }
-        
+        public static Collection<Product> getProductList()
+        {
+
+            var db = new MySQLDatabase("SERVER=51.68.230.58;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
+            DataTable dt = db.Select("SELECT * FROM products");
+            Collection<Product> products = new Collection<Product>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Product product = new Product(
+                    int.Parse(dr["idProduct"].ToString()),
+                    dr["nameProduct"].ToString(),
+                    float.Parse(dr["prix"].ToString()),
+                    dr["imageUrl"].ToString());
+                products.Add(product);
+            }
+            return products;
+
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -10,27 +11,65 @@ using MySql.Data.MySqlClient;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
-    public class BDE
+    public class BDE : INotifyPropertyChanged
     {
-        public string name { get; set; }
-        public string departement { get; set; }
-        public BDE(string name,string departement)
+
+        private int id;
+
+        public int ID
         {
-            this.name = name;
-            this.departement = departement;
+            get { return id; }
+            set { id = value; }
         }
 
-        public static Collection<BDE> getBDEList()
+
+        private string name;
+
+        public string Name
         {
-            var db = new MySQLDatabase("SERVER=51.68.230.58;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
-            DataTable dt = db.Select("SELECT * FROM bde");
-            Collection<BDE> bdeList = new Collection<BDE>();
-            foreach (DataRow dr in dt.Rows)
-            {
-                BDE bde = new BDE(dr["name"].ToString(), dr["departement"].ToString());
-                bdeList.Add(bde);
+            get { return name; }
+            set { name = value; ;
+                RaisePropertyChanged("Name");
             }
-            return bdeList;
         }
+        private string departement;
+
+        public string Departement
+        {
+            get { return departement; }
+            set { departement = value; ;
+                RaisePropertyChanged("Departement");
+            }
+        }
+
+        private string imageURL;
+
+        public string ImageURL
+        {
+            get { return imageURL; }
+            set { imageURL = value; ;
+                RaisePropertyChanged("ImageURL");
+            }
+        }
+
+
+        public BDE(int id,string name,string departement,string imageURL)
+        {
+            this.id = id;
+            this.name = name;
+            this.departement = departement;
+            this.imageURL = imageURL;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
     }
 }

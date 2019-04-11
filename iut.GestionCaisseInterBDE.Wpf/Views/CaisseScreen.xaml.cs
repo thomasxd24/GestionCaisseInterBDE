@@ -17,6 +17,7 @@ using MahApps.Metro.Controls;
 using iut.GestionCaisseInterBDE.Models;
 using System.Globalization;
 using System.Collections.ObjectModel;
+using GestionCaisseInterBDE.Windows;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
@@ -28,25 +29,37 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
         MainWindow window;
         ObservableCollection<BasketItem> basketItems;
         Collection<Product> Products;
+        private float totalPrice;
+        public string TotalPriceFormat
+        {
+            get { return totalPrice.ToString("C2");}
+        }
+
         public CaisseScreen()
         {
             window = (MainWindow)Application.Current.MainWindow;
             InitializeComponent();
-            LoadComponent();
+            Products = ProductManager.GetProductList();
+            productList.ItemsSource = Products;
+            basketItems = new ObservableCollection<BasketItem>();
+            basketListView.ItemsSource = basketItems;
+            var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
+            var dp = ((StackPanel)dialog.Content);
+            var itemC = ((ItemsControl)dp.Children[0]);
+            itemC.ItemsSource = this.window.BDEs;
+            this.DataContext = this;
         }
         
 
 
-        private async void LoadComponent()
+        private float UpdateTotalPrice()
         {
-            Products = Product.getProductList();
-            fillProductPanel();
-            basketItems = new ObservableCollection<BasketItem>();
-            basketListView.ItemsSource = basketItems;
-            var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
-            var dp = ((DockPanel)dialog.Content);
-            var wp = fillBDEPanel();
-            dp.Children.Add(wp);
+            float totalPrice = 0;
+            foreach (BasketItem basketItem in basketItems)
+            {
+                totalPrice = totalPrice + basketItem.ItemProduct.Price * basketItem.Quantity;
+            }
+            return totalPrice;
         }
 
         private void productItem_Click(object sender, RoutedEventArgs e)
@@ -54,45 +67,12 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             Tile tile = (Tile)sender;
 
             addProductToBasket((Product)tile.Tag);
+            totalPrice = UpdateTotalPrice();
+            totalPriceLabel.Content = totalPrice.ToString("C2");
         }
 
-        private void fillProductPanel()
-        {
-            productPanel.Children.Clear();
-            foreach (Product p in Products)
-            {
-                Tile tile = new Tile();
-                tile.Height = 150;
-                tile.Width = 150;
-                tile.Title = p.Name;
-                tile.Tag = p;
-                Random random = new Random();
-                SolidColorBrush brush =
-                    new SolidColorBrush(
-                        Color.FromRgb(
-                        (byte)random.Next(255),
-                        (byte)random.Next(255),
-                        (byte)random.Next(255)
-                        ));
-                tile.Background = brush;
-                tile.Click += productItem_Click;
-                var dp = new DockPanel();
-                dp.Width = 150;
-                dp.Margin = new Thickness(0, 0, 0, 30);
-                var price = new Label();
-                price.Content = p.Price.ToString("C2");
-                price.HorizontalAlignment = HorizontalAlignment.Right;
-                DockPanel.SetDock(price, Dock.Top);
-                dp.Children.Add(price);
-                var imageControl = new Image();
-                imageControl.Source = new BitmapImage(new Uri(p.ImageURL));
-                dp.Children.Add(imageControl);
-                tile.Content = dp;
+        
 
-                productPanel.Children.Add(tile);
-            }
-
-        }
 
         private void addProductToBasket(Product p)
         {
@@ -101,18 +81,20 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             {
                 if (item.ProductName != p.Name) continue;
                 exist = true;
-                int oldQuantity = int.Parse(item.Quantity.Remove(0, 1));
-                item.TotalPriceString = (p.Price * (oldQuantity + 1)).ToString("C2");
-                item.Quantity = $"x{oldQuantity + 1}";
+                int oldQuantity = item.Quantity;
+                item.Quantity = oldQuantity + 1;
             }
             if (exist) return;
-            BasketItem newItem = new BasketItem(p.Name,p.Price.ToString("C2"),"x1");
+            BasketItem newItem = new BasketItem(p);
             basketItems.Add(newItem);
+
         }
 
         private void clearBasketBtn_Click(object sender, RoutedEventArgs e)
         {
             basketItems.Clear();
+            totalPrice = 0;
+            totalPriceLabel.Content = totalPrice.ToString("C2");
         }
 
         private async void EncaisserBtn_Click(object sender, RoutedEventArgs e)
@@ -123,33 +105,18 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
 
         }
 
-        private WrapPanel fillBDEPanel()
-        {
-            var wp = new WrapPanel();
-            wp.HorizontalAlignment = HorizontalAlignment.Center;
-            wp.Orientation = Orientation.Horizontal;
-            wp.Name = "panelBDE";
-            foreach (BDE bde in window.BDEs)
-            {
-                Tile tile = new Tile();
-                tile.Title = bde.name;
-                tile.Width = 150;
-                tile.Height = 150;
-                tile.Margin = new Thickness(7);
-                tile.Click += BdeChoiceBtn_Click;
-                tile.Tag = bde;
-
-                wp.Children.Add(tile);
-            }
-            return wp;
-        }
 
         private async void BdeChoiceBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
-
+            var bdeChosen = (BDE)((Tile)sender).Tag;
+            var key = DateTime.Now.ToString().GetHashCode().ToString("x");
+            foreach(BasketItem basketItem in basketItems)
+            {
+                BasketManager.AddTicket(key, bdeChosen, basketItem.ItemProduct, basketItem.Quantity);
+            }
             await this.window.HideMetroDialogAsync(dialog);
-            await this.window.ShowMessageAsync("Encaissement Réussi", "Un montant de 13.5 EURO a été encaissé");
+            await this.window.ShowMessageAsync("Encaissement Réussi", $"Un montant de {TotalPriceFormat} a été encaissé au {bdeChosen.Name} avec le numero de ticket {key}");
 
         }
 
@@ -158,6 +125,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
 
             this.window.HideMetroDialogAsync(dialog);
+        }
+
+        private void ProductListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new ProductListWindow().ShowDialog();
         }
     }
 }

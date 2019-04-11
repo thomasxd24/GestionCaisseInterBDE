@@ -46,13 +46,13 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
         /// <returns>Number of rows affected</returns>
         public static int ExecuteCommand(string connString, string providerName, string query, Dictionary<string, object> Parameters = null)
         {
-             
+            DbProviderFactory factory = DbProviderFactories.GetFactory(providerName);
 
             //Create Query
-            using (var conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            using (DbConnection conn = factory.CreateConnection())
             {
                 conn.ConnectionString = connString;
-                using (MySqlCommand cmd = conn.CreateCommand())
+                using (DbCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = query;
 
@@ -61,7 +61,7 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
                     {
                         foreach (KeyValuePair<string, object> kvp in Parameters)
                         {
-                            DbParameter parameter = cmd.CreateParameter();
+                            DbParameter parameter = factory.CreateParameter();
                             parameter.ParameterName = kvp.Key;
                             parameter.Value = kvp.Value;
                             cmd.Parameters.Add(parameter);
@@ -96,14 +96,15 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
         /// <returns>Query results as a DataTable</returns>
         public static DataTable Select(string connString, string providerName, string query, Dictionary<string, object> Parameters = null)
         {
+            DbProviderFactory factory = DbProviderFactories.GetFactory(providerName);
             DataTable dt = new DataTable();
 
             //Create Query
-            using (var conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
+            using (DbConnection conn = factory.CreateConnection())
             {
                 conn.ConnectionString = connString;
                 using (DbCommand cmd = conn.CreateCommand())
-                using (DbDataAdapter da = new MySqlDataAdapter())
+                using (DbDataAdapter da = factory.CreateDataAdapter())
                 {
                     cmd.CommandText = query;
                     da.SelectCommand = cmd;

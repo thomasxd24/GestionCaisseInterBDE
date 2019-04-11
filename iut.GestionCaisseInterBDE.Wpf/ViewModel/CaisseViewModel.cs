@@ -24,8 +24,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public void LoadProducts()
         {
-            Collection<Product> listProd = Product.getProductList();
+            Collection<Product> listProd = ProductManager.GetProductList();
             Products = new ObservableCollection<Product>(listProd as Collection<Product>) ;
+            
         }
 
         

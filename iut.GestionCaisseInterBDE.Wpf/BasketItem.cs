@@ -9,37 +9,33 @@ namespace iut.GestionCaisseInterBDE.Models
 {
     public class BasketItem : INotifyPropertyChanged
     {
+        private string productName { get; set; }
         private string totalPriceString { get; set; }
-        private int quantity { get; set; }
-
-        private Product itemProduct { get; set; }
+        private string quantity { get; set; }
 
         public string ProductName
         {
-            get { return itemProduct.Name; }
-        }
-
-        public Product ItemProduct
-        {
-            get { return itemProduct; }
-            set { itemProduct = value; RaisePropertyChanged("ItemProduct"); }
+            get { return productName; }
+            set { productName = value; RaisePropertyChanged("ProductName"); }
         }
 
 
         public string TotalPriceString
         {
-            get { return (itemProduct.Price*quantity).ToString("C2"); }
+            get { return totalPriceString; }
+            set { totalPriceString = value; RaisePropertyChanged("TotalPriceString"); }
         }
-        public int Quantity
+        public string Quantity
         {
             get { return quantity; }
             set { quantity = value; RaisePropertyChanged("Quantity"); }
         }
 
-        public BasketItem(Product itemProduct)
+        public BasketItem(string productName, string totalPriceString, string quantity)
         {
-            ItemProduct = itemProduct;
-            quantity = 1;
+            ProductName = productName;
+            TotalPriceString = totalPriceString;
+            Quantity = quantity;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
