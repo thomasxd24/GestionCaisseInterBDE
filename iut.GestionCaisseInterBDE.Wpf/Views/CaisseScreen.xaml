@@ -8,6 +8,7 @@
       xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1200"
+      x:Name="CaissePage"
       Title="Page1">
     <Page.Resources>
         <ResourceDictionary>
@@ -63,9 +64,9 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Panier" FontSize="20" HorizontalAlignment="Center"></Label>
             <StackPanel Grid.Row="1">
-                <Button x:Name="clearBasket" Margin="5" Click="clearBasketBtn_Click">Vider le panier</Button>
+                <Button x:Name="clearBasket" Margin="5" Command="{Binding ClearBasketCommand}">Vider le panier</Button>
             </StackPanel>
-            <ListView Grid.Row="2" x:Name="basketListView">
+            <ListView Grid.Row="2" x:Name="basketListView" ItemsSource="{Binding BasketItems}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>
@@ -86,8 +87,8 @@
                 </ListView.ItemTemplate>
             </ListView>
             <DockPanel  Grid.Row="3">
-                
-                <Label FontSize="30" DockPanel.Dock="Right" x:Name="totalPriceLabel"></Label>
+
+                <Label FontSize="30" DockPanel.Dock="Right" Content="{Binding TotalPrice}" ContentStringFormat="{}{0:C}"></Label>
                 <Label FontSize="30"  Content="Total:"></Label>
             </DockPanel>
             <Button Grid.Row="4" Margin="7" FontSize="20" x:Name="encaisserBtn" Click="EncaisserBtn_Click">Encaisser</Button>
@@ -107,15 +108,19 @@
                 <Button Grid.Column="2" Margin="5">Réapprovisionnement</Button>
             </Grid>
             <DockPanel>
-                <TextBox Width="200" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5">Rechercher...</TextBox>
+                <TextBox Width="200" x:Name="searchBar" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus">Rechercher...</TextBox>
                 <ScrollViewer >
                     <ItemsControl x:Name="productList">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Click="productItem_Click" Tag="{Binding Path=.}">
-                                    <DockPanel VerticalAlignment="Top" Width="150" HorizontalAlignment="Center" Margin="0,0,0,35">
-                                        <Label DockPanel.Dock="Top" HorizontalAlignment="Right" Content="{Binding PriceString}"></Label>
-                                        <Image Source="{Binding ImageURL}" VerticalAlignment="Bottom">
+                                <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Tag="{Binding Path=.}" Command="{Binding Path=DataContext.AddProductCommand, ElementName=CaissePage}" CommandParameter="{Binding Path=.}">
+                                    <DockPanel VerticalAlignment="Stretch" Width="150" HorizontalAlignment="Center" Margin="0,0,0,35">
+                                        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                                            <Label DockPanel.Dock="Right"  HorizontalAlignment="Right" Content="{Binding PriceString}"></Label>
+                                            <Label DockPanel.Dock="Left" HorizontalAlignment="Right" Content="Stock: 5"></Label>
+
+                                        </DockPanel>
+                                        <Image Source="{Binding ImageURL}" Width="120" Height="120" VerticalAlignment="Center">
                                         </Image>
                                     </DockPanel>
                                 </Controls:Tile>

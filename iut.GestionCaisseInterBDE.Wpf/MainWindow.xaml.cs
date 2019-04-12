@@ -23,13 +23,12 @@ namespace iut.GestionCaisseInterBDE.Wpf
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public Collection<BDE> BDEs;
         public MainWindow()
         {
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("fr-FR");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fr-FR");
             InitializeComponent();
-            BDEs = BDEManager.GetBDEList();
+            BDEManager.GetBDEList(Singleton<Collection<BDE>>.GetInstance());
         }
 
     }

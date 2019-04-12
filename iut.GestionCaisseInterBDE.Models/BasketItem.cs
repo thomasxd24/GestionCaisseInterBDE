@@ -33,7 +33,10 @@ namespace iut.GestionCaisseInterBDE.Models
         public int Quantity
         {
             get { return quantity; }
-            set { quantity = value; RaisePropertyChanged("Quantity"); }
+            set { quantity = value; RaisePropertyChanged("Quantity");
+                RaisePropertyChanged("TotalPriceString");
+
+            }
         }
 
         public BasketItem(Product itemProduct)

@@ -18,6 +18,7 @@ using iut.GestionCaisseInterBDE.Models;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using GestionCaisseInterBDE.Windows;
+using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
@@ -27,75 +28,31 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
     public partial class CaisseScreen : Page
     {
         MainWindow window;
-        ObservableCollection<BasketItem> basketItems;
-        Collection<Product> Products;
-        private float totalPrice;
-        public string TotalPriceFormat
-        {
-            get { return totalPrice.ToString("C2");}
-        }
+        
 
         public CaisseScreen()
         {
             window = (MainWindow)Application.Current.MainWindow;
+
             InitializeComponent();
-            Products = ProductManager.GetProductList();
-            productList.ItemsSource = Products;
-            basketItems = new ObservableCollection<BasketItem>();
-            basketListView.ItemsSource = basketItems;
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
             var dp = ((StackPanel)dialog.Content);
             var itemC = ((ItemsControl)dp.Children[0]);
-            itemC.ItemsSource = this.window.BDEs;
-            this.DataContext = this;
+            itemC.ItemsSource = Singleton<Collection<BDE>>.GetInstance();
+            var dc = new CaisseViewModel();
+            this.DataContext = dc;
+            productList.ItemsSource = dc.Products;
+
         }
         
 
 
-        private float UpdateTotalPrice()
-        {
-            float totalPrice = 0;
-            foreach (BasketItem basketItem in basketItems)
-            {
-                totalPrice = totalPrice + basketItem.ItemProduct.Price * basketItem.Quantity;
-            }
-            return totalPrice;
-        }
 
-        private void productItem_Click(object sender, RoutedEventArgs e)
-        {
-            Tile tile = (Tile)sender;
-
-            addProductToBasket((Product)tile.Tag);
-            totalPrice = UpdateTotalPrice();
-            totalPriceLabel.Content = totalPrice.ToString("C2");
-        }
 
         
 
 
-        private void addProductToBasket(Product p)
-        {
-            bool exist = false;
-            foreach(BasketItem item in basketItems)
-            {
-                if (item.ProductName != p.Name) continue;
-                exist = true;
-                int oldQuantity = item.Quantity;
-                item.Quantity = oldQuantity + 1;
-            }
-            if (exist) return;
-            BasketItem newItem = new BasketItem(p);
-            basketItems.Add(newItem);
-
-        }
-
-        private void clearBasketBtn_Click(object sender, RoutedEventArgs e)
-        {
-            basketItems.Clear();
-            totalPrice = 0;
-            totalPriceLabel.Content = totalPrice.ToString("C2");
-        }
+       
 
         private async void EncaisserBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -110,14 +67,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
         {
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
             var bdeChosen = (BDE)((Tile)sender).Tag;
-            var key = DateTime.Now.ToString().GetHashCode().ToString("x");
-            foreach(BasketItem basketItem in basketItems)
-            {
-                BasketManager.AddTicket(key, bdeChosen, basketItem.ItemProduct, basketItem.Quantity);
-            }
+            string ticketID = ((CaisseViewModel)DataContext).AddBasketToDB(bdeChosen);
+            var totalPrice = ((CaisseViewModel)DataContext).TotalPrice;
             await this.window.HideMetroDialogAsync(dialog);
-            await this.window.ShowMessageAsync("Encaissement Réussi", $"Un montant de {TotalPriceFormat} a été encaissé au {bdeChosen.Name} avec le numero de ticket {key}");
-
+            await this.window.ShowMessageAsync("Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {ticketID}");
+            
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -130,6 +84,26 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
         private void ProductListBtn_Click(object sender, RoutedEventArgs e)
         {
             new ProductListWindow().ShowDialog();
+        }
+
+        private void Tile_Click(object sender, RoutedEventArgs e)
+        {
+            var product = (Product)((Tile)sender).Tag;
+            ((CaisseViewModel)DataContext).AddProductToBasket(product);
+        }
+
+        private void SearchBar_GotFocus(object sender, RoutedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            if (textbox == null) return;
+            if (textbox.Text == "Rechercher...") textbox.Text = "";
+        }
+
+        private void SearchBar_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            if (textbox == null) return;
+            if (textbox.Text == "") textbox.Text = "Rechercher...";
         }
     }
 }
