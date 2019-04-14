@@ -41,7 +41,6 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             itemC.ItemsSource = Singleton<Collection<BDE>>.GetInstance();
             var dc = new CaisseViewModel();
             this.DataContext = dc;
-            productList.ItemsSource = dc.Products;
 
         }
         
@@ -104,6 +103,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             var textbox = sender as TextBox;
             if (textbox == null) return;
             if (textbox.Text == "") textbox.Text = "Rechercher...";
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -13,10 +13,17 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 {
     public class CaisseViewModel : BaseViewModel
     {
-        public ObservableCollection<Product> Products
+        private Collection<Product> fullProductList;
+
+        private ObservableCollection<Product> productsView;
+        public ObservableCollection<Product> ProductsView
         {
-            get;
-            set;
+            get { return productsView; }
+            set
+            {
+                productsView = value;
+                OnPropertyChanged("ProductsView");
+            }
         }
 
         public ObservableCollection<BasketItem> BasketItems
@@ -40,6 +47,18 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             }
         }
 
+        private string productSearchText;
+
+        public string ProductSearchText
+        {
+            get { return productSearchText; }
+            set { productSearchText = value;
+                OnPropertyChanged("ProductSearchText");
+                UpdateSearchResult(value);
+            }
+        }
+
+
 
         public CaisseViewModel()
         {
@@ -49,10 +68,27 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             ClearBasketCommand = new RelayCommand(ClearBasket);
         }
 
+        private void UpdateSearchResult(string searchString)
+        {
+
+            if (searchString == "" || searchString == "Rechercher...")
+            {
+                ProductsView = new ObservableCollection<Product>(fullProductList as Collection<Product>);
+                return;
+            } 
+            var filteredList = new ObservableCollection<Product>();
+            foreach(Product p in fullProductList)
+            {
+                if (FuzzyMatcher.FuzzyMatch(p.Name, searchString))
+                    filteredList.Add(p);
+            }
+            ProductsView = filteredList;
+        }
+
         public void LoadProducts()
         {
-            Collection<Product> listProd = ProductManager.GetProductList();
-            Products = new ObservableCollection<Product>(listProd as Collection<Product>) ;
+            fullProductList = ProductManager.GetProductList();
+            ProductsView = new ObservableCollection<Product>(fullProductList as Collection<Product>) ;
             
         }
 

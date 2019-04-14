@@ -58,13 +58,37 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
+        private string colorTile;
 
-        public Product(int id,string name,float price ,string imageUrl)
+        public string ColorTile
+        {
+            get { return colorTile; }
+            set { colorTile = value;
+                RaisePropertyChanged("ColorTile");
+            }
+        }
+
+        private int stock;
+
+        public int Stock
+        {
+            get { return stock; }
+            set { stock = value;
+                RaisePropertyChanged("Stock");
+            }
+        }
+
+
+
+
+        public Product(int id,string name,float price ,string imageUrl,int stock)
         {
             this.id = id;
             this.name = name;
             this.price = price;
             this.imageUrl = imageUrl;
+            this.colorTile = ColorPicker.getRandomColor();
+            this.stock = stock;
         }
         
 

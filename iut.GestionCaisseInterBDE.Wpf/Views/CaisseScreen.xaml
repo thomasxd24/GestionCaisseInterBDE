@@ -108,17 +108,16 @@
                 <Button Grid.Column="2" Margin="5">Réapprovisionnement</Button>
             </Grid>
             <DockPanel>
-                <TextBox Width="200" x:Name="searchBar" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus">Rechercher...</TextBox>
+                <TextBox Width="200" x:Name="searchBar" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Text="{Binding ProductSearchText, Delay=100, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <ScrollViewer >
-                    <ItemsControl x:Name="productList">
+                    <ItemsControl x:Name="productList" ItemsSource="{Binding ProductsView}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Tag="{Binding Path=.}" Command="{Binding Path=DataContext.AddProductCommand, ElementName=CaissePage}" CommandParameter="{Binding Path=.}">
+                                <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Tag="{Binding Path=.}" Background="{Binding ColorTile}" Command="{Binding Path=DataContext.AddProductCommand, ElementName=CaissePage}" CommandParameter="{Binding Path=.}">
                                     <DockPanel VerticalAlignment="Stretch" Width="150" HorizontalAlignment="Center" Margin="0,0,0,35">
                                         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                                             <Label DockPanel.Dock="Right"  HorizontalAlignment="Right" Content="{Binding PriceString}"></Label>
-                                            <Label DockPanel.Dock="Left" HorizontalAlignment="Right" Content="Stock: 5"></Label>
-
+                                            <Label DockPanel.Dock="Left" HorizontalAlignment="Right" Content="{Binding Stock}" ContentStringFormat="Stock: {0}"></Label>
                                         </DockPanel>
                                         <Image Source="{Binding ImageURL}" Width="120" Height="120" VerticalAlignment="Center">
                                         </Image>
