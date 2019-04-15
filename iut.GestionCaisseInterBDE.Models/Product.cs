@@ -88,14 +88,27 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
+        private float buyPrice;
+
+        public float BuyPrice
+        {
+            get { return buyPrice; }
+            set
+            {
+                buyPrice = value;
+                RaisePropertyChanged("BuyPrice");
+            }
+        }
 
 
 
-        public Product(int id,string name,float price ,string imageUrl,int stock, bool isDiscountable)
+
+        public Product(int id,string name,float price ,float buyPrice,string imageUrl,int stock, bool isDiscountable)
         {
             this.id = id;
             this.name = name;
             this.price = price;
+            this.buyPrice = buyPrice;
             this.imageUrl = imageUrl;
             this.colorTile = ColorPicker.getRandomColor();
             this.stock = stock;

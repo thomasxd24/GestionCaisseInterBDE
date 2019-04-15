@@ -25,6 +25,8 @@ namespace GestionCaisseInterBDE.Windows
     public partial class ProductListWindow : MetroWindow
     {
 
+
+
         public ProductListWindow()
         {
             InitializeComponent();
@@ -32,41 +34,6 @@ namespace GestionCaisseInterBDE.Windows
             //DataTable dt = db.Select("SELECT dateCreated AS Date,bde.name AS Encaisseur,quantity AS Qte,round(products.prix*quantity,2) AS Total FROM `ligneTicket`, `bde`,`products` where bde.idBDE = ligneTicket.idBDE and ligneTicket.idProduit=products.idProduct");
             //testDG.ItemsSource = dt.DefaultView;
             this.DataContext = new ProductListViewModel();
-        }
-
-        private void ModifyBtn_Click(object sender, RoutedEventArgs e)
-        {
-            productNameTb.IsReadOnly = false;
-            productNameTb.BorderThickness = new Thickness(1, 1, 1, 1);
-            productImageUrlTb.IsReadOnly = false;
-            productImageUrlTb.BorderThickness = new Thickness(1, 1, 1, 1);
-            productBuyPriceNum.IsReadOnly = false;
-            productBuyPriceNum.HideUpDownButtons = false;
-            productBuyPriceNum.BorderThickness = new Thickness(1, 1, 1, 1);
-            productPriceNum.IsReadOnly = false;
-            productPriceNum.HideUpDownButtons = false;
-            productPriceNum.BorderThickness = new Thickness(1, 1, 1, 1);
-
-        }
-
-        public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-        {
-            if (depObj != null)
-            {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-                {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child is T)
-                    {
-                        yield return (T)child;
-                    }
-
-                    foreach (T childOfChild in FindVisualChildren<T>(child))
-                    {
-                        yield return childOfChild;
-                    }
-                }
-            }
         }
     }
 }

@@ -7,7 +7,8 @@
         xmlns:local="clr-namespace:GestionCaisseInterBDE.Windows"
         mc:Ignorable="d"
         Title="Liste des Consommaable" Height="840.984" Width="1058.459"
-   >
+    x:Name="ProductWindow">
+    
     <DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
             <Button Margin="10" >Valider</Button>
@@ -35,10 +36,12 @@
             </ListView>
             <GridSplitter ResizeDirection="Columns" Grid.Column="1" Height="Auto" Width="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <DockPanel x:Name="productPanel" Grid.Column="2"  Margin="20" >
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                    <Button Margin="5" x:Name="modifyBtn" Click="ModifyBtn_Click" >Modifier</Button>
-                    <Button Margin="5">Supprimer</Button>
-                </StackPanel>
+                <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                    <Button Margin="5" Command="{Binding ModifyCommand}" DockPanel.Dock="Left" IsEnabled="{Binding Modifiable}">Modifier</Button>
+                    <Button Margin="5" DockPanel.Dock="Left" Command="{Binding DeleteProductCommand}" >Supprimer</Button>
+                    <Button Margin="5" DockPanel.Dock="Right" Visibility="{Binding VisibleToModify}" Command="{Binding CancelCommand}">Annuler</Button>
+                    <Button Margin="5" DockPanel.Dock="Right" Visibility="{Binding VisibleToModify}" Command="{Binding ConfirmCommand}">Confirmer</Button>
+                </DockPanel>
                 <Grid Height="200" DockPanel.Dock="Top">
                     <Image Source="{Binding SelectedProduct.ImageURL}" Width="150" HorizontalAlignment="Center" Margin="10" ></Image>
                 </Grid>
@@ -56,20 +59,20 @@
                         <ColumnDefinition MaxWidth="300" MinWidth="100" Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0">Nom du Produit:</Label>
-                    <TextBox x:Name="productNameTb" Grid.Row="0" Grid.Column="1" BorderThickness="0"  Text="{Binding SelectedProduct.Name}"/>
+                    <TextBox x:Name="productNameTb" Grid.Row="0" Grid.Column="1" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}" Text="{Binding SelectedProduct.Name}"/>
 
                     <Label HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0">Prix:</Label>
-                    <Controls:NumericUpDown x:Name="productPriceNum" Width="150" HasDecimals="True" IsReadOnly="True" BorderThickness="0" HideUpDownButtons="True" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Interval="0.1" StringFormat="C2" HorizontalAlignment="Left" Value="{Binding SelectedProduct.Price}"></Controls:NumericUpDown>
+                    <Controls:NumericUpDown x:Name="productPriceNum" Width="150" HasDecimals="True" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}" HideUpDownButtons="{Binding Modifiable}" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Interval="0.1" StringFormat="C2" HorizontalAlignment="Left" Value="{Binding SelectedProduct.Price}"></Controls:NumericUpDown>
 
                     <Label HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0">Prix d'achat:</Label>
-                    <Controls:NumericUpDown Width="150" x:Name="productBuyPriceNum" HasDecimals="True" IsReadOnly="True" BorderThickness="0" HideUpDownButtons="True" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Interval="0.1" StringFormat="C2" HorizontalAlignment="Left" Value="{Binding SelectedProduct.Price}"></Controls:NumericUpDown>
+                    <Controls:NumericUpDown Width="150" x:Name="productBuyPriceNum" HasDecimals="True" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}" HideUpDownButtons="{Binding Modifiable}" HorizontalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Interval="0.1" StringFormat="C2" HorizontalAlignment="Left" Value="{Binding SelectedProduct.Price}"></Controls:NumericUpDown>
 
 
                     <Label HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0">Lien de l'image:</Label>
-                    <TextBox Grid.Row="3" x:Name="productImageUrlTb" Grid.Column="1" BorderThickness="0" IsReadOnly="True" Text="{Binding SelectedProduct.ImageURL}" />
+                    <TextBox Grid.Row="3" x:Name="productImageUrlTb" Grid.Column="1" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}" Text="{Binding SelectedProduct.ImageURL}" />
                     
                     <Label HorizontalAlignment="Right" Grid.Row="4" Grid.Column="0">Discountable:</Label>
-                    <Controls:ToggleSwitch x:Name="toggleDiscount" Grid.Row="4" Grid.Column="1" Height="20" IsEnabled="False" OnLabel="Oui" OffLabel="Non" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{Binding SelectedProduct.IsDiscountable}"/>
+                    <Controls:ToggleSwitch x:Name="toggleDiscount" Grid.Row="4" Grid.Column="1" Height="20" IsEnabled="{Binding Enable}" OnLabel="Oui" OffLabel="Non" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{Binding SelectedProduct.IsDiscountable}"/>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
