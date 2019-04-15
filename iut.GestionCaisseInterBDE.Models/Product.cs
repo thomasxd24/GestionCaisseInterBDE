@@ -78,10 +78,20 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
+        private bool isDiscountable;
+
+        public bool IsDiscountable
+        {
+            get { return isDiscountable; }
+            set { isDiscountable = value;
+                RaisePropertyChanged("IsDiscountable");
+            }
+        }
 
 
 
-        public Product(int id,string name,float price ,string imageUrl,int stock)
+
+        public Product(int id,string name,float price ,string imageUrl,int stock, bool isDiscountable)
         {
             this.id = id;
             this.name = name;
@@ -89,6 +99,7 @@ namespace iut.GestionCaisseInterBDE.Models
             this.imageUrl = imageUrl;
             this.colorTile = ColorPicker.getRandomColor();
             this.stock = stock;
+            this.isDiscountable = isDiscountable;
         }
         
 

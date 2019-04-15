@@ -6,11 +6,14 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf"
-                      
+                     RightWindowCommandsOverlayBehavior="Never"
+                      Icon="logo.ico"
                       BorderThickness="0" 
                       GlowBrush="Black"
         mc:Ignorable="d"
-        Title="Gestion Caisse Inter BDE" Height="591.934" Width="1146.666">
+        Title="Gestion Caisse Inter BDE" Height="591.934" Width="1146.666"
+                      ShowIconOnTitleBar="True">
+    
     <Controls:MetroWindow.OverlayFadeIn>
         <Storyboard
              AccelerationRatio=".97" 
@@ -35,15 +38,35 @@
     
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl>
-            <Controls:Flyout Header="Réglage" Position="Right" Width="200">
-                <!-- Your custom content here -->
+            <Controls:Flyout Header="Réglage" Position="Right" Width="300" Theme="Accent">
+                <StackPanel Margin="50,0,50,0">
+                    <StackPanel>
+                        <Label>Theme</Label>
+                        <ComboBox x:Name="comboThemes"
+                              Margin="0 5 5 5"
+                              VerticalAlignment="Center"
+                                  SelectionChanged="ComboThemes_SelectionChanged"
+                           />
+
+                    </StackPanel>
+                    <StackPanel>
+                        <Label>Couleur</Label>
+                        <ComboBox  x:Name="comboColors"
+                              Margin="0 5 5 5"
+                              VerticalAlignment="Center"
+                                   SelectionChanged="ComboColors_SelectionChanged"
+                            >
+                            
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
             </Controls:Flyout>
 
         </Controls:FlyoutsControl>
     </Controls:MetroWindow.Flyouts>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button Content="settings"/>
+            <Button x:Name="settingsBtn" Content="Réglage" Click="SettingsBtn_Click"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 

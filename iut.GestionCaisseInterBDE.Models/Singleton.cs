@@ -19,6 +19,11 @@ namespace iut.GestionCaisseInterBDE.Models
             return instanceUnique;
         }
 
+        public static void SetInstance(T instance)
+        {
+            instanceUnique = instance;
+        }
+
 
     }
 }

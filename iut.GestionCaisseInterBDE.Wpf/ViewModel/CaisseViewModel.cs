@@ -1,5 +1,7 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 {
     public class CaisseViewModel : BaseViewModel
     {
+
+        private MainWindow window;
         private Collection<Product> fullProductList;
 
         private ObservableCollection<Product> productsView;
@@ -26,14 +30,54 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             }
         }
 
-        public ObservableCollection<BasketItem> BasketItems
+        public ObservableCollection<BasketItem> BasketItems { get; set; }
+        private BasketItem _selectedItem;
+        public BasketItem SelectedItem
         {
-            get;
-            set;
+            set
+            {
+                _selectedItem = value;
+                if (_selectedItem == null) return;
+                SelectedItemQuantity = _selectedItem.Quantity;
+                OnPropertyChanged("SelectedItem");
+                OnPropertyChanged("SelectedItemQuantity");
+            }
+        }
+
+        public int SelectedItemQuantity
+        {
+            get {
+                if (_selectedItem != null) return _selectedItem.Quantity;
+                else return 0;
+                        }
+            set {
+                if (value == 0)
+                {
+                    DeleteBasketItem(_selectedItem);
+                    OnPropertyChanged("HeightSelectedItem");
+                    return;
+                } 
+                _selectedItem.Quantity = value;
+                OnPropertyChanged("HeightSelectedItem");
+                OnPropertyChanged("SelectedItemQuantity");
+                UpdateDiscount();
+                UpdateTotalPrice();
+                
+            }
+        }
+
+        public int HeightSelectedItem
+        {
+            get {
+                if (_selectedItem != null) return 38;
+                else return 0;
+            }
         }
 
 
+
         public RelayCommand<Product> AddProductCommand { get; private set; }
+        public RelayCommand<BasketItem> DeleteBasketItemCommand { get; private set; }
         public RelayCommand ClearBasketCommand { get; private set; }
 
 
@@ -58,14 +102,42 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             }
         }
 
+        private void DeleteBasketItem(BasketItem basketItem)
+        {
+            BasketItems.Remove(basketItem);
+            UpdateDiscount();
+            UpdateTotalPrice();
+
+        }
+
+        private int reductionQuantity;
+
+        public int ReductionQuantity
+        {
+            get { return reductionQuantity; }
+            set { reductionQuantity = value;
+                OnPropertyChanged("ReductionQuantity");
+                OnPropertyChanged("ReductionPrice");
+            }
+        }
+
+        public float ReductionPrice
+        {
+            get { return reductionQuantity * -0.2f; }
+        }
 
 
-        public CaisseViewModel()
+
+
+
+        public CaisseViewModel(MainWindow window)
         {
             LoadProducts();
             BasketItems = new ObservableCollection<BasketItem>();
             AddProductCommand = new RelayCommand<Product>(AddProductToBasket);
             ClearBasketCommand = new RelayCommand(ClearBasket);
+            DeleteBasketItemCommand = new RelayCommand<BasketItem>(DeleteBasketItem);
+            this.window = window;
         }
 
         private void UpdateSearchResult(string searchString)
@@ -87,14 +159,22 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public void LoadProducts()
         {
-            fullProductList = ProductManager.GetProductList();
-            ProductsView = new ObservableCollection<Product>(fullProductList as Collection<Product>) ;
-            
+            fullProductList = new Collection<Product>();
+
+            foreach (Product p in Singleton<Collection<Product>>.GetInstance())
+            {
+                if (p.Stock != 0) fullProductList.Add(p);
+            }
+
+            ProductsView = new ObservableCollection<Product>(fullProductList as Collection<Product>);
+
+
         }
 
         public void ClearBasket()
         {
             BasketItems.Clear();
+            ReductionQuantity = 0;
         }
 
         public void AddProductToBasket(Product p)
@@ -104,6 +184,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             foreach (BasketItem item in BasketItems)
             {
                 if (item.ProductName != p.Name) continue;
+                if(item.Quantity == p.Stock)
+                {
+                    window.ShowMessageAsync("Erreur lors de l'ajout de produit", "Vous avez épuisé le stock!");
+                    return;
+                }
                 exist = true;
                 int oldQuantity = item.Quantity;
                 item.Quantity = oldQuantity + 1;
@@ -114,8 +199,24 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
                 BasketItem newItem = new BasketItem(p);
                 BasketItems.Add(newItem);
             }
-            UpdateTotalPrice();
 
+            UpdateDiscount();
+            UpdateTotalPrice();
+            OnPropertyChanged("SelectedItemQuantity");
+
+
+        }
+
+
+        private void UpdateDiscount()
+        {
+            int quantity = 0;
+            foreach (BasketItem item in BasketItems)
+            {
+                if (!item.ItemProduct.IsDiscountable) continue;
+                quantity = quantity + item.Quantity;
+            }
+            ReductionQuantity = quantity / 2;
         }
 
 
@@ -138,7 +239,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             {
                 totalPriceTemp = totalPriceTemp + basketItem.ItemProduct.Price * basketItem.Quantity;
             }
-            TotalPrice = totalPriceTemp;
+
+            TotalPrice = totalPriceTemp+ReductionPrice;
         }
 
 

@@ -22,7 +22,8 @@ namespace iut.GestionCaisseInterBDE.Models
                     dr["nameProduct"].ToString(),
                     float.Parse(dr["prix"].ToString()),
                     dr["imageUrl"].ToString(),
-                    int.Parse(dr["stock"].ToString())
+                    int.Parse(dr["stock"].ToString()),
+                    (bool)dr["isDiscountable"]
                     );
                 products.Add(product);
             }

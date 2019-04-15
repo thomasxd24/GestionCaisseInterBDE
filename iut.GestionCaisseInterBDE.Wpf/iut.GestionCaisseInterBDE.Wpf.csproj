@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
@@ -96,6 +99,7 @@
     <Compile Include="Utilities\ObservableObject.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="ViewModel\CaisseViewModel.cs" />
+    <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="Views\AnnonceScreen.xaml.cs">
       <DependentUpon>AnnonceScreen.xaml</DependentUpon>
     </Compile>
@@ -114,7 +118,7 @@
     <Compile Include="Views\DetteScreen.xaml.cs">
       <DependentUpon>DetteScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ProductListWindow.xaml.cs">
+    <Compile Include="Views\Windows\ProductListWindow.xaml.cs">
       <DependentUpon>ProductListWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AnnonceScreen.xaml">
@@ -157,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ProductListWindow.xaml">
+    <Page Include="Views\Windows\ProductListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,12 +196,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Models\iut.GestionCaisseInterBDE.Models.csproj">
       <Project>{2038D013-9D09-4F09-AC37-84E54C258137}</Project>
       <Name>iut.GestionCaisseInterBDE.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

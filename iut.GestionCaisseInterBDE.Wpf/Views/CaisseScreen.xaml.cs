@@ -19,6 +19,7 @@ using System.Globalization;
 using System.Collections.ObjectModel;
 using GestionCaisseInterBDE.Windows;
 using iut.GestionCaisseInterBDE.Wpf.ViewModel;
+using MahApps.Metro;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
@@ -32,27 +33,18 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
 
         public CaisseScreen()
         {
-            window = (MainWindow)Application.Current.MainWindow;
+            window = Application.Current.MainWindow as MainWindow;
 
             InitializeComponent();
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
             var dp = ((StackPanel)dialog.Content);
             var itemC = ((ItemsControl)dp.Children[0]);
             itemC.ItemsSource = Singleton<Collection<BDE>>.GetInstance();
-            var dc = new CaisseViewModel();
+            var dc = new CaisseViewModel(window);
             this.DataContext = dc;
 
         }
         
-
-
-
-
-        
-
-
-       
-
         private async void EncaisserBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
@@ -85,11 +77,6 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             new ProductListWindow().ShowDialog();
         }
 
-        private void Tile_Click(object sender, RoutedEventArgs e)
-        {
-            var product = (Product)((Tile)sender).Tag;
-            ((CaisseViewModel)DataContext).AddProductToBasket(product);
-        }
 
         private void SearchBar_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -105,8 +92,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             if (textbox.Text == "") textbox.Text = "Rechercher...";
         }
 
-        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ThemeManager.ChangeAppStyle(this.window,
+                                            ThemeManager.GetAccent("Red"),
+                                            ThemeManager.GetAppTheme("BaseDark"));
 
         }
     }
