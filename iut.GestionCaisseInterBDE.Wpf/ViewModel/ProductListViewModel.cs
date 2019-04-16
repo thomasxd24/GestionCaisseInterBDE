@@ -1,5 +1,7 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +13,7 @@ namespace GestionCaisseInterBDE.ViewModel
 {
     public class ProductListViewModel : BaseViewModel
     {
+        private IDialogCoordinator dialogCoordinator;
         public RelayCommand ModifyCommand { get; private set; }
         public RelayCommand ConfirmCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
@@ -56,6 +59,17 @@ namespace GestionCaisseInterBDE.ViewModel
             }
         }
 
+
+        public string ProductPageVisible
+        {
+            get
+            {
+                if (_selectedProduct != null) return "Visible";
+                if(modifiable) CancelEdit();
+                return "Hidden";
+            }
+        }
+
         public Product SelectedProduct
         {
             get { if (_selectedProduct == null) return nullProduct;
@@ -63,6 +77,7 @@ namespace GestionCaisseInterBDE.ViewModel
             }
             set { _selectedProduct = value;
                 OnPropertyChanged("SelectedProduct");
+                OnPropertyChanged("ProductPageVisible");
             }
         }
 
@@ -93,7 +108,7 @@ namespace GestionCaisseInterBDE.ViewModel
         {
             Modifiable = false;
             oldProduct = null;
-            //TODO save changes to database
+            ProductManager.UpdateProductDB(SelectedProduct);
         }
 
         private void CancelEdit()
@@ -104,26 +119,44 @@ namespace GestionCaisseInterBDE.ViewModel
             SelectedProduct.Price = oldProduct.Price;
             SelectedProduct.BuyPrice = oldProduct.BuyPrice;
             SelectedProduct.ImageURL = oldProduct.ImageURL;
-            SelectedProduct.Stock = oldProduct.Stock;
+            SelectedProduct.Stock =  oldProduct.Stock;
             SelectedProduct.IsDiscountable = oldProduct.IsDiscountable;
             oldProduct = null;
         }
 
-        private void DeleteProduct()
+        private async void DeleteProduct()
         {
-            ProductsView.Remove(SelectedProduct);
+            var mySettings = new MetroDialogSettings()
+            {
+                AffirmativeButtonText = "Oui",
+                NegativeButtonText = "Non"
+            };
+
+            MessageDialogResult result = await dialogCoordinator.ShowMessageAsync(this,"Suppression de produit", "Êtes-vous sûr de vouloir supprimer ce produit? \nAttention : cette opération est irréversible. ",
+                MessageDialogStyle.AffirmativeAndNegative, mySettings);
+            if (result == MessageDialogResult.Negative) return;
+            
+            var success = ProductManager.RemoveProductDB(SelectedProduct);
+            if(success)
+            {
+                ProductsView.Remove(SelectedProduct);
+                return;
+            }
+
+            await dialogCoordinator.ShowMessageAsync(this, "Suppression de produit", "Erreur lors de la suppression \nBase de donnée non modifié");
 
         }
 
 
 
-        public ProductListViewModel()
+        public ProductListViewModel(IDialogCoordinator dialogCoordinator)
         {
             ProductsView = new ObservableCollection<Product>(Singleton<Collection<Product>>.GetInstance() as Collection<Product>);
             ModifyCommand = new RelayCommand(ModifyProduct);
             ConfirmCommand = new RelayCommand(ConfirmEdit);
             CancelCommand = new RelayCommand(CancelEdit);
             DeleteProductCommand = new RelayCommand(DeleteProduct);
+            this.dialogCoordinator = dialogCoordinator;
         }
     }
 }

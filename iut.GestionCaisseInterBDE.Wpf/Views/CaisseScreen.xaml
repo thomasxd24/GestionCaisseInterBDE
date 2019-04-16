@@ -106,7 +106,7 @@
                 <Label Content="Réduction"/>
             </DockPanel>
             <DockPanel Grid.Row="3" Margin="5">
-                <Button DockPanel.Dock="Left">Supprimer</Button>
+                <Button DockPanel.Dock="Left" Command="{Binding DeleteBasketItemCommand}" >Supprimer</Button>
                 <Controls:NumericUpDown HorizontalContentAlignment="Center"  Value="{Binding SelectedItemQuantity}"/>
             </DockPanel>
             
@@ -127,13 +127,14 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="4" Margin="5" x:Name="historyBtn">Historique</Button>
+                <Button Grid.Column="4" Margin="5" x:Name="historyBtn" Click="HistoryBtn_Click">Historique</Button>
                 <Button Grid.Column="3" Margin="5" x:Name="productListBtn" Click="ProductListBtn_Click">Gérer les produits</Button>
                 <Button Grid.Column="2" Margin="5" Click="Button_Click">Réapprovisionnement</Button>
             </Grid>
             <DockPanel>
                 <TextBox Width="200" x:Name="searchBar" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Text="{Binding ProductSearchText, Delay=100, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <ScrollViewer >
+                    
                     <ItemsControl x:Name="productList" ItemsSource="{Binding ProductsView}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

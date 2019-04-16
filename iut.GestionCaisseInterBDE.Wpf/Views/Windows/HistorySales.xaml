@@ -1,0 +1,51 @@
+﻿<Controls:MetroWindow x:Class="GestionCaisseInterBDE.Views.Windows.HistorySales"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:GestionCaisseInterBDE.Views.Windows"
+        mc:Ignorable="d"
+        Title="Historique des ventes" Height="500" Width="560" MinWidth="560" MaxWidth="560">
+    <DockPanel>
+        <Label DockPanel.Dock="Top" Content="Ventes" FontSize="30" Margin="10"/>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
+            <Button>Annuler le ticket</Button>
+        </StackPanel>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding TicketList}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="150"/>
+                <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="150"/>
+                <DataGridTextColumn Binding="{Binding BDESale.Name}"  Header="BDE Encaissé" Width="150"/>
+                <DataGridTextColumn Binding="{Binding TotalPaid}"  Header="Total" Width="*">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <ItemsControl ItemsSource="{Binding ProductItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <Label DockPanel.Dock="Left">Produit:</Label>
+                                    <Label Content="{Binding TotalPriceString}" Width="110" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                                    <Label DockPanel.Dock="Right">Total:</Label>
+                                    <Label Content="{Binding Quantity}" DockPanel.Dock="Right" Width="50"/>
+                                    <Label DockPanel.Dock="Right">Quantity:</Label>
+                                    <Label Content="{Binding ProductName}" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+            
+
+        </DataGrid>
+    </DockPanel>
+
+</Controls:MetroWindow>

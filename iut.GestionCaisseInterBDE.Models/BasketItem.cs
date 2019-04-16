@@ -25,7 +25,10 @@ namespace iut.GestionCaisseInterBDE.Models
             set { itemProduct = value; RaisePropertyChanged("ItemProduct"); }
         }
 
-
+        public float TotalPrice
+        {
+            get { return itemProduct.Price * quantity; }
+        }
         public string TotalPriceString
         {
             get { return (itemProduct.Price*quantity).ToString("C2"); }
@@ -43,6 +46,12 @@ namespace iut.GestionCaisseInterBDE.Models
         {
             ItemProduct = itemProduct;
             quantity = 1;
+        }
+
+        public BasketItem(Product itemProduct,int quantity)
+        {
+            ItemProduct = itemProduct;
+            this.quantity = quantity;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

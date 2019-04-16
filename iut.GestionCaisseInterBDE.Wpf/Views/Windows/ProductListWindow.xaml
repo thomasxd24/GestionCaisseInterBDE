@@ -7,8 +7,27 @@
         xmlns:local="clr-namespace:GestionCaisseInterBDE.Windows"
         mc:Ignorable="d"
         Title="Liste des Consommaable" Height="840.984" Width="1058.459"
-    x:Name="ProductWindow">
-    
+    xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+    Dialog:DialogParticipation.Register="{Binding}">
+    <Controls:MetroWindow.OverlayFadeIn>
+        <Storyboard
+             AccelerationRatio=".97" 
+             BeginTime="0:0:0" 
+             SpeedRatio="10" 
+             Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation To=".7" />
+        </Storyboard>
+    </Controls:MetroWindow.OverlayFadeIn>
+    <Controls:MetroWindow.OverlayFadeOut>
+        <Storyboard
+             AccelerationRatio=".97" 
+             BeginTime="0:0:0" 
+             SpeedRatio="10" 
+             Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation To="0.0" />
+        </Storyboard>
+    </Controls:MetroWindow.OverlayFadeOut>
+
     <DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
             <Button Margin="10" >Valider</Button>
@@ -35,7 +54,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <GridSplitter ResizeDirection="Columns" Grid.Column="1" Height="Auto" Width="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <DockPanel x:Name="productPanel" Grid.Column="2"  Margin="20" >
+            <DockPanel x:Name="productPanel" Grid.Column="2"  Margin="20" Visibility="{Binding ProductPageVisible}">
                 <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                     <Button Margin="5" Command="{Binding ModifyCommand}" DockPanel.Dock="Left" IsEnabled="{Binding Modifiable}">Modifier</Button>
                     <Button Margin="5" DockPanel.Dock="Left" Command="{Binding DeleteProductCommand}" >Supprimer</Button>

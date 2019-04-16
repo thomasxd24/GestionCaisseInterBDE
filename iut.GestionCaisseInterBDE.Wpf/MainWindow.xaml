@@ -11,7 +11,7 @@
                       BorderThickness="0" 
                       GlowBrush="Black"
         mc:Ignorable="d"
-        Title="Gestion Caisse Inter BDE" Height="591.934" Width="1146.666"
+        Title="Gestion Caisse Inter BDE" Height="691" Width="1190"
                       ShowIconOnTitleBar="True">
     
     <Controls:MetroWindow.OverlayFadeIn>

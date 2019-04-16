@@ -53,7 +53,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             set {
                 if (value == 0)
                 {
-                    DeleteBasketItem(_selectedItem);
+                    DeleteBasketItem();
                     OnPropertyChanged("HeightSelectedItem");
                     return;
                 } 
@@ -77,7 +77,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
 
         public RelayCommand<Product> AddProductCommand { get; private set; }
-        public RelayCommand<BasketItem> DeleteBasketItemCommand { get; private set; }
+        public RelayCommand DeleteBasketItemCommand { get; private set; }
         public RelayCommand ClearBasketCommand { get; private set; }
 
 
@@ -102,9 +102,10 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             }
         }
 
-        private void DeleteBasketItem(BasketItem basketItem)
+        private void DeleteBasketItem()
         {
-            BasketItems.Remove(basketItem);
+            BasketItems.Remove(_selectedItem);
+            OnPropertyChanged("HeightSelectedItem");
             UpdateDiscount();
             UpdateTotalPrice();
 
@@ -136,7 +137,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             BasketItems = new ObservableCollection<BasketItem>();
             AddProductCommand = new RelayCommand<Product>(AddProductToBasket);
             ClearBasketCommand = new RelayCommand(ClearBasket);
-            DeleteBasketItemCommand = new RelayCommand<BasketItem>(DeleteBasketItem);
+            DeleteBasketItemCommand = new RelayCommand(DeleteBasketItem);
             this.window = window;
         }
 

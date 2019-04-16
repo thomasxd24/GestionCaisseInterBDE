@@ -21,5 +21,14 @@ namespace iut.GestionCaisseInterBDE.Models
             }
             return bdeList;
         }
+
+        public static BDE GetBDEByID(int id)
+        {
+            foreach(BDE bde in Singleton<Collection<BDE>>.GetInstance())
+            {
+                if (bde.ID == id) return bde;
+            }
+            return null;
+        }
     }
 }

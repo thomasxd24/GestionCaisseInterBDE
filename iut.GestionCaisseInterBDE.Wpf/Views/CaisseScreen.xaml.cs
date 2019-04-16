@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using GestionCaisseInterBDE.Windows;
 using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 using MahApps.Metro;
+using GestionCaisseInterBDE.Views.Windows;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
@@ -98,6 +99,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
                                             ThemeManager.GetAccent("Red"),
                                             ThemeManager.GetAppTheme("BaseDark"));
 
+        }
+
+        private void HistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new HistorySales().ShowDialog();
         }
     }
 }
