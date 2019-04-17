@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AutoUpdaterDotNET;
 using iut.GestionCaisseInterBDE.Models;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
@@ -68,6 +69,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
             Singleton<Collection<Product>>.SetInstance(ProductManager.GetProductList());
             comboColors.ItemsSource = Colors;
             comboThemes.ItemsSource = Themes;
+            AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
 
 
         }
@@ -90,6 +92,64 @@ namespace iut.GestionCaisseInterBDE.Wpf
             var currentTheme = ThemeManager.DetectAppStyle();
             var theme = currentTheme.Item1;
             ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(text), theme);
+        }
+
+        private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
+        {
+            if (args != null)
+            {
+                if (args.IsUpdateAvailable)
+                {
+                    MessageBoxResult dialogResult;
+                    if (args.Mandatory)
+                    {
+                        dialogResult =
+                            MessageBox.Show(
+                                $@"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. This is required update. Press Ok to begin updating the application.", @"Update Available",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        dialogResult =
+                            MessageBox.Show(
+                                $@"There is new version {args.CurrentVersion} available. You are using version {
+                                        args.InstalledVersion
+                                    }. Do you want to update the application now?", @"Update Available",
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Information);
+                    }
+
+                    // Uncomment the following line if you want to show standard update dialog instead.
+
+                    if (dialogResult.Equals(MessageBoxResult.Yes))
+                    {
+                        try
+                        {
+                            if (AutoUpdater.DownloadUpdate())
+                            {
+                                Application.Current.Shutdown();
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(@"There is no update available please try again later.", @"No update available",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                        @"There is a problem reaching update server please check your internet connection and try again later.",
+                        @"Update check failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

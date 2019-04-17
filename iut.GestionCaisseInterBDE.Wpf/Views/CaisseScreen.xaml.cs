@@ -21,6 +21,7 @@ using GestionCaisseInterBDE.Windows;
 using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 using MahApps.Metro;
 using GestionCaisseInterBDE.Views.Windows;
+using AutoUpdaterDotNET;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
@@ -95,9 +96,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ThemeManager.ChangeAppStyle(this.window,
-                                            ThemeManager.GetAccent("Red"),
-                                            ThemeManager.GetAppTheme("BaseDark"));
+            AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
 
         }
 

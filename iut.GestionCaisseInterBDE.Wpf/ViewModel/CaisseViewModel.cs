@@ -175,7 +175,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         public void ClearBasket()
         {
             BasketItems.Clear();
-            ReductionQuantity = 0;
+            UpdateDiscount();
+            UpdateTotalPrice();
+
         }
 
         public void AddProductToBasket(Product p)
@@ -225,11 +227,13 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public string AddBasketToDB(BDE bdeChosen)
         {
+            var totalPrice = TotalPrice;
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
             foreach (BasketItem basketItem in BasketItems)
             {
                 BasketManager.AddTicket(key, bdeChosen, basketItem.ItemProduct, basketItem.Quantity);
             }
+            ClearBasket();
             return key;
         }
 
