@@ -9,21 +9,27 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Tresorie">
 
-    <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
-            <Button Content="Ajouter..." Margin="5"></Button>
-        </StackPanel>
-        <DataGrid>
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="P"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Date"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Intitulé" Width="*"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Moyen de paiement"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Debit"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Credit"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Solde"/>
-            </DataGrid.Columns>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0">
+            
+        </ListView>
+        <DockPanel Grid.Column="1">
 
-        </DataGrid>
-    </StackPanel>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="30">Due:</Label>
+                    <Label FontSize="30">32.50</Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="30">Ventes:</Label>
+                    <Label FontSize="30">32.50</Label>
+                </StackPanel>
+            </StackPanel>
+            
+        </DockPanel>
+    </Grid>
 </Page>
