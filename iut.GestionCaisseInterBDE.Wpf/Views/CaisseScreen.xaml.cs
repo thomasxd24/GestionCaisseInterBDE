@@ -100,7 +100,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
 
         }
 
-        private void HistoryBtn_Click(object sender, RoutedEventArgs e)
+        private async  void HistoryBtn_Click(object sender, RoutedEventArgs e)
         {
             new HistorySales().ShowDialog();
         }

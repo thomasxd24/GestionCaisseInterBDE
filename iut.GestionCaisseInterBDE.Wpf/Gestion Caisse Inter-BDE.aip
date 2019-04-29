@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="15.8" version="15.8" Modules="simple" RootPath="." Language="en" Id="{1445E459-D0EE-440B-941E-CB5D98BBD445}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="AppXProductDetailsComponent;AppXDependenciesComponent;AppXAppDetailsComponent;AppXVisualAssetsComponent;AppXCapabilitiesComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;DigCertStoreComponent;MsiAssemblyComponent;MsiClassComponent;MsiServInstComponent;MsiExtComponent;TilesComponent;MsiOrgComponent;FixupComponent;MsiThemeComponent;BackgroundImagesComponent;UpdaterComponent;SerValComponent;MsiInstExSeqComponent;DictionaryComponent;MsiAppSearchComponent;MsiOdbcDataSrcComponent;CPLAppletComponent;ActSyncAppComponent;PreReqComponent;WebApplicationsComponent;MsiJavaComponent;MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;TilesComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_RUN_AS_ADMIN" Value="0"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPPRODUCTICON" Value="logo.exe" Type="8"/>
+    <ROW Property="CTRLS" Value="2"/>
+    <ROW Property="Manufacturer" Value="BDE Singleton"/>
+    <ROW Property="ProductCode" Value="1033:{90B77C4E-6F1A-42E7-9EF1-F832F6634C56} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="Gestion Caisse Inter-BDE"/>
+    <ROW Property="ProductVersion" Value="0.0.1" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{F637EF72-26E3-4292-932B-D33B8D299EDF}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003 RTM, Windows XP/2003 SP1, Windows XP SP2 x86" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AutoUpdater.NET.dll" ComponentId="{3DE26125-1F6D-4CF0-8D4C-4D84BF6DF1A0}" Directory_="APPDIR" Attributes="0" KeyPath="AutoUpdater.NET.dll"/>
+    <ROW Component="AutoUpdater.NET.xml" ComponentId="{384A30AF-ACB5-44AC-902F-5F16C2DFEBE7}" Directory_="APPDIR" Attributes="0" KeyPath="AutoUpdater.NET.xml" Type="0"/>
+    <ROW Component="CommonServiceLocator.dll" ComponentId="{B728C6C1-2795-4128-9BDF-DF6AD498BFA5}" Directory_="APPDIR" Attributes="0" KeyPath="CommonServiceLocator.dll"/>
+    <ROW Component="ControlzEx.dll" ComponentId="{77E4FFE6-2104-45AB-BC8D-7AE34E35B18E}" Directory_="APPDIR" Attributes="0" KeyPath="ControlzEx.dll"/>
+    <ROW Component="GestionCaisseInterBDE.exe" ComponentId="{71EDA30D-DF7F-4923-8245-D42276B56AE9}" Directory_="APPDIR" Attributes="0" KeyPath="GestionCaisseInterBDE.exe"/>
+    <ROW Component="Google.Protobuf.dll" ComponentId="{294A1510-62F6-4D16-A56F-70AA714AB8CA}" Directory_="APPDIR" Attributes="0" KeyPath="Google.Protobuf.dll"/>
+    <ROW Component="MahApps.Metro.IconPacks.Material.dll" ComponentId="{DE7CDB79-5B96-41B8-B892-63F47E761E9E}" Directory_="APPDIR" Attributes="0" KeyPath="MahApps.Metro.IconPacks.Material.dll"/>
+    <ROW Component="MahApps.Metro.dll" ComponentId="{9980BE59-EC02-4391-A5D4-1AAD130E3497}" Directory_="APPDIR" Attributes="0" KeyPath="MahApps.Metro.dll"/>
+    <ROW Component="MySql.Data.dll" ComponentId="{468843A2-947D-4FF2-A6C7-BCD7BCA2D97F}" Directory_="APPDIR" Attributes="0" KeyPath="MySql.Data.dll"/>
+    <ROW Component="Prism.Wpf.dll" ComponentId="{38292677-B94F-4A9C-A2F4-A87108830F63}" Directory_="APPDIR" Attributes="0" KeyPath="Prism.Wpf.dll"/>
+    <ROW Component="Prism.dll" ComponentId="{EA146555-391E-41B2-8AE0-317BE84EF0B1}" Directory_="APPDIR" Attributes="0" KeyPath="Prism.dll"/>
+    <ROW Component="ProductInformation" ComponentId="{B5CDF514-4E4A-4A9F-B1BD-2DEB2293D53A}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{E5EF257A-9948-4EC1-8EBD-F7CC21C6EF61}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="System.Windows.Interactivity.dll" ComponentId="{977E274C-E747-4127-8113-41A952448260}" Directory_="APPDIR" Attributes="0" KeyPath="System.Windows.Interactivity.dll"/>
+    <ROW Component="iut.GestionCaisseInterBDE.Models.dll" ComponentId="{B2346FA9-6296-4424-86DE-8B19DF1656E0}" Directory_="APPDIR" Attributes="0" KeyPath="iut.GestionCaisseInterBDE.Models.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AutoUpdater.NET.dll AutoUpdater.NET.xml CommonServiceLocator.dll ControlzEx.dll GestionCaisseInterBDE.exe Google.Protobuf.dll MahApps.Metro.IconPacks.Material.dll MahApps.Metro.dll MySql.Data.dll Prism.Wpf.dll Prism.dll ProductInformation SHORTCUTDIR System.Windows.Interactivity.dll iut.GestionCaisseInterBDE.Models.dll"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="AutoUpdater.NET.dll" Component_="AutoUpdater.NET.dll" FileName="AUTOUP~1.DLL|AutoUpdater.NET.dll" Attributes="0" SourcePath="bin\Release\AutoUpdater.NET.dll" SelfReg="false" NextFile="AutoUpdater.NET.pdb"/>
+    <ROW File="AutoUpdater.NET.pdb" Component_="AutoUpdater.NET.dll" FileName="AUTOUP~1.PDB|AutoUpdater.NET.pdb" Attributes="0" SourcePath="bin\Release\AutoUpdater.NET.pdb" SelfReg="false" NextFile="AutoUpdater.NET.xml"/>
+    <ROW File="AutoUpdater.NET.xml" Component_="AutoUpdater.NET.xml" FileName="AUTOUP~1.XML|AutoUpdater.NET.xml" Attributes="0" SourcePath="bin\Release\AutoUpdater.NET.xml" SelfReg="false" NextFile="CommonServiceLocator.dll"/>
+    <ROW File="CommonServiceLocator.dll" Component_="CommonServiceLocator.dll" FileName="COMMON~1.DLL|CommonServiceLocator.dll" Attributes="0" SourcePath="bin\Release\CommonServiceLocator.dll" SelfReg="false" NextFile="ControlzEx.dll"/>
+    <ROW File="ControlzEx.dll" Component_="ControlzEx.dll" FileName="CONTRO~1.DLL|ControlzEx.dll" Attributes="0" SourcePath="bin\Release\ControlzEx.dll" SelfReg="false" NextFile="ControlzEx.pdb"/>
+    <ROW File="ControlzEx.pdb" Component_="ControlzEx.dll" FileName="CONTRO~1.PDB|ControlzEx.pdb" Attributes="0" SourcePath="bin\Release\ControlzEx.pdb" SelfReg="false" NextFile="GestionCaisseInterBDE.application"/>
+    <ROW File="GestionCaisseInterBDE.application" Component_="AutoUpdater.NET.xml" FileName="GESTIO~1.APP|GestionCaisseInterBDE.application" Attributes="0" SourcePath="bin\Release\GestionCaisseInterBDE.application" SelfReg="false" NextFile="GestionCaisseInterBDE.exe"/>
+    <ROW File="GestionCaisseInterBDE.exe" Component_="GestionCaisseInterBDE.exe" FileName="GESTIO~1.EXE|GestionCaisseInterBDE.exe" Attributes="0" SourcePath="bin\Release\GestionCaisseInterBDE.exe" SelfReg="false" NextFile="GestionCaisseInterBDE.exe.config" DigSign="true"/>
+    <ROW File="GestionCaisseInterBDE.exe.config" Component_="AutoUpdater.NET.xml" FileName="GESTIO~1.CON|GestionCaisseInterBDE.exe.config" Attributes="0" SourcePath="bin\Release\GestionCaisseInterBDE.exe.config" SelfReg="false" NextFile="GestionCaisseInterBDE.exe.manifest"/>
+    <ROW File="GestionCaisseInterBDE.exe.manifest" Component_="AutoUpdater.NET.xml" FileName="GESTIO~1.MAN|GestionCaisseInterBDE.exe.manifest" Attributes="0" SourcePath="bin\Release\GestionCaisseInterBDE.exe.manifest" SelfReg="false" NextFile="GestionCaisseInterBDE.pdb"/>
+    <ROW File="GestionCaisseInterBDE.pdb" Component_="GestionCaisseInterBDE.exe" FileName="GESTIO~1.PDB|GestionCaisseInterBDE.pdb" Attributes="0" SourcePath="bin\Release\GestionCaisseInterBDE.pdb" SelfReg="false" NextFile="Google.Protobuf.dll"/>
+    <ROW File="Google.Protobuf.dll" Component_="Google.Protobuf.dll" FileName="GOOGLE~1.DLL|Google.Protobuf.dll" Attributes="0" SourcePath="bin\Release\Google.Protobuf.dll" SelfReg="false" NextFile="Google.Protobuf.xml"/>
+    <ROW File="Google.Protobuf.xml" Component_="AutoUpdater.NET.xml" FileName="GOOGLE~1.XML|Google.Protobuf.xml" Attributes="0" SourcePath="bin\Release\Google.Protobuf.xml" SelfReg="false" NextFile="iut.GestionCaisseInterBDE.Models.dll"/>
+    <ROW File="MahApps.Metro.IconPacks.Material.dll" Component_="MahApps.Metro.IconPacks.Material.dll" FileName="MAHAPP~2.DLL|MahApps.Metro.IconPacks.Material.dll" Attributes="0" SourcePath="bin\Release\MahApps.Metro.IconPacks.Material.dll" SelfReg="false" NextFile="MahApps.Metro.IconPacks.Material.pdb"/>
+    <ROW File="MahApps.Metro.IconPacks.Material.pdb" Component_="MahApps.Metro.IconPacks.Material.dll" FileName="MAHAPP~1.PDB|MahApps.Metro.IconPacks.Material.pdb" Attributes="0" SourcePath="bin\Release\MahApps.Metro.IconPacks.Material.pdb" SelfReg="false" NextFile="MahApps.Metro.IconPacks.Material.xml"/>
+    <ROW File="MahApps.Metro.IconPacks.Material.xml" Component_="AutoUpdater.NET.xml" FileName="MAHAPP~1.XML|MahApps.Metro.IconPacks.Material.xml" Attributes="0" SourcePath="bin\Release\MahApps.Metro.IconPacks.Material.xml" SelfReg="false" NextFile="MahApps.Metro.pdb"/>
+    <ROW File="MahApps.Metro.dll" Component_="MahApps.Metro.dll" FileName="MAHAPP~1.DLL|MahApps.Metro.dll" Attributes="0" SourcePath="bin\Release\MahApps.Metro.dll" SelfReg="false" NextFile="MahApps.Metro.IconPacks.Material.dll"/>
+    <ROW File="MahApps.Metro.pdb" Component_="MahApps.Metro.dll" FileName="MAHAPP~2.PDB|MahApps.Metro.pdb" Attributes="0" SourcePath="bin\Release\MahApps.Metro.pdb" SelfReg="false" NextFile="MahApps.Metro.xml"/>
+    <ROW File="MahApps.Metro.xml" Component_="AutoUpdater.NET.xml" FileName="MAHAPP~2.XML|MahApps.Metro.xml" Attributes="0" SourcePath="bin\Release\MahApps.Metro.xml" SelfReg="false" NextFile="MySql.Data.dll"/>
+    <ROW File="MySql.Data.dll" Component_="MySql.Data.dll" FileName="MYSQLD~1.DLL|MySql.Data.dll" Attributes="0" SourcePath="bin\Release\MySql.Data.dll" SelfReg="false" NextFile="MySql.Data.xml"/>
+    <ROW File="MySql.Data.xml" Component_="AutoUpdater.NET.xml" FileName="MYSQLD~1.XML|MySql.Data.xml" Attributes="0" SourcePath="bin\Release\MySql.Data.xml" SelfReg="false" NextFile="Prism.dll"/>
+    <ROW File="Prism.Wpf.dll" Component_="Prism.Wpf.dll" FileName="PRISMW~1.DLL|Prism.Wpf.dll" Attributes="0" SourcePath="bin\Release\Prism.Wpf.dll" SelfReg="false" NextFile="Prism.Wpf.pdb"/>
+    <ROW File="Prism.Wpf.pdb" Component_="Prism.Wpf.dll" FileName="PRISMW~1.PDB|Prism.Wpf.pdb" Attributes="0" SourcePath="bin\Release\Prism.Wpf.pdb" SelfReg="false" NextFile="Prism.Wpf.xml"/>
+    <ROW File="Prism.Wpf.xml" Component_="AutoUpdater.NET.xml" FileName="PRISMW~1.XML|Prism.Wpf.xml" Attributes="0" SourcePath="bin\Release\Prism.Wpf.xml" SelfReg="false" NextFile="Prism.xml"/>
+    <ROW File="Prism.dll" Component_="Prism.dll" FileName="Prism.dll" Attributes="0" SourcePath="bin\Release\Prism.dll" SelfReg="false" NextFile="Prism.pdb"/>
+    <ROW File="Prism.pdb" Component_="Prism.dll" FileName="Prism.pdb" Attributes="0" SourcePath="bin\Release\Prism.pdb" SelfReg="false" NextFile="Prism.Wpf.dll"/>
+    <ROW File="Prism.xml" Component_="AutoUpdater.NET.xml" FileName="Prism.xml" Attributes="0" SourcePath="bin\Release\Prism.xml" SelfReg="false" NextFile="System.Windows.Interactivity.dll"/>
+    <ROW File="System.Windows.Interactivity.dll" Component_="System.Windows.Interactivity.dll" FileName="SYSTEM~1.DLL|System.Windows.Interactivity.dll" Attributes="0" SourcePath="bin\Release\System.Windows.Interactivity.dll" SelfReg="false"/>
+    <ROW File="iut.GestionCaisseInterBDE.Models.dll" Component_="iut.GestionCaisseInterBDE.Models.dll" FileName="IUTGES~1.DLL|iut.GestionCaisseInterBDE.Models.dll" Attributes="0" SourcePath="bin\Release\iut.GestionCaisseInterBDE.Models.dll" SelfReg="false" NextFile="iut.GestionCaisseInterBDE.Models.dll.config"/>
+    <ROW File="iut.GestionCaisseInterBDE.Models.dll.config" Component_="AutoUpdater.NET.xml" FileName="IUTGES~1.CON|iut.GestionCaisseInterBDE.Models.dll.config" Attributes="0" SourcePath="bin\Release\iut.GestionCaisseInterBDE.Models.dll.config" SelfReg="false" NextFile="iut.GestionCaisseInterBDE.Models.pdb"/>
+    <ROW File="iut.GestionCaisseInterBDE.Models.pdb" Component_="iut.GestionCaisseInterBDE.Models.dll" FileName="IUTGES~1.PDB|iut.GestionCaisseInterBDE.Models.pdb" Attributes="0" SourcePath="bin\Release\iut.GestionCaisseInterBDE.Models.pdb" SelfReg="false" NextFile="MahApps.Metro.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#GestionCaisseInterBDE.exe]"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="logo.exe" SourcePath="logo.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT64 OR ((VersionNT &lt;&gt; 501) OR (ServicePackLevel = 3))) AND ((VersionNT &lt;&gt; 502) OR (ServicePackLevel = 2))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="GestionCaisseInterBDE" Directory_="SHORTCUTDIR" Name="GESTIO~1|Gestion Caisse Inter-BDE" Component_="GestionCaisseInterBDE.exe" Target="[#GestionCaisseInterBDE.exe]" Hotkey="0" Icon_="logo.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="GestionCaisseInterBDE_1" Directory_="DesktopFolder" Name="GESTIO~1|Gestion Caisse Inter-BDE" Component_="GestionCaisseInterBDE.exe" Target="[#GestionCaisseInterBDE.exe]" Hotkey="0" Icon_="logo.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>

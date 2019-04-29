@@ -13,7 +13,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public static Collection<Product> GetProductList()
         {
 
-            var db = new MySQLDatabase("SERVER=51.68.230.58;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
+            var db = new MySQLDatabase("SERVER=5.135.179.154;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
             DataTable dt = db.Select("SELECT * FROM products");
             Collection<Product> products = new Collection<Product>();
             foreach (DataRow dr in dt.Rows)
