@@ -11,7 +11,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public static int AddTicket(string ticketID, BDE bde, Product p,int quantity)
         {
-            var db = new MySQLDatabase("SERVER=5.135.179.154;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
+            var db = new SQLiteDatabase("Data Source=C:\\Users\\Thomas\\Documents\\GestionCaisseInterBDE\\iut.GestionCaisseInterBDE.Wpf\\bin\\Debug\\bde.db", "");
             var bdeID = bde.ID;
             var productID = p.ID;
             var rowChanged = db.ExecuteCommand($"INSERT INTO ligneTicket values('{ticketID}','{productID}','{bdeID}',{quantity},now())");

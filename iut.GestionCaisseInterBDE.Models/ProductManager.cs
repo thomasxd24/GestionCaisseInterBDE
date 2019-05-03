@@ -13,19 +13,19 @@ namespace iut.GestionCaisseInterBDE.Models
         public static Collection<Product> GetProductList()
         {
 
-            var db = new MySQLDatabase("SERVER=5.135.179.154;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
+            var db = new SQLiteDatabase("Data Source=C:\\Users\\Thomas\\Documents\\GestionCaisseInterBDE\\iut.GestionCaisseInterBDE.Wpf\\bin\\Debug\\bde.db", "");
             DataTable dt = db.Select("SELECT * FROM products");
             Collection<Product> products = new Collection<Product>();
             foreach (DataRow dr in dt.Rows)
             {
                 Product product = new Product(
-                    int.Parse(dr["idProduct"].ToString()),
-                    dr["nameProduct"].ToString(),
-                    float.Parse(dr["prix"].ToString()),
-                    float.Parse(dr["prixAchat"].ToString()),
-                    dr["imageUrl"].ToString(),
-                    int.Parse(dr["stock"].ToString()),
-                    (bool)dr["isDiscountable"]
+                    int.Parse(dr[0].ToString()),
+                    dr[1].ToString(),
+                    float.Parse(dr[2].ToString()),
+                    float.Parse(dr[3].ToString()),
+                    dr[5].ToString(),
+                    int.Parse(dr[4].ToString()),
+                    (bool)(int.Parse(dr[6].ToString())!=0)
                     );
                 products.Add(product);
             }
