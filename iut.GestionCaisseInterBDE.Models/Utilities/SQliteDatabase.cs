@@ -19,10 +19,10 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
         /// Creates an instance with the given connection string
         /// </summary>
         /// <param name="connString">The connection string</param>
-        public SQLiteDatabase(string connString, string providerName)
+        public SQLiteDatabase(string connString)
         {
             this.connString = connString;
-            this.providerName = providerName;
+            this.providerName = "";
         }
 
         /// <summary>

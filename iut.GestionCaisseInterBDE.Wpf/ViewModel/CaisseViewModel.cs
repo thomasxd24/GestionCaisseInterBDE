@@ -11,13 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+
 namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 {
     public class CaisseViewModel : BaseViewModel
     {
 
-        private MainWindow window;
         private Collection<Product> fullProductList;
+        private IDialogCoordinator dialogCoordinator;
 
         private ObservableCollection<Product> productsView;
         public ObservableCollection<Product> ProductsView
@@ -88,6 +89,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             set {
                 totalPrice = value;
                 OnPropertyChanged("TotalPrice");
+                OnPropertyChanged("CanEncaisse");
             }
         }
 
@@ -131,14 +133,14 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
 
 
-        public CaisseViewModel(MainWindow window)
+        public CaisseViewModel(IDialogCoordinator instance)
         {
             LoadProducts();
             BasketItems = new ObservableCollection<BasketItem>();
             AddProductCommand = new RelayCommand<Product>(AddProductToBasket);
             ClearBasketCommand = new RelayCommand(ClearBasket);
             DeleteBasketItemCommand = new RelayCommand(DeleteBasketItem);
-            this.window = window;
+            this.dialogCoordinator = instance;
         }
 
         private void UpdateSearchResult(string searchString)
@@ -180,6 +182,10 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         }
 
+        public bool CanEncaisse { get {
+                return totalPrice != 0;
+            } }
+
         public void AddProductToBasket(Product p)
         {
             bool exist = false;
@@ -189,7 +195,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
                 if (item.ProductName != p.Name) continue;
                 if(item.Quantity == p.Stock)
                 {
-                    window.ShowMessageAsync("Erreur lors de l'ajout de produit", "Vous avez épuisé le stock!");
+                    dialogCoordinator.ShowMessageAsync(this,"Erreur lors de l'ajout de produit", "Vous avez épuisé le stock!");
                     return;
                 }
                 exist = true;
@@ -225,7 +231,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
 
 
-        public string AddBasketToDB(BDE bdeChosen)
+        public async void AddBasketToDB(BDE bdeChosen, BaseMetroDialog dialog)
         {
             var totalPrice = TotalPrice;
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
@@ -233,8 +239,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             {
                 BasketManager.AddTicket(key, bdeChosen, basketItem.ItemProduct, basketItem.Quantity);
             }
+            await dialogCoordinator.HideMetroDialogAsync(this,dialog);
+            await dialogCoordinator.ShowMessageAsync(this,"Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
             ClearBasket();
-            return key;
         }
 
         private void UpdateTotalPrice()

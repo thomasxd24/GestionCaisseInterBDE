@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iut.GestionCaisseInterBDE.Models.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
-    public class BasketItem : INotifyPropertyChanged
+    public class BasketItem : ObservableObject
     {
         private string totalPriceString { get; set; }
         private int quantity { get; set; }
@@ -22,7 +23,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public Product ItemProduct
         {
             get { return itemProduct; }
-            set { itemProduct = value; RaisePropertyChanged("ItemProduct"); }
+            set { itemProduct = value; OnPropertyChanged("ItemProduct"); }
         }
 
         public float TotalPrice
@@ -36,8 +37,8 @@ namespace iut.GestionCaisseInterBDE.Models
         public int Quantity
         {
             get { return quantity; }
-            set { quantity = value; RaisePropertyChanged("Quantity");
-                RaisePropertyChanged("TotalPriceString");
+            set { quantity = value; OnPropertyChanged("Quantity");
+                OnPropertyChanged("TotalPriceString");
 
             }
         }
@@ -52,16 +53,6 @@ namespace iut.GestionCaisseInterBDE.Models
         {
             ItemProduct = itemProduct;
             this.quantity = quantity;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
         }
     }
 }

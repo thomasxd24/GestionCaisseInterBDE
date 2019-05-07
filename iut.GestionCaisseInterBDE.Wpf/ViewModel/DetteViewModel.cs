@@ -1,5 +1,6 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
     public class DetteViewModel : BaseViewModel
     {
         private ObservableCollection<BDE> listBDE;
+        private IDialogCoordinator dialogCoordinator;
 
         public ObservableCollection<BDE> ListBDE
         {

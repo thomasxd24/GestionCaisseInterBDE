@@ -11,16 +11,13 @@ using MySql.Data.MySqlClient;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
-    public class Product : INotifyPropertyChanged
+    public class Product : ObservableObject
     {
         private int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value;
-                RaisePropertyChanged("ID");
-            }
         }
 
         private string name;
@@ -28,9 +25,6 @@ namespace iut.GestionCaisseInterBDE.Models
         public string Name
         {
             get { return name; }
-            set { name = value;
-                RaisePropertyChanged("Name");
-            }
         }
 
         private float price;
@@ -38,9 +32,6 @@ namespace iut.GestionCaisseInterBDE.Models
         public float Price
         {
             get { return price; }
-            set { price = value;
-                RaisePropertyChanged("Price");
-            }
         }
 
         public string PriceString
@@ -53,9 +44,6 @@ namespace iut.GestionCaisseInterBDE.Models
         public string ImageURL
         {
             get { return imageUrl; }
-            set { imageUrl = value;
-                RaisePropertyChanged("ImageURL");
-            }
         }
 
         private string colorTile;
@@ -63,9 +51,6 @@ namespace iut.GestionCaisseInterBDE.Models
         public string ColorTile
         {
             get { return colorTile; }
-            set { colorTile = value;
-                RaisePropertyChanged("ColorTile");
-            }
         }
 
         private int stock;
@@ -73,9 +58,6 @@ namespace iut.GestionCaisseInterBDE.Models
         public int Stock
         {
             get { return stock; }
-            set { stock = value;
-                RaisePropertyChanged("Stock");
-            }
         }
 
         private bool isDiscountable;
@@ -83,9 +65,6 @@ namespace iut.GestionCaisseInterBDE.Models
         public bool IsDiscountable
         {
             get { return isDiscountable; }
-            set { isDiscountable = value;
-                RaisePropertyChanged("IsDiscountable");
-            }
         }
 
         private float buyPrice;
@@ -93,14 +72,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public float BuyPrice
         {
             get { return buyPrice; }
-            set
-            {
-                buyPrice = value;
-                RaisePropertyChanged("BuyPrice");
-            }
         }
-
-
 
 
         public Product(int id,string name,float price ,float buyPrice,string imageUrl,int stock, bool isDiscountable)
@@ -114,16 +86,6 @@ namespace iut.GestionCaisseInterBDE.Models
             this.stock = stock;
             this.isDiscountable = isDiscountable;
         }
-        
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
+       
     }
 }

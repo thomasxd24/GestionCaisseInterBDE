@@ -6,6 +6,7 @@
       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views"
       xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+      Dialog:DialogParticipation.Register="{Binding}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1200"
       x:Name="CaissePage"
@@ -57,7 +58,7 @@
         </Grid.ColumnDefinitions>
         <Grid  Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="{Binding HeightSelectedItem}"/>
@@ -112,10 +113,10 @@
             
             <DockPanel  Grid.Row="5">
 
-                <Label FontSize="30" DockPanel.Dock="Right" Content="{Binding TotalPrice}" ContentStringFormat="{}{0:C}"></Label>
+                <Label FontSize="30" x:Name="totalPrice"  DockPanel.Dock="Right" Content="{Binding TotalPrice}" ContentStringFormat="{}{0:C}"></Label>
                 <Label FontSize="30"  Content="Total:"></Label>
             </DockPanel>
-            <Button Grid.Row="6" Margin="7" FontSize="20" x:Name="encaisserBtn" Click="EncaisserBtn_Click">Encaisser</Button>
+            <Button Grid.Row="6" Margin="7" FontSize="20" x:Name="encaisserBtn" IsEnabled="{Binding CanEncaisse}" Click="EncaisserBtn_Click">Encaisser</Button>
             
         </Grid>
         <DockPanel Grid.Column="1" >

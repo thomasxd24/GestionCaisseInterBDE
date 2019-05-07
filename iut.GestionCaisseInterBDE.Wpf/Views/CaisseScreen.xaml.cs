@@ -22,6 +22,7 @@ using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 using MahApps.Metro;
 using GestionCaisseInterBDE.Views.Windows;
 using AutoUpdaterDotNET;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
@@ -42,13 +43,14 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             var dp = ((StackPanel)dialog.Content);
             var itemC = ((ItemsControl)dp.Children[0]);
             itemC.ItemsSource = Singleton<Collection<BDE>>.GetInstance();
-            var dc = new CaisseViewModel(window);
+            var dc = new CaisseViewModel(DialogCoordinator.Instance);
             this.DataContext = dc;
 
         }
         
         private async void EncaisserBtn_Click(object sender, RoutedEventArgs e)
         {
+            var price = totalPrice.Content.ToString();
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
 
             await this.window.ShowMetroDialogAsync(dialog);
@@ -56,15 +58,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
         }
 
 
-        private async void BdeChoiceBtn_Click(object sender, RoutedEventArgs e)
+        private void BdeChoiceBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
             var bdeChosen = (BDE)((Tile)sender).Tag;
-            string ticketID = ((CaisseViewModel)DataContext).AddBasketToDB(bdeChosen);
-            var totalPrice = ((CaisseViewModel)DataContext).TotalPrice;
-            await this.window.HideMetroDialogAsync(dialog);
-            await this.window.ShowMessageAsync("Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {ticketID}");
-            
+            ((CaisseViewModel)DataContext).AddBasketToDB(bdeChosen,dialog);            
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

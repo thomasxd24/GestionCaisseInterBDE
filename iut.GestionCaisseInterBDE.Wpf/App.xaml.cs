@@ -19,7 +19,6 @@ namespace iut.GestionCaisseInterBDE.Wpf
         protected override void OnStartup(StartupEventArgs e)
 
         {
-
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("fr-FR"); ;
 
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-FR"); ;

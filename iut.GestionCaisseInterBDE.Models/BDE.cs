@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
-    public class BDE : INotifyPropertyChanged
+    public class BDE : ObservableObject
     {
 
         private int id;
@@ -28,8 +28,8 @@ namespace iut.GestionCaisseInterBDE.Models
         public string Name
         {
             get { return name; }
-            set { name = value; ;
-                RaisePropertyChanged("Name");
+            set { name = value;
+                OnPropertyChanged("Name");
             }
         }
         private string departement;
@@ -38,7 +38,7 @@ namespace iut.GestionCaisseInterBDE.Models
         {
             get { return departement; }
             set { departement = value; ;
-                RaisePropertyChanged("Departement");
+                OnPropertyChanged("Departement");
             }
         }
 
@@ -48,7 +48,7 @@ namespace iut.GestionCaisseInterBDE.Models
         {
             get { return imageURL; }
             set { imageURL = value; ;
-                RaisePropertyChanged("ImageURL");
+                OnPropertyChanged("ImageURL");
             }
         }
 
@@ -59,16 +59,6 @@ namespace iut.GestionCaisseInterBDE.Models
             this.name = name;
             this.departement = departement;
             this.imageURL = imageURL;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
         }
 
     }

@@ -13,7 +13,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public static Collection<Product> GetProductList()
         {
 
-            var db = new SQLiteDatabase("Data Source=C:\\Users\\Thomas\\Documents\\GestionCaisseInterBDE\\iut.GestionCaisseInterBDE.Wpf\\bin\\Debug\\bde.db", "");
+            var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
             DataTable dt = db.Select("SELECT * FROM products");
             Collection<Product> products = new Collection<Product>();
             foreach (DataRow dr in dt.Rows)
