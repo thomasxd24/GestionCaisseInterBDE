@@ -12,7 +12,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public static Collection<Ticket> GetTicketsDB()
         {
             var ticketList = new Collection<Ticket>();
-            var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
+            var db = Singleton<IDatabase>.GetInstance();
             DataTable dt = db.Select("SELECT * FROM ligneTicket ORDER BY idTicket ASC");
             Ticket oneTicket = null;
             string numTicket = "";
@@ -21,6 +21,7 @@ namespace iut.GestionCaisseInterBDE.Models
                 if(numTicket == dr["idTicket"].ToString())
                 {
                     var product = ProductManager.GetProductByID(int.Parse(dr["idProduit"].ToString()));
+                    if (product == null) continue;
                     var basketItem = new BasketItem(product, int.Parse(dr["quantity"].ToString()));
                     oneTicket.ProductItems.Add(basketItem);
                 }
@@ -31,6 +32,7 @@ namespace iut.GestionCaisseInterBDE.Models
                     var bde = BDEManager.GetBDEByID(int.Parse(dr["idBDE"].ToString()));
                     oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>());
                     var product = ProductManager.GetProductByID(int.Parse(dr["idProduit"].ToString()));
+                    if (product == null) continue;
                     var basketItem = new BasketItem(product, int.Parse(dr["quantity"].ToString()));
                     oneTicket.ProductItems.Add(basketItem);
                 }

@@ -10,6 +10,7 @@ namespace iut.GestionCaisseInterBDE.Models
 {
     public class BasketItem : ObservableObject
     {
+
         private string totalPriceString { get; set; }
         private int quantity { get; set; }
 
@@ -23,7 +24,6 @@ namespace iut.GestionCaisseInterBDE.Models
         public Product ItemProduct
         {
             get { return itemProduct; }
-            set { itemProduct = value; OnPropertyChanged("ItemProduct"); }
         }
 
         public float TotalPrice
@@ -37,7 +37,8 @@ namespace iut.GestionCaisseInterBDE.Models
         public int Quantity
         {
             get { return quantity; }
-            set { quantity = value; OnPropertyChanged("Quantity");
+            set { quantity = value;
+                OnPropertyChanged("Quantity");
                 OnPropertyChanged("TotalPriceString");
 
             }
@@ -45,13 +46,13 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public BasketItem(Product itemProduct)
         {
-            ItemProduct = itemProduct;
+            this.itemProduct = itemProduct;
             quantity = 1;
         }
 
         public BasketItem(Product itemProduct,int quantity)
         {
-            ItemProduct = itemProduct;
+            this.itemProduct = itemProduct;
             this.quantity = quantity;
         }
     }

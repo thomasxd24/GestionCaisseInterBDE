@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Text;
+using System.Linq;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
     public class BDEManager
     {
+        /// <summary>
+        /// returns the collection of BDE from database
+        /// </summary>
+        /// <returns>the collection of BDE from database</returns>
         public static Collection<BDE> GetBDEList()
         {
             var bdeList = new Collection<BDE>();
@@ -22,13 +27,17 @@ namespace iut.GestionCaisseInterBDE.Models
             return bdeList;
         }
 
+
+        /// <summary>
+        /// return a bde for its ID, null if none found
+        /// </summary>
+        /// <param name="id">ID of the BDE</param>
+        /// <returns>The instance of BDE</returns>
         public static BDE GetBDEByID(int id)
         {
-            foreach(BDE bde in Singleton<Collection<BDE>>.GetInstance())
-            {
-                if (bde.ID == id) return bde;
-            }
-            return null;
+
+            var bde = Singleton<Collection<BDE>>.GetInstance().Where(item => item.ID == id).FirstOrDefault();
+            return bde;
         }
     }
 }

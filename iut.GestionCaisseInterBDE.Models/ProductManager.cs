@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
 using System.Text;
+using System.Linq;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
@@ -13,7 +14,8 @@ namespace iut.GestionCaisseInterBDE.Models
         public static Collection<Product> GetProductList()
         {
 
-            IDatabase db = Singleton<IDatabase>.GetInstance(); DataTable dt = db.Select("SELECT * FROM products");
+            IDatabase db = Singleton<IDatabase>.GetInstance();
+            DataTable dt = db.Select("SELECT * FROM products");
             Collection<Product> products = new Collection<Product>();
             foreach (DataRow dr in dt.Rows)
             {
@@ -66,11 +68,8 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public static Product GetProductByID(int id)
         {
-            foreach (Product p in Singleton<Collection<Product>>.GetInstance())
-            {
-                if (p.ID == id) return p;
-            }
-            return null;
+            var p = Singleton<Collection<Product>>.GetInstance().Where(item => item.ID == id).FirstOrDefault();
+            return p;
         }
     }
 }

@@ -79,17 +79,17 @@
                         <ColumnDefinition MaxWidth="300" MinWidth="100" Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0">Nom du Produit:</Label>
-                    <TextBox x:Name="productNameTb" Grid.Row="0" Grid.Column="1" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}" Text="{Binding SelectedProduct.Name}"/>
+                    <TextBox x:Name="productNameTb" Grid.Row="0" Grid.Column="1" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}" Text="{Binding SelectedProduct.Name,UpdateSourceTrigger=PropertyChanged}"/>
 
                     <Label HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0">Prix:</Label>
-                    <Controls:NumericUpDown x:Name="productPriceNum" Width="150" HasDecimals="True" BorderThickness="{Binding ThicknessModify}" Minimum="0"  IsReadOnly="{Binding Modifiable}" HideUpDownButtons="{Binding Modifiable}" HorizontalContentAlignment="Left" Grid.Row="1" Grid.Column="1" Interval="0.1" StringFormat="C2" HorizontalAlignment="Left" Value="{Binding SelectedProduct.Price}"></Controls:NumericUpDown>
+                    <Controls:NumericUpDown x:Name="productPriceNum" Width="150" HasDecimals="True" BorderThickness="{Binding ThicknessModify}" Minimum="0"  IsReadOnly="{Binding Modifiable}" HideUpDownButtons="{Binding Modifiable}" HorizontalContentAlignment="Left" Grid.Row="1" Grid.Column="1" Interval="0.1" StringFormat="C2" HorizontalAlignment="Left" Value="{Binding SelectedProduct.Price,UpdateSourceTrigger=PropertyChanged}"></Controls:NumericUpDown>
 
                     <Label HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0">Prix d'achat:</Label>
                     <Controls:NumericUpDown Width="150" x:Name="productBuyPriceNum" HasDecimals="True" BorderThickness="{Binding ThicknessModify}" Minimum="0" IsReadOnly="{Binding Modifiable}" HideUpDownButtons="{Binding Modifiable}" HorizontalContentAlignment="Left" Grid.Row="2" Grid.Column="1" Interval="0.1" StringFormat="C2" HorizontalAlignment="Left" Value="{Binding SelectedProduct.BuyPrice}"></Controls:NumericUpDown>
 
 
                     <Label HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0">Lien de l'image:</Label>
-                    <TextBox Grid.Row="3" x:Name="productImageUrlTb" Grid.Column="1" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}"  Text="{Binding SelectedProduct.ImageURL}" />
+                    <TextBox Grid.Row="3" x:Name="productImageUrlTb" Grid.Column="1" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}"  Text="{Binding SelectedProduct.ImageURL }" />
 
                     <Label HorizontalAlignment="Right" Grid.Row="4" Grid.Column="0">Stock:</Label>
                     <Controls:NumericUpDown Width="150" HasDecimals="False" BorderThickness="{Binding ThicknessModify}" IsReadOnly="{Binding Modifiable}" Minimum="0" HideUpDownButtons="{Binding Modifiable}" HorizontalContentAlignment="Left" Grid.Row="4" Grid.Column="1" Interval="1" HorizontalAlignment="Left" Value="{Binding SelectedProduct.Stock}"></Controls:NumericUpDown>

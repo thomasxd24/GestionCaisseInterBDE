@@ -26,14 +26,14 @@ namespace iut.GestionCaisseInterBDE.Wpf
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        public Collection<string> Themes = new Collection<string>()
+        public readonly Collection<string> Themes = new Collection<string>()
         {
             "BaseDark",
             "BaseLight"
         };
 
 
-        public Collection<string> Colors = new Collection<string>()
+        public readonly Collection<string> Colors = new Collection<string>()
         {
             "Red",
             "Green",

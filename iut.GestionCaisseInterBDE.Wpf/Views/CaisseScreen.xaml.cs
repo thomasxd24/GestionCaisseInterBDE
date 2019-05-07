@@ -22,7 +22,6 @@ using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 using MahApps.Metro;
 using GestionCaisseInterBDE.Views.Windows;
 using AutoUpdaterDotNET;
-using MahApps.Metro.Controls.Dialogs;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
