@@ -11,7 +11,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public static int AddTicket(string ticketID, BDE bde, Product p,int quantity)
         {
-            var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
+            IDatabase db = Singleton<IDatabase>.GetInstance();
             var bdeID = bde.ID;
             var productID = p.ID;
             var rowChanged = db.ExecuteCommand($"INSERT INTO ligneTicket values('{ticketID}','{productID}','{bdeID}',{quantity},date('now'))");

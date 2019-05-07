@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AutoUpdaterDotNET;
 using iut.GestionCaisseInterBDE.Models;
+using iut.GestionCaisseInterBDE.Models.Utilities;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 namespace iut.GestionCaisseInterBDE.Wpf
@@ -65,8 +66,12 @@ namespace iut.GestionCaisseInterBDE.Wpf
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("fr-FR");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fr-FR");
             InitializeComponent();
+            var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
+            Singleton<IDatabase>.SetInstance(db);
             Singleton<Collection<BDE>>.SetInstance(BDEManager.GetBDEList());
             Singleton<Collection<Product>>.SetInstance(ProductManager.GetProductList());
+
+
             comboColors.ItemsSource = Colors;
             comboThemes.ItemsSource = Themes;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;

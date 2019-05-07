@@ -4,7 +4,7 @@ using System.Text;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
-    public class Singleton<T> where T : class,new()
+    public class Singleton<T>
     {
         private static T instanceUnique;
 
@@ -15,7 +15,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public static T GetInstance()
         {
-            if (instanceUnique == null) instanceUnique = new T();
+            if (instanceUnique == null) return default(T);
             return instanceUnique;
         }
 

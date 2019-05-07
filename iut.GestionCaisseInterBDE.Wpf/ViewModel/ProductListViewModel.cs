@@ -114,13 +114,7 @@ namespace GestionCaisseInterBDE.ViewModel
         private void CancelEdit()
         {
             Modifiable = false;
-            SelectedProduct.ID = oldProduct.ID;
-            SelectedProduct.Name = oldProduct.Name;
-            SelectedProduct.Price = oldProduct.Price;
-            SelectedProduct.BuyPrice = oldProduct.BuyPrice;
-            SelectedProduct.ImageURL = oldProduct.ImageURL;
-            SelectedProduct.Stock =  oldProduct.Stock;
-            SelectedProduct.IsDiscountable = oldProduct.IsDiscountable;
+            SelectedProduct = oldProduct;
             oldProduct = null;
         }
 

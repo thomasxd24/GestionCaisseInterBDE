@@ -12,7 +12,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public static Collection<BDE> GetBDEList()
         {
             var bdeList = new Collection<BDE>();
-            var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
+            IDatabase db = Singleton<IDatabase>.GetInstance();
             DataTable dt = db.Select("SELECT * FROM bde");
             foreach (DataRow dr in dt.Rows)
             {

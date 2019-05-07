@@ -13,7 +13,7 @@ namespace iut.GestionCaisseInterBDE.Models
 {
     public class Product : ObservableObject
     {
-        private int id;
+        private readonly int id;
 
         public int ID
         {
@@ -25,6 +25,9 @@ namespace iut.GestionCaisseInterBDE.Models
         public string Name
         {
             get { return name; }
+            set { name = value;
+                OnPropertyChanged("Name");
+            }
         }
 
         private float price;
@@ -32,6 +35,11 @@ namespace iut.GestionCaisseInterBDE.Models
         public float Price
         {
             get { return price; }
+            set
+            {
+                price = value;
+                OnPropertyChanged("Price");
+            }
         }
 
         public string PriceString
@@ -44,6 +52,11 @@ namespace iut.GestionCaisseInterBDE.Models
         public string ImageURL
         {
             get { return imageUrl; }
+            set
+            {
+                imageUrl = value;
+                OnPropertyChanged("ImageURL");
+            }
         }
 
         private string colorTile;
@@ -58,6 +71,11 @@ namespace iut.GestionCaisseInterBDE.Models
         public int Stock
         {
             get { return stock; }
+            set
+            {
+                stock = value;
+                OnPropertyChanged("Stock");
+            }
         }
 
         private bool isDiscountable;
@@ -65,6 +83,11 @@ namespace iut.GestionCaisseInterBDE.Models
         public bool IsDiscountable
         {
             get { return isDiscountable; }
+            set
+            {
+                isDiscountable = value;
+                OnPropertyChanged("IsDiscountable");
+            }
         }
 
         private float buyPrice;
@@ -72,6 +95,11 @@ namespace iut.GestionCaisseInterBDE.Models
         public float BuyPrice
         {
             get { return buyPrice; }
+            set
+            {
+                buyPrice = value;
+                OnPropertyChanged("BuyPrice");
+            }
         }
 
 

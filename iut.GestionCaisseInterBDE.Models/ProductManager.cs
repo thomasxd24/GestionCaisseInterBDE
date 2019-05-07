@@ -13,8 +13,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public static Collection<Product> GetProductList()
         {
 
-            var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
-            DataTable dt = db.Select("SELECT * FROM products");
+            IDatabase db = Singleton<IDatabase>.GetInstance(); DataTable dt = db.Select("SELECT * FROM products");
             Collection<Product> products = new Collection<Product>();
             foreach (DataRow dr in dt.Rows)
             {
@@ -40,8 +39,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public static bool RemoveProductDB(Product p)
         {
-            var db = new MySQLDatabase("SERVER=51.68.230.58;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
-
+            IDatabase db = Singleton<IDatabase>.GetInstance();
             var rowChanged = db.ExecuteCommand($"DELETE FROM products where idProduct={p.ID}");
             if (rowChanged == 0) return false;
             return true; ;
@@ -49,7 +47,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public static bool UpdateProductDB(Product p)
         {
-            var db = new MySQLDatabase("SERVER=51.68.230.58;Port=8080;Database=bde;Uid=bdeUser;Pwd=412qIrJSUkM0;", "MySql.Data.MySqlClient");
+            IDatabase db = Singleton<IDatabase>.GetInstance();
             var m = new Dictionary<string, object>
             {
                 { "@name", p.Name },

@@ -9,20 +9,18 @@ using MySql.Data.MySqlClient;
 
 namespace iut.GestionCaisseInterBDE.Models.Utilities
 {
-    public class MySQLDatabase
+    public class MySQLDatabase : IDatabase
     {
 
-        public string connString { get; protected set; }
-        public string providerName { get; protected set; }
+        private string connString { get; set; }
 
         /// <summary>
         /// Creates an instance with the given connection string
         /// </summary>
         /// <param name="connString">The connection string</param>
-        public MySQLDatabase(string connString, string providerName)
+        public MySQLDatabase(string connString)
         {
             this.connString = connString;
-            this.providerName = providerName;
         }
 
         /// <summary>
@@ -33,22 +31,6 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
         /// <returns>Number of rows affected</returns>
         public int ExecuteCommand(string query, Dictionary<string, object> Parameters = null)
         {
-            return ExecuteCommand(connString, providerName, query, Parameters);
-        }
-
-        /// <summary>
-        /// Executes the given SQL query
-        /// </summary>
-        /// <param name="connString">Connection string to the database</param>
-        /// <param name="providerName">Db provider invariant name</param>
-        /// <param name="query">The SQL query to be executed</param>
-        /// <param name="Parameters">Query parameters and their values</param>
-        /// <returns>Number of rows affected</returns>
-        public static int ExecuteCommand(string connString, string providerName, string query, Dictionary<string, object> Parameters = null)
-        {
-             
-
-            //Create Query
             using (var conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
             {
                 conn.ConnectionString = connString;
@@ -75,6 +57,7 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
             }
         }
 
+
         /// <summary>
         /// Query an SQL database
         /// </summary>
@@ -82,19 +65,6 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
         /// <param name="Parameters">Query parameters with their values</param>
         /// <returns>Query results as a DataTable</returns>
         public DataTable Select(string query, Dictionary<string, object> Parameters = null)
-        {
-            return Select(connString, providerName, query, Parameters);
-        }
-
-        /// <summary>
-        /// Query an SQL database
-        /// </summary>
-        /// <param name="connString">Connection string to the database</param>
-        /// <param name="providerName">DB provider invariant name</param>
-        /// <param name="query">Select query that returns a data table</param>
-        /// <param name="Parameters">Query parameters with their values</param>
-        /// <returns>Query results as a DataTable</returns>
-        public static DataTable Select(string connString, string providerName, string query, Dictionary<string, object> Parameters = null)
         {
             DataTable dt = new DataTable();
 
@@ -127,5 +97,6 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
                 }
             }
         }
+
     }
 }
