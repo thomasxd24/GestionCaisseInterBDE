@@ -150,9 +150,19 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             {
                 ProductsView = new ObservableCollection<Product>(fullProductList as Collection<Product>);
                 return;
-            } 
+            }
             //TO DO : voir LINQ
-            var filteredList = new ObservableCollection<Product>(fullProductList.Where(item => FuzzyMatcher.FuzzyMatch(item.Name, searchString)) as Collection<Product>);
+            var list = fullProductList.Where(item => FuzzyMatcher.FuzzyMatch(item.Name, searchString)).ToList();
+            ObservableCollection<Product> filteredList;
+            if (list == null)
+            {
+                filteredList = new ObservableCollection<Product>();
+            }
+            else
+            {
+                filteredList = new ObservableCollection<Product>(list);
+            }
+                
             ProductsView = filteredList;
         }
 
