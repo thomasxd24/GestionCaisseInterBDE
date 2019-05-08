@@ -114,7 +114,8 @@ namespace GestionCaisseInterBDE.ViewModel
         private void CancelEdit()
         {
             Modifiable = false;
-            SelectedProduct = oldProduct;
+            int index = productsView.IndexOf(SelectedProduct);
+            productsView[index] = oldProduct;
             oldProduct = null;
         }
 

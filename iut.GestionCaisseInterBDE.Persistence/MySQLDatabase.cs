@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.Common;
-using System.Data.SQLite;
+using MySql.Data.MySqlClient;
 
-namespace iut.GestionCaisseInterBDE.Models.Utilities
+namespace iut.GestionCaisseInterBDE.Persistence
 {
-    public class SQLiteDatabase : IDatabase
+    public class MySQLDatabase : IDatabase
     {
 
-        private string connString { get;  set; }
+        private string connString { get; set; }
 
         /// <summary>
         /// Creates an instance with the given connection string
         /// </summary>
         /// <param name="connString">The connection string</param>
-        public SQLiteDatabase(string connString)
+        public MySQLDatabase(string connString)
         {
             this.connString = connString;
         }
@@ -31,10 +31,10 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
         /// <returns>Number of rows affected</returns>
         public int ExecuteCommand(string query, Dictionary<string, object> Parameters = null)
         {
-            using (var conn = new SQLiteConnection(connString))
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
             {
                 conn.ConnectionString = connString;
-                using (SQLiteCommand cmd = conn.CreateCommand())
+                using (MySqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = query;
 
@@ -69,11 +69,11 @@ namespace iut.GestionCaisseInterBDE.Models.Utilities
             DataTable dt = new DataTable();
 
             //Create Query
-            using (var conn = new SQLiteConnection(connString))
+            using (var conn = new MySql.Data.MySqlClient.MySqlConnection(connString))
             {
                 conn.ConnectionString = connString;
                 using (DbCommand cmd = conn.CreateCommand())
-                using (DbDataAdapter da = new SQLiteDataAdapter())
+                using (DbDataAdapter da = new MySqlDataAdapter())
                 {
                     cmd.CommandText = query;
                     da.SelectCommand = cmd;

@@ -10,8 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.0.15" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.110" />
+    <ProjectReference Include="..\iut.GestionCaisseInterBDE.Persistence\iut.GestionCaisseInterBDE.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace iut.GestionCaisseInterBDE.Models.Utilities
+namespace iut.GestionCaisseInterBDE.Persistence
 {
     public interface IDatabase
     {

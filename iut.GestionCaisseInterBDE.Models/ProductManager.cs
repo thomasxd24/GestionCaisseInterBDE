@@ -6,6 +6,7 @@ using System.Data;
 using System.Globalization;
 using System.Text;
 using System.Linq;
+using iut.GestionCaisseInterBDE.Persistence;
 
 namespace iut.GestionCaisseInterBDE.Models
 {

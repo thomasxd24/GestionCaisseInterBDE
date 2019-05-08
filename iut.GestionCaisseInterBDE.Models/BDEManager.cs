@@ -1,4 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models.Utilities;
+using iut.GestionCaisseInterBDE.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
