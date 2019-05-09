@@ -1,4 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models.Utilities;
+using iut.GestionCaisseInterBDE.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Linq;
 using iut.GestionCaisseInterBDE.Persistence;
 
-namespace iut.GestionCaisseInterBDE.Models
+namespace iut.GestionCaisseInterBDE.Persistence.Services
 {
     public class ProductManager
     {

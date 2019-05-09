@@ -1,4 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models.Utilities;
+using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Persistence;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Text;
 
-namespace iut.GestionCaisseInterBDE.Models
+namespace iut.GestionCaisseInterBDE.Persistence.Services
 {
     public class TicketManager
     {

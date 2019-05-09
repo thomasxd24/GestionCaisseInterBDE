@@ -1,4 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models.Utilities;
+using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Persistence;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Data;
 using System.Text;
 using System.Linq;
 
-namespace iut.GestionCaisseInterBDE.Models
+namespace iut.GestionCaisseInterBDE.Persistence.Services
 {
     public class BDEManager
     {

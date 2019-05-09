@@ -18,6 +18,7 @@ using AutoUpdaterDotNET;
 using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Models.Utilities;
 using iut.GestionCaisseInterBDE.Persistence;
+using iut.GestionCaisseInterBDE.Persistence.Services;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 namespace iut.GestionCaisseInterBDE.Wpf

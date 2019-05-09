@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using iut.GestionCaisseInterBDE.Models.Utilities;
-using MySql.Data.MySqlClient;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
