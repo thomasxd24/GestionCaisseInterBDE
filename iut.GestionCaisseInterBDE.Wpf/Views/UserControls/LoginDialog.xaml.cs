@@ -23,6 +23,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
         public LoginDialog()
         {
             InitializeComponent();
+
         }
     }
 }

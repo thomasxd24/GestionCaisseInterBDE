@@ -19,8 +19,11 @@ using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Models.Utilities;
 using iut.GestionCaisseInterBDE.Persistence;
 using iut.GestionCaisseInterBDE.Persistence.Services;
+using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+
 namespace iut.GestionCaisseInterBDE.Wpf
 {
     /// <summary>
@@ -77,9 +80,23 @@ namespace iut.GestionCaisseInterBDE.Wpf
             comboColors.ItemsSource = Colors;
             comboThemes.ItemsSource = Themes;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
+           
+           
 
 
         }
+
+        private async void Login()
+        {
+            var customDialog = new CustomDialog() { Title = "Identifiez-vous" };
+
+           
+            customDialog.Content = new Views.UserControls.LoginDialog();
+
+            await this.ShowMetroDialogAsync(customDialog);
+        }
+
+
 
         private void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -157,6 +174,11 @@ namespace iut.GestionCaisseInterBDE.Wpf
                         @"There is a problem reaching update server please check your internet connection and try again later.",
                         @"Update check failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            Login();
         }
     }
 }

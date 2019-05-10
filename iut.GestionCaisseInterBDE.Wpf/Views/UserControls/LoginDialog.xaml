@@ -7,14 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
-        <Image Source="pack://application:,,,/logo.ico" DockPanel.Dock="Left" Width="100" Height="100" VerticalAlignment="Center" Margin="10"/>
-        <Button DockPanel.Dock="Bottom"
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button 
                 MinWidth="80"
                 Margin="8 8 0 8"
                 HorizontalAlignment="Right"
                 Command="{Binding CloseCommand}"
-                Content="OK"
-                Style="{DynamicResource MahApps.Metro.Styles.Dialogs.Button}" />
+                Content="Me Connecter"
+                Style="{DynamicResource SquareButtonStyle}" />
+            <Button 
+                MinWidth="80"
+                Margin="8 8 0 8"
+                HorizontalAlignment="Right"
+                Command="{Binding CloseCommand}"
+                Content="Annuler"
+                Style="{DynamicResource SquareButtonStyle}" />
+        </StackPanel>
+        
+
+        <Image Source="pack://application:,,,/logo.ico" DockPanel.Dock="Left" Width="100" Height="100" VerticalAlignment="Center" Margin="10"/>
         <Grid FocusManager.FocusedElement="{Binding ElementName=UsernameTextBox}" Grid.IsSharedSizeScope="True" VerticalAlignment="Center">
 
             <Grid.ColumnDefinitions>

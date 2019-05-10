@@ -12,7 +12,9 @@
                       GlowBrush="Black"
         mc:Ignorable="d"
         Title="Gestion Caisse Inter BDE" Height="691" Width="1190"
-                      ShowIconOnTitleBar="True">
+                      ShowIconOnTitleBar="True"
+                      Loaded="MetroWindow_Loaded"
+                      >
     
     <Controls:MetroWindow.OverlayFadeIn>
         <Storyboard

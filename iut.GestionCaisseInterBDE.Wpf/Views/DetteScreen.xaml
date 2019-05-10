@@ -19,7 +19,7 @@
                 <DataTemplate>
                     <DockPanel>
                         <Image DockPanel.Dock="Left" Width="70" Height="70" Source="{Binding ImageURL}"  />
-                        <Label DockPanel.Dock="Left" Content="{Binding Name}" VerticalAlignment="Center" FontSize="20" FontFamily="./#Stylish-Regular"></Label>
+                        <Label DockPanel.Dock="Left" Content="{Binding Name}" VerticalAlignment="Center" FontSize="20" FontFamily="{StaticResource PTFont}"></Label>
 
 
                     </DockPanel>
