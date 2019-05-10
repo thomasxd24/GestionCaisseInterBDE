@@ -14,8 +14,17 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0">
-            
+        <ListView Grid.Column="0" ItemsSource="{Binding ListBDE}" SelectedItem="{Binding SelectedBDE}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <Image DockPanel.Dock="Left" Width="70" Height="70" Source="{Binding ImageURL}"  />
+                        <Label DockPanel.Dock="Left" Content="{Binding Name}" VerticalAlignment="Center" FontSize="20" FontFamily="./#Stylish-Regular"></Label>
+
+
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
         <DockPanel Grid.Column="1">
 

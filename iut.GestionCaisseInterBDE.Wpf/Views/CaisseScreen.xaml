@@ -22,7 +22,8 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Controls:Tile Title="{Binding Name}" Width="175" Height="175" Click="BdeChoiceBtn_Click" Tag="{Binding Path=.}">
-                                    <Image Source="{Binding ImageURL}" VerticalAlignment="Top" Margin="0,0,0,40" />
+                                    <Image Source="{Binding ImageURL}" VerticalAlignment="Top" Margin="0,0,0,40" >
+                                    </Image>
                                 </Controls:Tile>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

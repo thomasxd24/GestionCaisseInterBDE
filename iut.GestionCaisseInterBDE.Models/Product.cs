@@ -50,7 +50,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public string ImageURL
         {
-            get { return imageUrl; }
+            get { return imageUrl!=""?imageUrl: "https://img.icons8.com/ios/420/image-not-avialable.png"; }
             set
             {
                 imageUrl = value;

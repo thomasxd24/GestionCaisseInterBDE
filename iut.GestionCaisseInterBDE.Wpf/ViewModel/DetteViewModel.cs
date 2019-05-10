@@ -33,6 +33,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             }
         }
 
+        public DetteViewModel()
+        {
+            listBDE = new ObservableCollection<BDE>(Singleton<Collection<BDE>>.GetInstance());
+        }
+
 
 
     }

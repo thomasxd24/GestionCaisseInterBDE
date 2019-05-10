@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iut.GestionCaisseInterBDE.Wpf.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
     {
         public DetteScreen()
         {
+            DataContext = new DetteViewModel();
             InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
