@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iut.GestionCaisseInterBDE.Wpf.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,14 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
     {
         public LoginDialog()
         {
+            DataContext = new LoginDialogViewModel();
             InitializeComponent();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

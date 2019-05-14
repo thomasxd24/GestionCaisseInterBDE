@@ -29,10 +29,10 @@
     </Controls:MetroWindow.OverlayFadeOut>
 
     <DockPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Bottom">
-            <Button Margin="10" >Valider</Button>
-            <Button Margin="10">Fermer</Button>
-        </StackPanel>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Button Margin="10" DockPanel.Dock="Left" Command="{Binding AddProductToListCommand}">Ajouter un produit</Button>
+            <Button Margin="10" DockPanel.Dock="Right">Fermer</Button>
+        </DockPanel>
         <Separator DockPanel.Dock="Bottom"></Separator>
 
         <Grid>

@@ -153,6 +153,7 @@
     <Compile Include="ViewModel\CaisseViewModel.cs" />
     <Compile Include="ViewModel\DetteViewModel.cs" />
     <Compile Include="ViewModel\HistorySaleViewModel.cs" />
+    <Compile Include="ViewModel\LoginDialogViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
     <Compile Include="Views\AnnonceScreen.xaml.cs">
       <DependentUpon>AnnonceScreen.xaml</DependentUpon>

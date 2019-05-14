@@ -36,5 +36,6 @@ namespace GestionCaisseInterBDE.Windows
             //testDG.ItemsSource = dt.DefaultView;
             this.DataContext = new ProductListViewModel(DialogCoordinator.Instance);
         }
+
     }
 }

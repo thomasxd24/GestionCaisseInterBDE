@@ -18,6 +18,7 @@ namespace GestionCaisseInterBDE.ViewModel
         public RelayCommand ModifyCommand { get; private set; }
         public RelayCommand ConfirmCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
+        public RelayCommand AddProductToListCommand { get; private set; }
         public RelayCommand DeleteProductCommand { get; private set; }
         private Product nullProduct = new Product(999999, "", 0,0, "", 0, false);
         private Product oldProduct;
@@ -143,6 +144,13 @@ namespace GestionCaisseInterBDE.ViewModel
 
         }
 
+        public void AddProductToList()
+        {
+            var newP = new Product(8858, "", 0, 0, "", 0, false);
+            ProductsView.Add(newP);
+            SelectedProduct = newP;
+        }
+
 
 
         public ProductListViewModel(IDialogCoordinator dialogCoordinator)
@@ -151,6 +159,7 @@ namespace GestionCaisseInterBDE.ViewModel
             ModifyCommand = new RelayCommand(ModifyProduct);
             ConfirmCommand = new RelayCommand(ConfirmEdit);
             CancelCommand = new RelayCommand(CancelEdit);
+            AddProductToListCommand = new RelayCommand(AddProductToList);
             DeleteProductCommand = new RelayCommand(DeleteProduct);
             this.dialogCoordinator = dialogCoordinator;
         }
