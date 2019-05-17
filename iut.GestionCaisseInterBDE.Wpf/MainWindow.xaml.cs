@@ -16,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AutoUpdaterDotNET;
 using iut.GestionCaisseInterBDE.Models;
-using iut.GestionCaisseInterBDE.Models.Utilities;
 using iut.GestionCaisseInterBDE.Persistence;
 using iut.GestionCaisseInterBDE.Persistence.Services;
 using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
@@ -178,7 +177,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //Login();
+            Login();
         }
     }
 }

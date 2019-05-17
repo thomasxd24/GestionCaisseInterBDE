@@ -1,4 +1,4 @@
-﻿using iut.GestionCaisseInterBDE.Models.Utilities;
+﻿using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Models;
 using System;
 using System.Collections.Generic;

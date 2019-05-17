@@ -1,4 +1,5 @@
-﻿using iut.GestionCaisseInterBDE.Wpf.Utilities;
+﻿using iut.GestionCaisseInterBDE.Utilities;
+using iut.GestionCaisseInterBDE.Wpf.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         }
 
         private void Login()
-        { }
+        {
+            int i = 1;
+        }
     }
 }

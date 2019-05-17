@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using iut.GestionCaisseInterBDE.Models.Utilities;
+using iut.GestionCaisseInterBDE.Utilities;
 
 namespace iut.GestionCaisseInterBDE.Models
 {

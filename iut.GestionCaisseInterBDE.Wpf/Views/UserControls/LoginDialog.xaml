@@ -13,7 +13,7 @@
                 Margin="8 8 0 8"
                 Padding="10"
                 HorizontalAlignment="Right"
-                Command="{Binding CloseCommand}"
+                Command="{Binding LoginCommand}"
                 Content="Me Connecter"
                  />
             <Button 

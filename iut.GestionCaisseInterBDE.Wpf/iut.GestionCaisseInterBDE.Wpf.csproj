@@ -146,9 +146,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Utilities\BaseViewModel.cs" />
-    <Compile Include="Utilities\FuzzyMatch.cs" />
-    <Compile Include="Utilities\ObservableObject.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="ViewModel\CaisseViewModel.cs" />
     <Compile Include="ViewModel\DetteViewModel.cs" />
@@ -266,9 +263,6 @@
     <None Include="bde.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Resource Include="Fonts\Stylish-Regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -286,6 +280,10 @@
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Persistence\iut.GestionCaisseInterBDE.Persistence.csproj">
       <Project>{153a422d-c890-4ddd-b8a7-8024b9742d13}</Project>
       <Name>iut.GestionCaisseInterBDE.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iut.GestionCaisseInterBDE.Utilities\iut.GestionCaisseInterBDE.Utilities.csproj">
+      <Project>{A1B96BFD-DA23-440E-8443-F47114014FD4}</Project>
+      <Name>iut.GestionCaisseInterBDE.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

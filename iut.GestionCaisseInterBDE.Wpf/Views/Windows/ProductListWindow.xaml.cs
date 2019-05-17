@@ -1,6 +1,5 @@
 ﻿using GestionCaisseInterBDE.ViewModel;
 using iut.GestionCaisseInterBDE.Models;
-using iut.GestionCaisseInterBDE.Models.Utilities;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
