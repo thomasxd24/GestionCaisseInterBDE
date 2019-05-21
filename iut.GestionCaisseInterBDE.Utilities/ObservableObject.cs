@@ -19,12 +19,6 @@ namespace iut.GestionCaisseInterBDE.Utilities
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected void OnPropertyChanged<T>(Expression<Func<T>> expression)
-        {
-            string propertyName = GetPropertyName(expression);
-            OnPropertyChanged(propertyName);
-        }
-
         private string GetPropertyName<T>(Expression<Func<T>> expression)
         {
             var lambdaExpression = (LambdaExpression)expression;
@@ -41,16 +35,6 @@ namespace iut.GestionCaisseInterBDE.Utilities
             return memberExpression.Member.Name;
         }
 
-        protected bool SetProperty<T>(ref T member, T newValue, string propertyName)
-        {
-            if (EqualityComparer<T>.Default.Equals(member, newValue))
-            {
-                return false;
-            }
-            member = newValue;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
 
         protected bool SetProperty<T>(ref T member, T newValue, Expression<Func<T>> expression)
         {

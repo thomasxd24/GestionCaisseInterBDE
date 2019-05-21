@@ -83,19 +83,7 @@
             <TabItem x:Name="detteTab" Header="Dettes">
                 <Frame Source="Views/DetteScreen.xaml"></Frame>
             </TabItem>
-            <TabItem x:Name="eventsTab" Header="Events">
-                <Frame Source="Views/EventScreen.xaml"></Frame>
-            </TabItem>
-            <TabItem x:Name="annoncesTab" Header="Annonces">
-                <Frame Source="Views/AnnonceScreen.xaml"></Frame>
-            </TabItem>
-            <TabItem x:Name="sauvegardeTab" Header="Sauvegarde">
-                <Controls:Tile Title="Hello!" 
-               Width="150"
-               Height="150" 
-               Count="1" />
-
-            </TabItem>
+           
         </Controls:MetroAnimatedSingleRowTabControl>
     </DockPanel>
     

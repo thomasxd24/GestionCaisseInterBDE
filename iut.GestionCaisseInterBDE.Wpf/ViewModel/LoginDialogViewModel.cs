@@ -1,5 +1,6 @@
 ﻿using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
     public class LoginDialogViewModel : BaseViewModel
     {
         private string username;
+        private IDialogCoordinator dialogCoordinator;
 
         public string Username
         {
@@ -31,14 +33,16 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public RelayCommand LoginCommand { get; private set; }
 
-        public LoginDialogViewModel()
+        public LoginDialogViewModel(IDialogCoordinator instance)
         {
             LoginCommand = new RelayCommand(Login);
+            this.dialogCoordinator = instance;
         }
 
         private void Login()
         {
-            int i = 1;
+           
+            
         }
     }
 }

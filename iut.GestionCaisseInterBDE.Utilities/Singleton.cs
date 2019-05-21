@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace iut.GestionCaisseInterBDE.Models
+namespace iut.GestionCaisseInterBDE.Utilities
 {
     public class Singleton<T>
     {

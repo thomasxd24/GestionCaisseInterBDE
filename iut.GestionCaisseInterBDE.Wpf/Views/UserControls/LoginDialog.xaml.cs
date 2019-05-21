@@ -1,4 +1,6 @@
 ﻿using iut.GestionCaisseInterBDE.Wpf.ViewModel;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +25,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
     {
         public LoginDialog()
         {
-            DataContext = new LoginDialogViewModel();
+            DataContext = new LoginDialogViewModel(DialogCoordinator.Instance);
             InitializeComponent();
 
         }

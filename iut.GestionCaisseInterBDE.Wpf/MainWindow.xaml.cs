@@ -19,6 +19,7 @@ using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Persistence;
 using iut.GestionCaisseInterBDE.Persistence.Services;
 using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
+using iut.GestionCaisseInterBDE.Utilities;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
