@@ -5,14 +5,28 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
       xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views"
+      xmlns:model="clr-namespace:iut.GestionCaisseInterBDE.Models;assembly=iut.GestionCaisseInterBDE.Models"
       xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
       Dialog:DialogParticipation.Register="{Binding}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1200"
       x:Name="CaissePage"
       Title="Page1">
-    <Page.Resources>
+    <Page.Resources> 
+        
         <ResourceDictionary>
+            <DataTemplate x:Key="productTile" DataType="{x:Type model:Product}">
+                <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Tag="{Binding Path=.}" Background="{Binding ColorTile}" Command="{Binding Path=DataContext.AddProductCommand, ElementName=CaissePage}" CommandParameter="{Binding Path=.}">
+                    <DockPanel VerticalAlignment="Stretch" Width="150" HorizontalAlignment="Center" Margin="0,0,0,35">
+                        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                            <Label DockPanel.Dock="Right"  HorizontalAlignment="Right" Content="{Binding PriceString}"></Label>
+                            <Label DockPanel.Dock="Left" HorizontalAlignment="Right" Content="{Binding Stock}" ContentStringFormat="Stock: {0}"></Label>
+                        </DockPanel>
+                        <Image Source="{Binding ImageURL}" Width="120" Height="120" VerticalAlignment="Center">
+                        </Image>
+                    </DockPanel>
+                </Controls:Tile>
+            </DataTemplate>
             <Dialog:CustomDialog x:Key="CustomCloseDialogTest"
                                  x:Name="CustomCloseDialogTest"
                                  Title="Choissisez le BDE a encaisser">
@@ -136,22 +150,8 @@
             <DockPanel>
                 <TextBox Width="200" x:Name="searchBar" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Text="{Binding ProductSearchText, Delay=100, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                 <ScrollViewer >
-                    
-                    <ItemsControl x:Name="productList" ItemsSource="{Binding ProductsView}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Tag="{Binding Path=.}" Background="{Binding ColorTile}" Command="{Binding Path=DataContext.AddProductCommand, ElementName=CaissePage}" CommandParameter="{Binding Path=.}">
-                                    <DockPanel VerticalAlignment="Stretch" Width="150" HorizontalAlignment="Center" Margin="0,0,0,35">
-                                        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                                            <Label DockPanel.Dock="Right"  HorizontalAlignment="Right" Content="{Binding PriceString}"></Label>
-                                            <Label DockPanel.Dock="Left" HorizontalAlignment="Right" Content="{Binding Stock}" ContentStringFormat="Stock: {0}"></Label>
-                                        </DockPanel>
-                                        <Image Source="{Binding ImageURL}" Width="120" Height="120" VerticalAlignment="Center">
-                                        </Image>
-                                    </DockPanel>
-                                </Controls:Tile>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+
+                    <ItemsControl x:Name="productList" ItemsSource="{Binding ProductsView}" ItemTemplate="{StaticResource productTile}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel x:Name="productPanel" Orientation="Horizontal"/>
