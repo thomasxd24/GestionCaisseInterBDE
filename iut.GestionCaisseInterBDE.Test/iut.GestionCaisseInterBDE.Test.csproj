@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F94F1177-D1D4-4E8F-8C53-D4A3F8182B76}</ProjectGuid>
+    <ProjectGuid>{02D9A18A-27E6-4B76-81E3-AF8D5AF351AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestProjet</RootNamespace>
-    <AssemblyName>TestProjet</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>iut.GestionCaisseInterBDE.Test</RootNamespace>
+    <AssemblyName>iut.GestionCaisseInterBDE.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -19,7 +19,6 @@
     <TestProjectType>UnitTest</TestProjectType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,7 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -48,29 +52,29 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ProductListViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CaisseViewModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Models\iut.GestionCaisseInterBDE.Models.csproj">
-      <Project>{54db34dc-6d7d-4f59-95bc-0efd88a0ddf2}</Project>
+      <Project>{54DB34DC-6D7D-4F59-95BC-0EFD88A0DDF2}</Project>
       <Name>iut.GestionCaisseInterBDE.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\iut.GestionCaisseInterBDE.Persistence\iut.GestionCaisseInterBDE.Persistence.csproj">
-      <Project>{153a422d-c890-4ddd-b8a7-8024b9742d13}</Project>
-      <Name>iut.GestionCaisseInterBDE.Persistence</Name>
-    </ProjectReference>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Utilities\iut.GestionCaisseInterBDE.Utilities.csproj">
-      <Project>{a1b96bfd-da23-440e-8443-f47114014fd4}</Project>
+      <Project>{A1B96BFD-DA23-440E-8443-F47114014FD4}</Project>
       <Name>iut.GestionCaisseInterBDE.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Wpf\iut.GestionCaisseInterBDE.Wpf.csproj">
-      <Project>{33b28758-5ba9-4653-9fb6-ff18fdf0ce81}</Project>
+      <Project>{33B28758-5BA9-4653-9FB6-FF18FDF0CE81}</Project>
       <Name>iut.GestionCaisseInterBDE.Wpf</Name>
     </ProjectReference>
   </ItemGroup>

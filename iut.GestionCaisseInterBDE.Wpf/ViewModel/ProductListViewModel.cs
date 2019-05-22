@@ -119,6 +119,7 @@ namespace GestionCaisseInterBDE.ViewModel
             Modifiable = false;
             int index = productsView.IndexOf(SelectedProduct);
             productsView[index] = oldProduct;
+            SelectedProduct = oldProduct;
             oldProduct = null;
         }
 

@@ -2,18 +2,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TestProjet")]
+[assembly: AssemblyTitle("iut.GestionCaisseInterBDE.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TestProjet")]
+[assembly: AssemblyProduct("iut.GestionCaisseInterBDE.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("f94f1177-d1d4-4e8f-8c53-d4a3f8182b76")]
+[assembly: Guid("02d9a18a-27e6-4b76-81e3-af8d5af351ac")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
