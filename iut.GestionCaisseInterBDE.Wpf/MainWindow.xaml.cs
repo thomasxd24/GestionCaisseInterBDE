@@ -178,7 +178,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //Login();
+            Login();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using iut.GestionCaisseInterBDE.Utilities;
+﻿using iut.GestionCaisseInterBDE.Persistence.Services;
+using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
 using MahApps.Metro.Controls.Dialogs;
 using System;
@@ -41,8 +42,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         private void Login()
         {
-           
-            
+            UserManager.GetUserfromCredentials(username, password);
+
+
         }
     }
 }

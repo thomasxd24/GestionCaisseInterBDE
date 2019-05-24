@@ -7,6 +7,14 @@ namespace iut.GestionCaisseInterBDE.Models
 {
     public class User : ObservableObject
     {
+        private int id;
+
+        public int ID
+        {
+            get { return id; }
+        }
+
+
         private string username;
 
         public string Username
@@ -59,9 +67,14 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
-
-
-
-
+        public User(int id, string username, string name, BDE bde, string theme, string accent)
+        {
+            this.id = id;
+            this.username = username;
+            this.name = name;
+            this.bde = bde;
+            this.theme = theme;
+            this.accent = accent;
+        }
     }
 }
