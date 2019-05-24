@@ -1,4 +1,5 @@
-﻿using iut.GestionCaisseInterBDE.Wpf.ViewModel;
+﻿using iut.GestionCaisseInterBDE.Utilities;
+using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
@@ -21,11 +22,15 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
     /// <summary>
     /// Logique d'interaction pour LoginDialog.xaml
     /// </summary>
-    public partial class LoginDialog : UserControl
+    public partial class LoginDialog : UserControl, IDialog
     {
-        public LoginDialog()
+        BaseMetroDialog dialog;
+        MainWindow main;
+        public LoginDialog(BaseMetroDialog dialog,MainWindow main)
         {
-            DataContext = new LoginDialogViewModel(DialogCoordinator.Instance);
+            DataContext = new LoginDialogViewModel(DialogCoordinator.Instance,this);
+            this.dialog = dialog;
+            this.main = main;
             InitializeComponent();
 
         }
@@ -33,6 +38,11 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        public void HideCurrentDialog()
+        {
+            main.HideMetroDialogAsync(dialog);
         }
     }
 }

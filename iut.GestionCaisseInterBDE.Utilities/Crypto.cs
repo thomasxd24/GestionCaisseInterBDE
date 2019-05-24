@@ -9,6 +9,7 @@ namespace iut.GestionCaisseInterBDE.Utilities
     {
         public static string CalculateMD5Hash(string input)
         {
+            if (input == "") return "";
             // step 1, calculate MD5 hash from input
             MD5 md5 = System.Security.Cryptography.MD5.Create();
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);

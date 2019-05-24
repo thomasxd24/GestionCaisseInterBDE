@@ -6,8 +6,32 @@
              xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="BorderThickness" Value="2" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Error}" Value="True">
+                        <Setter Property="BorderBrush" Value="Red" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="ErrorText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Error}" Value="True">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+        
+        
+
+    </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock VerticalAlignment="Center" Foreground="White" Style="{StaticResource ErrorText}">Identifiant Incorrect</TextBlock>
             <Button 
                 MinWidth="80"
                 Margin="8 8 0 8"
@@ -47,6 +71,7 @@
                  Grid.Row="0"
                  Grid.Column="1"
                  Margin="8 8 0 0"
+                 
                  Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock Grid.Row="1"
