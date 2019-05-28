@@ -33,17 +33,26 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
         }
 
         public static readonly DependencyProperty UsernameProperty =
-         DependencyProperty.Register("UsernameLocal", typeof(string), typeof(FieldCredentialsUC), new
+         DependencyProperty.Register("Username", typeof(string), typeof(FieldCredentialsUC), new
             PropertyMetadata(""));
 
         public static readonly DependencyProperty PasswordProperty =
-         DependencyProperty.Register("PasswordLocal", typeof(string), typeof(FieldCredentialsUC), new
+         DependencyProperty.Register("Password", typeof(string), typeof(FieldCredentialsUC), new
             PropertyMetadata(""));
 
 
         public FieldCredentialsUC()
         {
             InitializeComponent();
+        }
+
+        private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            {
+                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password;
+            }
+
         }
     }
 }

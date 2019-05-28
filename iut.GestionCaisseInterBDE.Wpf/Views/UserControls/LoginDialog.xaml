@@ -51,7 +51,7 @@
         
 
         <Image Source="pack://application:,,,/logo.ico" DockPanel.Dock="Left" Width="100" Height="100" VerticalAlignment="Center" Margin="10"/>
-        <local:FieldCredentialsUC Username="{Binding}"/>
+        <local:FieldCredentialsUC Username="{Binding Username}" Password="{Binding Password}" />
 
     </DockPanel>
    
