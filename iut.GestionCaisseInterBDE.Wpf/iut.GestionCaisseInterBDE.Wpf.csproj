@@ -152,20 +152,8 @@
     <Compile Include="ViewModel\HistorySaleViewModel.cs" />
     <Compile Include="ViewModel\LoginDialogViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
-    <Compile Include="Views\AnnonceScreen.xaml.cs">
-      <DependentUpon>AnnonceScreen.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CaisseScreen.xaml.cs">
       <DependentUpon>CaisseScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EventScreen.xaml.cs">
-      <DependentUpon>EventScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SauvegardeScreen.xaml.cs">
-      <DependentUpon>SauvegardeScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsScreen.xaml.cs">
-      <DependentUpon>SettingsScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DetteScreen.xaml.cs">
       <DependentUpon>DetteScreen.xaml</DependentUpon>
@@ -185,14 +173,6 @@
     <Compile Include="Views\Windows\ProductListWindow.xaml.cs">
       <DependentUpon>ProductListWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AnnonceScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EventScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -210,14 +190,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CaisseScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SauvegardeScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SettingsScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

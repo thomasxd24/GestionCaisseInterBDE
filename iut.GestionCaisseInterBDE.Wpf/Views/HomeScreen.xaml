@@ -42,13 +42,7 @@
         <Controls:Tile Title="Dettes" Grid.Row="0" Grid.Column="1" Background="Purple" Click="Tile_Click" x:Uid="2" >
             <iconPacks:PackIconMaterial Kind="Bank" />
         </Controls:Tile>
-        <Controls:Tile Title="Events" Grid.Row="0" Grid.Column="2" Background="DarkCyan" Click="Tile_Click" x:Uid="3">
-            <iconPacks:PackIconMaterial Kind="EmoticonCool" />
-        </Controls:Tile>
-        <Controls:Tile Title="Annonces" Grid.Row="1" Grid.Column="0" Background="Green" Click="Tile_Click" x:Uid="4">
-            <iconPacks:PackIconMaterial Kind="VolumeHigh" />
-        </Controls:Tile>
-        <Controls:Tile Title="Sauvegarde" Grid.Row="1" Grid.Column="1" Click="Tile_Click" x:Uid="5">
+        <Controls:Tile Title="Réglage" Grid.Row="0" Grid.Column="2" Background="DarkCyan" Click="Tile_Click" x:Uid="3">
             <iconPacks:PackIconMaterial Kind="ContentSave" />
         </Controls:Tile>
 
