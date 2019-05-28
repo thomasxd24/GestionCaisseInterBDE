@@ -65,7 +65,7 @@ namespace iut.GestionCaisseInterBDE.Persistence.Services
             { "@id", p.ID }
             };
             var rowChanged = db.ExecuteCommand($"UPDATE products SET nameProduct=@name,prix=@price,prixAchat=@buyprice,stock=@stock,imageUrl=@imageurl,isDiscountable=@discountable where idProduct=@id",m);
-            if (rowChanged == 0) return false;
+            if (rowChanged == 0) return false;-
             return true; ;
         }
 

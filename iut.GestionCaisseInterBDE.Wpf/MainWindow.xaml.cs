@@ -73,7 +73,8 @@ namespace iut.GestionCaisseInterBDE.Wpf
             InitializeComponent();
             var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
             Singleton<IDatabase>.SetInstance(db);
-            Singleton<Collection<BDE>>.SetInstance(BDEManager.GetBDEList());
+
+            Singleton<ReadOnlyCollection<BDE>>.SetInstance(new ReadOnlyCollection<BDE>((BDEManager.GetBDEList().ToList()));
             Singleton<Collection<Product>>.SetInstance(ProductManager.GetProductList());
 
 
@@ -178,7 +179,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Login();
+            //Login();
         }
     }
 }

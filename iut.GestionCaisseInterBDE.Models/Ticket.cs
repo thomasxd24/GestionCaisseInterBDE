@@ -6,54 +6,16 @@ using System.Text;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
-    public class Ticket : ObservableObject
+    public class Ticket
     {
-        #region declaration
-        private string idTicket;
 
-        public string IDTicket
-        {
-            get { return idTicket; }
-            set
-            {
-                idTicket = value;
-                OnPropertyChanged("IDTicket");
-            }
-        }
+        public string IDTicket { get; }
 
-        private DateTime dateCreated;
+        public DateTime DateCreated { get; }
 
-        public DateTime DateCreated
-        {
-            get { return dateCreated; }
-            set
-            {
-                dateCreated = value;
-                OnPropertyChanged("DateCreated");
-            }
-        }
+        public BDE BDESale { get; }
 
-        private BDE bde;
-
-        public BDE BDESale
-        {
-            get { return bde; }
-            set
-            {
-                bde = value;
-                OnPropertyChanged("BDE");
-            }
-        }
-
-        private Collection<BasketItem> productItems;
-
-        public Collection<BasketItem> ProductItems
-        {
-            get { return productItems; }
-            set { productItems = value;
-                OnPropertyChanged("ProductItems");
-            }
-        }
+        public Collection<BasketItem> ProductItems { get; }
 
 
         public string TotalPaid
@@ -70,15 +32,11 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public Ticket(string idTicket, DateTime dateCreated, BDE bde, Collection<BasketItem> productItems)
         {
-            this.idTicket = idTicket;
-            this.dateCreated = dateCreated;
-            this.bde = bde;
-            this.productItems = productItems;
+            this.IDTicket = idTicket;
+            this.DateCreated = dateCreated;
+            this.BDESale = bde;
+            this.ProductItems = productItems;
         }
-
-
-
-        #endregion
 
 
 

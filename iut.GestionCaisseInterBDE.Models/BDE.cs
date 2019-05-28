@@ -10,45 +10,35 @@ using iut.GestionCaisseInterBDE.Utilities;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
-    public class BDE : ObservableObject
+    public class BDE
     {
 
-        private int id;
+        private readonly int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value; }
         }
 
 
-        private string name;
+        private readonly string name;
 
         public string Name
         {
             get { return name; }
-            set { name = value;
-                OnPropertyChanged("Name");
-            }
         }
-        private string departement;
+        private readonly string departement;
 
         public string Departement
         {
             get { return departement; }
-            set { departement = value; ;
-                OnPropertyChanged("Departement");
-            }
         }
 
-        private string imageURL;
+        private readonly string imageURL;
 
         public string ImageURL
         {
             get { return imageURL; }
-            set { imageURL = value; ;
-                OnPropertyChanged("ImageURL");
-            }
         }
 
 
