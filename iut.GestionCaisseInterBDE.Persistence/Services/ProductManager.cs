@@ -11,8 +11,10 @@ using iut.GestionCaisseInterBDE.Persistence;
 
 namespace iut.GestionCaisseInterBDE.Persistence.Services
 {
-    public class ProductManager
+    public static class ProductManager
     {
+
+
         public static Collection<Product> GetProductList()
         {
 

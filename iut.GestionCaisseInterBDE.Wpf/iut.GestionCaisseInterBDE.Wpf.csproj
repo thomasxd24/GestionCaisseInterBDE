@@ -173,6 +173,9 @@
     <Compile Include="Views\UserControls\DetailProduct.xaml.cs">
       <DependentUpon>DetailProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\FieldCredentialsUC.xaml.cs">
+      <DependentUpon>FieldCredentialsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\LoginDialog.xaml.cs">
       <DependentUpon>LoginDialog.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\DetailProduct.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\FieldCredentialsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
