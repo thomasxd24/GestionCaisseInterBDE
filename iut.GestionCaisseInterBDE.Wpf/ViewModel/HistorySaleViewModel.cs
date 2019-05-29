@@ -1,4 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
+using iut.GestionCaisseInterBDE.Persistence;
 using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
 using MahApps.Metro.Controls.Dialogs;
@@ -8,12 +9,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using iut.GestionCaisseInterBDE.Persistence.Services;
 
 namespace GestionCaisseInterBDE.ViewModel
 {
     public class HistorySaleViewModel : BaseViewModel
     {
+        private IPersistance persistance;
         private ObservableCollection<Ticket> ticketList;
         private IDialogCoordinator dialogCoordinator;
 
@@ -27,8 +28,10 @@ namespace GestionCaisseInterBDE.ViewModel
 
         public HistorySaleViewModel()
         {
-            var ticketList = TicketManager.GetTicketsDB();
+            this.persistance = Singleton<IPersistance>.GetInstance();
+            var ticketList = persistance.GetTicketsDB();
             TicketList = new ObservableCollection<Ticket>(ticketList);
+            
         }
     }
 }

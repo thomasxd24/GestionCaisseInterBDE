@@ -1,5 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
-using iut.GestionCaisseInterBDE.Persistence.Services;
+using iut.GestionCaisseInterBDE.Persistence;
 using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
 using MahApps.Metro.Controls.Dialogs;
@@ -14,6 +14,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 {
     public class LoginDialogViewModel : BaseViewModel
     {
+        private IPersistance persistance;
         private string username;
         private IDialogCoordinator dialogCoordinator;
         private IDialog activeDialog;
@@ -52,6 +53,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public LoginDialogViewModel(IDialogCoordinator instance,IDialog dialog)
         {
+            persistance = Singleton<IPersistance>.GetInstance();
             LoginCommand = new RelayCommand(Login);
             this.dialogCoordinator = instance;
             activeDialog = dialog;
@@ -59,7 +61,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         private void Login()
         {
-            User user = UserManager.GetUserfromCredentials(username, password);
+            User user = persistance.GetUserfromCredentials(username, password);
             if (user == null)
             { Error = true;
                 return;

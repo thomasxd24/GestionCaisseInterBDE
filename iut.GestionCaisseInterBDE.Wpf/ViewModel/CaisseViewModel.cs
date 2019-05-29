@@ -1,5 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
-using iut.GestionCaisseInterBDE.Persistence.Services;
+using iut.GestionCaisseInterBDE.Persistence;
 using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
 using MahApps.Metro.Controls;
@@ -16,9 +16,11 @@ using System.Windows.Input;
 
 namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 {
+
+
     public class CaisseViewModel : BaseViewModel
     {
-
+        private IPersistance persistance;
         private Collection<Product> fullProductList;
         private IDialogCoordinator dialogCoordinator;
 
@@ -143,6 +145,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             ClearBasketCommand = new RelayCommand(ClearBasket);
             DeleteBasketItemCommand = new RelayCommand(DeleteBasketItem);
             this.dialogCoordinator = instance;
+            this.persistance = Singleton<IPersistance>.GetInstance();
         }
 
         private void UpdateSearchResult(string searchString)
@@ -243,10 +246,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         {
             var totalPrice = TotalPrice;
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
-            foreach (BasketItem basketItem in BasketItems)
-            {
-                BasketManager.AddTicket(key, bdeChosen, basketItem.ItemProduct, basketItem.Quantity);
-            }
+            persistance.AddTicket(key, bdeChosen, BasketItems);
             await dialogCoordinator.HideMetroDialogAsync(this,dialog);
             await dialogCoordinator.ShowMessageAsync(this,"Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
             ClearBasket();

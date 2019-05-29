@@ -1,6 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Utilities;
-using iut.GestionCaisseInterBDE.Persistence.Services;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
@@ -10,11 +9,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using iut.GestionCaisseInterBDE.Persistence;
 
 namespace GestionCaisseInterBDE.ViewModel
 {
     public class ProductListViewModel : BaseViewModel
     {
+        private IPersistance persistance;
         private IDialogCoordinator dialogCoordinator;
         public RelayCommand ModifyCommand { get; private set; }
         public RelayCommand ConfirmCommand { get; private set; }
@@ -111,7 +112,7 @@ namespace GestionCaisseInterBDE.ViewModel
         {
             Modifiable = false;
             oldProduct = null;
-            ProductManager.UpdateProductDB(SelectedProduct);
+            persistance.UpdateProductDB(SelectedProduct);
         }
 
         private void CancelEdit()
@@ -135,7 +136,7 @@ namespace GestionCaisseInterBDE.ViewModel
                 MessageDialogStyle.AffirmativeAndNegative, mySettings);
             if (result == MessageDialogResult.Negative) return;
             
-            var success = ProductManager.RemoveProductDB(SelectedProduct);
+            var success = persistance.RemoveProductDB(SelectedProduct);
             if(success)
             {
                 ProductsView.Remove(SelectedProduct);
@@ -157,6 +158,7 @@ namespace GestionCaisseInterBDE.ViewModel
 
         public ProductListViewModel(IDialogCoordinator dialogCoordinator)
         {
+            persistance = Singleton<IPersistance>.GetInstance();
             ProductsView = new ObservableCollection<Product>(Singleton<Collection<Product>>.GetInstance() as Collection<Product>);
             ModifyCommand = new RelayCommand(ModifyProduct);
             ConfirmCommand = new RelayCommand(ConfirmEdit);

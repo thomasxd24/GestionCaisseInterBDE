@@ -5,7 +5,7 @@ using System.Text;
 
 namespace iut.GestionCaisseInterBDE.Persistence
 {
-    public interface IDatabase
+    public interface ISQLDatabase
     {
         /// <summary>
         /// Executes the gives SQL query

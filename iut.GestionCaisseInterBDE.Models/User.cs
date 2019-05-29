@@ -1,14 +1,19 @@
 ﻿using iut.GestionCaisseInterBDE.Utilities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
+    [Table("TableUsers")]
     public class User : ObservableObject
     {
         private int id;
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID
         {
             get { return id; }

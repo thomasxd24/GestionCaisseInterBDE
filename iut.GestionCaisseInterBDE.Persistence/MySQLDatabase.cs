@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 namespace iut.GestionCaisseInterBDE.Persistence
 {
-    public class MySQLDatabase : IDatabase
+    public class MySQLDatabase : ISQLDatabase
     {
 
         private string connString { get; set; }

@@ -17,7 +17,6 @@ using System.Windows.Shapes;
 using AutoUpdaterDotNET;
 using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Persistence;
-using iut.GestionCaisseInterBDE.Persistence.Services;
 using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
 using iut.GestionCaisseInterBDE.Utilities;
 using MahApps.Metro;
@@ -71,11 +70,11 @@ namespace iut.GestionCaisseInterBDE.Wpf
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("fr-FR");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fr-FR");
             InitializeComponent();
-            var db = new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db");
-            Singleton<IDatabase>.SetInstance(db);
-
-            Singleton<ReadOnlyCollection<BDE>>.SetInstance(new ReadOnlyCollection<BDE>((BDEManager.GetBDEList().ToList()));
-            Singleton<Collection<Product>>.SetInstance(ProductManager.GetProductList());
+            var db = new SQLPersistance(new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db"));
+            Singleton<IPersistance>.SetInstance(db);
+            var persistance = Singleton<IPersistance>.GetInstance();
+            Singleton<Collection<BDE>>.SetInstance(persistance.GetBDEList());
+            Singleton<Collection<Product>>.SetInstance(persistance.GetProductList());
 
 
             comboColors.ItemsSource = Colors;

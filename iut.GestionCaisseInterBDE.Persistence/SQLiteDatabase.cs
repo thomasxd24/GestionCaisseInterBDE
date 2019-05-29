@@ -9,7 +9,7 @@ using System.Data.SQLite;
 
 namespace iut.GestionCaisseInterBDE.Persistence
 {
-    public class SQLiteDatabase : IDatabase
+    public class SQLiteDatabase : ISQLDatabase
     {
 
         private string connString { get;  set; }
