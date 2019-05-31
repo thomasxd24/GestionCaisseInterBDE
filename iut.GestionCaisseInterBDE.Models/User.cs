@@ -30,6 +30,9 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
+
+        public string Md5password { get; }
+
         private string name;
 
         public string Name
@@ -72,7 +75,7 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
-        public User(int id, string username, string name, BDE bde, string theme, string accent)
+        public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password)
         {
             this.id = id;
             this.username = username;
@@ -80,6 +83,7 @@ namespace iut.GestionCaisseInterBDE.Models
             this.bde = bde;
             this.theme = theme;
             this.accent = accent;
+            this.Md5password = md5Password;
         }
     }
 }

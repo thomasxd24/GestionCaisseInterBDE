@@ -58,12 +58,7 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
-        private string colorTile;
-
-        public string ColorTile
-        {
-            get { return colorTile; }
-        }
+        public string ColorTile { get; }
 
         private int stock;
 
@@ -109,7 +104,7 @@ namespace iut.GestionCaisseInterBDE.Models
             this.price = price;
             this.buyPrice = buyPrice;
             this.imageUrl = imageUrl;
-            this.colorTile = ColorPicker.getRandomColor();
+            this.ColorTile = ColorPicker.getRandomColor();
             this.stock = stock;
             this.isDiscountable = isDiscountable;
         }

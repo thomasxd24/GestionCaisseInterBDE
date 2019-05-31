@@ -171,7 +171,7 @@ namespace iut.GestionCaisseInterBDE.Persistence
             if (dt.Rows.Count == 0) return null;
             DataRow dr = dt.Rows[0];
             BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
-            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString());
+            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString());
             return authedUser;
         }
 

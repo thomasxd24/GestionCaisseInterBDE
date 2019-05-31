@@ -10,13 +10,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\iut.GestionCaisseInterBDE.Utilities\iut.GestionCaisseInterBDE.Utilities.csproj" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="System.ComponentModel.DataAnnotations">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.ComponentModel.DataAnnotations.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\iut.GestionCaisseInterBDE.Utilities\iut.GestionCaisseInterBDE.Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
