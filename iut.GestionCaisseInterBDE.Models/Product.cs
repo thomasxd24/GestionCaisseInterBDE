@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -10,14 +12,12 @@ using iut.GestionCaisseInterBDE.Utilities;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
+    [Table("TableProduct")]
     public class Product : ObservableObject
     {
-        private readonly int id;
-
-        public int ID
-        {
-            get { return id; }
-        }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; }
 
         private string name;
 
@@ -99,7 +99,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public Product(int id,string name,float price ,float buyPrice,string imageUrl,int stock, bool isDiscountable)
         {
-            this.id = id;
+            this.ID = id;
             this.name = name;
             this.price = price;
             this.buyPrice = buyPrice;

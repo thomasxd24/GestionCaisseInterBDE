@@ -10,14 +10,8 @@ namespace iut.GestionCaisseInterBDE.Models
     [Table("TableUsers")]
     public class User : ObservableObject
     {
-        private int id;
-
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID
-        {
-            get { return id; }
-        }
+        public int ID { get; }
 
 
         private string username;
@@ -77,7 +71,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password)
         {
-            this.id = id;
+            this.ID = id;
             this.username = username;
             this.name = name;
             this.bde = bde;

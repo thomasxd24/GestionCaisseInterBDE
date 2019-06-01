@@ -1,5 +1,5 @@
 ﻿using iut.GestionCaisseInterBDE.Models;
-using iut.GestionCaisseInterBDE.Persistence;
+using iut.GestionCaisseInterBDE.Persistance;
 using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
 using MahApps.Metro.Controls;

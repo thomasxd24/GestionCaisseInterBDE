@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -10,44 +12,26 @@ using iut.GestionCaisseInterBDE.Utilities;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
+    [Table("TableBDE")]
     public class BDE
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; }
 
-        private readonly int id;
+        public string Name { get; }
 
-        public int ID
-        {
-            get { return id; }
-        }
+        public string Departement { get; }
 
-
-        private readonly string name;
-
-        public string Name
-        {
-            get { return name; }
-        }
-        private readonly string departement;
-
-        public string Departement
-        {
-            get { return departement; }
-        }
-
-        private readonly string imageURL;
-
-        public string ImageURL
-        {
-            get { return imageURL; }
-        }
+        public string ImageURL { get; }
 
 
         public BDE(int id,string name,string departement,string imageURL)
         {
-            this.id = id;
-            this.name = name;
-            this.departement = departement;
-            this.imageURL = imageURL;
+            this.ID = id;
+            this.Name = name;
+            this.Departement = departement;
+            this.ImageURL = imageURL;
         }
 
     }

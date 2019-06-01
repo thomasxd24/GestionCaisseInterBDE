@@ -2,13 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
+    [Table("TableTicket")]
     public class Ticket
     {
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string IDTicket { get; }
 
         public DateTime DateCreated { get; }
@@ -18,6 +22,7 @@ namespace iut.GestionCaisseInterBDE.Models
         public Collection<BasketItem> ProductItems { get; }
 
 
+        [NotMapped]
         public string TotalPaid
         {
             get {

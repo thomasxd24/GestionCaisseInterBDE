@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AutoUpdaterDotNET;
 using iut.GestionCaisseInterBDE.Models;
-using iut.GestionCaisseInterBDE.Persistence;
+using iut.GestionCaisseInterBDE.Persistance;
 using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
 using iut.GestionCaisseInterBDE.Utilities;
 using MahApps.Metro;
