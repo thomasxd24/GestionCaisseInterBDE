@@ -66,6 +66,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             { Error = true;
                 return;
             }
+            Singleton<User>.SetInstance(user);
+
             activeDialog.HideCurrentDialog();
 
 

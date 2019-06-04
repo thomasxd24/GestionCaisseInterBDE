@@ -152,6 +152,9 @@
     <Compile Include="ViewModel\HistorySaleViewModel.cs" />
     <Compile Include="ViewModel\LoginDialogViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
+    <Compile Include="Views\AccountScreen.xaml.cs">
+      <DependentUpon>AccountScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CaisseScreen.xaml.cs">
       <DependentUpon>CaisseScreen.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AccountScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -8,45 +8,18 @@ using System.Text;
 namespace iut.GestionCaisseInterBDE.Models
 {
     [Table("TableUsers")]
-    public class User : ObservableObject
+    public class User
     {
         [Key]
         public int ID { get; set; }
 
-
-        private string username;
-
-        public string Username
-        {
-            get { return username; }
-            set { username = value;
-                OnPropertyChanged();
-            }
-        }
-
+        public string Username { get; }
 
         public string Md5password { get; }
 
-        private string name;
+        public string Name { get; }
 
-        public string Name
-        {
-            get { return name; }
-            set { name = value;
-                OnPropertyChanged();
-
-            }
-        }
-
-        private BDE bde;
-
-        public BDE BDE
-        {
-            get { return bde; }
-            set { bde = value;
-                OnPropertyChanged();
-            }
-        }
+        public BDE BDE { get; }
 
 
         private string theme;
@@ -55,7 +28,6 @@ namespace iut.GestionCaisseInterBDE.Models
         {
             get { return theme; }
             set { theme = value;
-                OnPropertyChanged();
             }
         }
 
@@ -65,16 +37,15 @@ namespace iut.GestionCaisseInterBDE.Models
         {
             get { return accent; }
             set { accent = value;
-                OnPropertyChanged();
             }
         }
 
         public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password)
         {
             this.ID = id;
-            this.username = username;
-            this.name = name;
-            this.bde = bde;
+            this.Username = username;
+            this.Name = name;
+            this.BDE = bde;
             this.theme = theme;
             this.accent = accent;
             this.Md5password = md5Password;

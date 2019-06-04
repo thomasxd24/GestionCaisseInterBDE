@@ -69,6 +69,7 @@
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button x:Name="settingsBtn" Content="Réglage" Click="SettingsBtn_Click"/>
+            <Button x:Name="username" Content="Non Connecté"/>
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 
@@ -81,6 +82,9 @@
                 <Frame Source="Views/CaisseScreen.xaml"></Frame>
             </TabItem>
             <TabItem x:Name="detteTab" Header="Dettes">
+                <Frame Source="Views/DetteScreen.xaml"></Frame>
+            </TabItem>
+            <TabItem x:Name="accountTab" Header="Comptes" Visibility="Hidden">
                 <Frame Source="Views/DetteScreen.xaml"></Frame>
             </TabItem>
            

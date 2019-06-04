@@ -30,6 +30,8 @@ namespace iut.GestionCaisseInterBDE.Wpf
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+
+
         public readonly Collection<string> Themes = new Collection<string>()
         {
             "BaseDark",
@@ -90,11 +92,11 @@ namespace iut.GestionCaisseInterBDE.Wpf
         private async void Login()
         {
             var customDialog = new CustomDialog() { Title = "Identifiez-vous" };
-
-           
             customDialog.Content = new Views.UserControls.LoginDialog(customDialog,this);
 
             await this.ShowMetroDialogAsync(customDialog);
+
+
         }
 
 
@@ -180,6 +182,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Login();
+            
         }
     }
 }

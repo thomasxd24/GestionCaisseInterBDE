@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using iut.GestionCaisseInterBDE.Models;
+using MahApps.Metro;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
 {
@@ -43,6 +45,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
         public void HideCurrentDialog()
         {
             main.HideMetroDialogAsync(dialog);
+            var user = Singleton<User>.GetInstance();
+            ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(user.Accent), ThemeManager.GetAppTheme(user.Theme));
+            main.username.Content = user.Name;
         }
     }
 }
