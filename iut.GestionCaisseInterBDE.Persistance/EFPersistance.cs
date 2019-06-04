@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using iut.GestionCaisseInterBDE.Models;
+using iut.GestionCaisseInterBDE.Utilities;
 
 namespace iut.GestionCaisseInterBDE.Persistance
 {
@@ -86,8 +87,9 @@ namespace iut.GestionCaisseInterBDE.Persistance
             {
                 var user = db.Products.Remove(p);
                 db.SaveChanges();
-                return true;
+                
             }
+            return true;
         }
 
         public bool UpdateProductDB(Product p)
@@ -98,7 +100,19 @@ namespace iut.GestionCaisseInterBDE.Persistance
                 db.Products.Remove(p);
                 db.Products.Add(p);
                 db.SaveChanges();
-                return true;
+                
+            }
+            return true;
+        }
+
+        public void ChangeStyle(string theme, string style)
+        {
+            using (CaisseContext db = new CaisseContext())
+            {
+                var user = Singleton<User>.GetInstance();
+                user.Accent = style;
+                user.Theme = theme;
+                db.SaveChanges();
             }
         }
     }

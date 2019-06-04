@@ -2,19 +2,24 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace iut.GestionCaisseInterBDE.Models
 {
+    [Table("TableBasketItem")]
     public class BasketItem : ObservableObject
     {
+        [Key]
+        public string Id { get; set; }
 
         private string totalPriceString { get; set; }
-        private int quantity { get; set; }
+        public int quantity { get; set; }
 
-        private Product itemProduct { get; set; }
+        public Product itemProduct { get; set; }
 
         public string ProductName
         {

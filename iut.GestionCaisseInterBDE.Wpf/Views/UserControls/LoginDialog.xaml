@@ -33,6 +33,8 @@
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBlock VerticalAlignment="Center" Foreground="White" Style="{StaticResource ErrorText}">Identifiant Incorrect</TextBlock>
             <Button 
+                IsDefault="True"
+                IsCancel="True"
                 MinWidth="80"
                 Margin="8 8 0 8"
                 Padding="10"

@@ -41,7 +41,7 @@
                 <ColumnDefinition Width="4"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding ProductsView}" SelectedItem="{Binding SelectedProduct}">
+            <ListView ItemsSource="{Binding ProductsView}" SelectedItem="{Binding SelectedProduct}" SelectionChanged="Selector_OnSelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <DockPanel>

@@ -11,7 +11,7 @@ namespace iut.GestionCaisseInterBDE.Models
     public class User : ObservableObject
     {
         [Key]
-        public int ID { get; }
+        public int ID { get; set; }
 
 
         private string username;

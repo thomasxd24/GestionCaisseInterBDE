@@ -33,5 +33,10 @@ namespace GestionCaisseInterBDE.Windows
             this.DataContext = new ProductListViewModel(DialogCoordinator.Instance);
         }
 
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var list = sender as ListView;
+            list?.ScrollIntoView(list.SelectedItem);
+        }
     }
 }

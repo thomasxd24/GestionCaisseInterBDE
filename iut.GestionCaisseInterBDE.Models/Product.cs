@@ -17,7 +17,7 @@ namespace iut.GestionCaisseInterBDE.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; }
+        public int ID { get; set; }
 
         private string name;
 

@@ -13,7 +13,7 @@ namespace iut.GestionCaisseInterBDE.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string IDTicket { get; }
+        public string IDTicket { get; set; }
 
         public DateTime DateCreated { get; }
 

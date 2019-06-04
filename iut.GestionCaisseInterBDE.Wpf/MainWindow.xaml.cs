@@ -70,8 +70,8 @@ namespace iut.GestionCaisseInterBDE.Wpf
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("fr-FR");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fr-FR");
             InitializeComponent();
-            //var db = new SQLPersistance(new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db"));
-            var db = new EFPersistance();
+            var db = new SQLPersistance(new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db"));
+            //var db = new EFPersistance();
             Singleton<IPersistance>.SetInstance(db);
             var persistance = Singleton<IPersistance>.GetInstance();
             Singleton<Collection<BDE>>.SetInstance(persistance.GetBDEList());
@@ -179,7 +179,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //Login();
+            Login();
         }
     }
 }

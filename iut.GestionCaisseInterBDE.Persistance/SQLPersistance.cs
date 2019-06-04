@@ -175,5 +175,11 @@ namespace iut.GestionCaisseInterBDE.Persistance
             return authedUser;
         }
 
+        public void ChangeStyle(string theme, string style)
+        {
+
+        }
+
+
     }
 }
