@@ -180,6 +180,27 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         }
 
+        public int AddProductToDB(Product p)
+        {
+            var m = new Dictionary<string, object>
+            {
+                { "@name", p.Name },
+            { "@price", p.Price },
+            { "@buyprice", p.BuyPrice },
+            { "@stock", p.Stock },
+            { "@imageurl", p.ImageURL },
+            { "@discountable", p.IsDiscountable },
+            { "@id", p.ID }
+            };
+            var rowChanged = db.ExecuteCommand($"INSERT INTO products (nameProduct,prix,prixAchat,stock,imageUrl,isDiscountable) VALUES (@name, @price, @buyprice,@stock,@imageurl,@discountable)", m);
+            if (rowChanged == 0) throw new Exception("Insertion failed");
+            DataTable dt = db.Select("SELECT * FROM products where nameProduct = @name and prix = @price", m);
+            if (dt.Rows.Count == 0) throw new Exception("Insertion failed");
+            DataRow dr = dt.Rows[0];
+            var id = int.Parse(dr["id"].ToString());
+            return id;
+        }
+
 
     }
 }

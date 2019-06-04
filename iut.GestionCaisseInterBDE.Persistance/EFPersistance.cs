@@ -115,5 +115,10 @@ namespace iut.GestionCaisseInterBDE.Persistance
                 db.SaveChanges();
             }
         }
+
+        public int AddProductToDB(Product p)
+        {
+            return 1;
+        }
     }
 }

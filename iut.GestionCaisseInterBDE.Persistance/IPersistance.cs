@@ -21,6 +21,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         bool RemoveProductDB(Product p);
 
+        int AddProductToDB(Product p);
+
         bool UpdateProductDB(Product p);
 
         User GetUserfromCredentials(string username, string password);

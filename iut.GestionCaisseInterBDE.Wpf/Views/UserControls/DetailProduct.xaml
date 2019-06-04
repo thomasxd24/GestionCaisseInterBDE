@@ -10,7 +10,7 @@
     <DockPanel x:Name="productPanel" Grid.Column="2"  Margin="20" Visibility="{Binding ProductPageVisible}">
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
             <Button Margin="5" Command="{Binding ModifyCommand}" DockPanel.Dock="Left" IsEnabled="{Binding Modifiable}">Modifier</Button>
-            <Button Margin="5" DockPanel.Dock="Left" Command="{Binding DeleteProductCommand}" >Supprimer</Button>
+            <Button Margin="5" DockPanel.Dock="Left" Command="{Binding DeleteProductCommand}"  IsEnabled="{Binding Modifiable}" >Supprimer</Button>
             <Button Margin="5" DockPanel.Dock="Right" Visibility="{Binding VisibleToModify}" Command="{Binding CancelCommand}">Annuler</Button>
             <Button Margin="5" DockPanel.Dock="Right" Visibility="{Binding VisibleToModify}" Command="{Binding ConfirmCommand}">Confirmer</Button>
         </DockPanel>

@@ -10,7 +10,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
     public class CaisseContext : DbContext
     {
 
-        public CaisseContext() : base("Data Source=C:\\Temp\\Test.sqlite") { }
+        public CaisseContext() : base("CaisseContext") { }
         public virtual DbSet<BDE> BDEs { get; set; }
 
         public virtual DbSet<Product> Products { get; set; }

@@ -111,8 +111,24 @@ namespace GestionCaisseInterBDE.ViewModel
         private void ConfirmEdit()
         {
             Modifiable = false;
-            oldProduct = null;
-            persistance.UpdateProductDB(SelectedProduct);
+            var originalProduct = Singleton<Collection<Product>>.GetInstance();
+            if(!originalProduct.Contains(oldProduct))
+            {
+                var id = persistance.AddProductToDB(SelectedProduct);
+                SelectedProduct.ID = id;
+            }
+            else
+            {
+                originalProduct[originalProduct.IndexOf(oldProduct)] = SelectedProduct;
+                oldProduct = null;
+                persistance.UpdateProductDB(SelectedProduct);
+            }
+            Singleton<Event>.GetInstance().InvolveUpdate();
+
+
+            //originalProduct.Single(p => p.ID == SelectedProduct.ID);
+
+
         }
 
         private void CancelEdit()
@@ -140,10 +156,12 @@ namespace GestionCaisseInterBDE.ViewModel
             if(success)
             {
                 ProductsView.Remove(SelectedProduct);
+                Singleton<Event>.GetInstance().InvolveUpdate();
                 return;
             }
 
             await dialogCoordinator.ShowMessageAsync(this, "Suppression de produit", "Erreur lors de la suppression \nBase de donnée non modifié");
+            
 
         }
 
@@ -153,7 +171,6 @@ namespace GestionCaisseInterBDE.ViewModel
             ProductsView.Add(newP);
             SelectedProduct = newP;
         }
-
 
 
         public ProductListViewModel(IDialogCoordinator dialogCoordinator)
