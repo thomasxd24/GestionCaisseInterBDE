@@ -1,6 +1,0 @@
-language: csharp
-solution: "./GestionCaisseInterBDE.sln"
-install:
-- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./GestionCaisseInterBDE.sln
-script:
-- xbuild ./GestionCaisseInterBDE.sln
