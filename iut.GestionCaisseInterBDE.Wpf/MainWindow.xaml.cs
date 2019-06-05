@@ -110,6 +110,9 @@ namespace iut.GestionCaisseInterBDE.Wpf
         {
             string text = (sender as ComboBox).SelectedItem.ToString();
             ThemeManager.ChangeAppTheme(Application.Current, text);
+            var currentUser = Singleton<User>.GetInstance();
+            currentUser.Theme = text;
+            Singleton<IPersistance>.GetInstance().ChangeStyle(currentUser,text, currentUser.Accent);
         }
 
         private void ComboColors_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -117,7 +120,10 @@ namespace iut.GestionCaisseInterBDE.Wpf
             string text = (sender as ComboBox).SelectedItem.ToString();
             var currentTheme = ThemeManager.DetectAppStyle();
             var theme = currentTheme.Item1;
+            var currentUser = Singleton<User>.GetInstance();
+            currentUser.Accent = text;
             ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(text), theme);
+            Singleton<IPersistance>.GetInstance().ChangeStyle(currentUser,currentUser.Theme, text);
         }
 
         private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)

@@ -85,10 +85,7 @@
             <TabItem x:Name="detteTab" Header="Dettes">
                 <Frame Source="Views/DetteScreen.xaml"></Frame>
             </TabItem>
-            <TabItem x:Name="accountTab" Header="Comptes" Visibility="Hidden">
-                <Frame Source="Views/DetteScreen.xaml"></Frame>
-            </TabItem>
-           
+
         </Controls:MetroAnimatedSingleRowTabControl>
     </DockPanel>
     

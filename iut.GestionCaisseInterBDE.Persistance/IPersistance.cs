@@ -29,7 +29,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         Collection<Ticket> GetTicketsDB();
 
-        void ChangeStyle(string theme, string style);
+        void ChangeStyle(User u,string theme, string style);
 
 
     }

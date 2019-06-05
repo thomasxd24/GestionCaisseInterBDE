@@ -105,7 +105,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             return true;
         }
 
-        public void ChangeStyle(string theme, string style)
+        public void ChangeStyle(User u,string theme, string style)
         {
             using (CaisseContext db = new CaisseContext())
             {

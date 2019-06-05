@@ -122,10 +122,6 @@ namespace GestionCaisseInterBDE.ViewModel
                 oldProduct = null;
                 persistance.UpdateProductDB(SelectedProduct);
             }
-            Singleton<Event>.GetInstance().InvolveUpdate();
-
-
-            //originalProduct.Single(p => p.ID == SelectedProduct.ID);
 
 
         }
@@ -133,6 +129,12 @@ namespace GestionCaisseInterBDE.ViewModel
         private void CancelEdit()
         {
             Modifiable = false;
+            if(SelectedProduct.ID == 999999)
+            {
+                productsView.Remove(SelectedProduct);
+                oldProduct = null;
+                return;
+            }
             int index = productsView.IndexOf(SelectedProduct);
             productsView[index] = oldProduct;
             SelectedProduct = oldProduct;
@@ -155,7 +157,6 @@ namespace GestionCaisseInterBDE.ViewModel
             if(success)
             {
                 ProductsView.Remove(SelectedProduct);
-                Singleton<Event>.GetInstance().InvolveUpdate();
                 return;
             }
 
@@ -166,9 +167,10 @@ namespace GestionCaisseInterBDE.ViewModel
 
         public void AddProductToList()
         {
-            var newP = new Product(8858, "", 0, 0, "", 0, false);
+            var newP = new Product(999999, "", 0, 0, "", 0, false);
             ProductsView.Add(newP);
             SelectedProduct = newP;
+            Modifiable = true;
         }
 
 

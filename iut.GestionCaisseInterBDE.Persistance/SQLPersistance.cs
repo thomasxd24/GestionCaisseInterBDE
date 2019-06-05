@@ -175,9 +175,16 @@ namespace iut.GestionCaisseInterBDE.Persistance
             return authedUser;
         }
 
-        public void ChangeStyle(string theme, string style)
+        public void ChangeStyle(User u,string theme, string style)
         {
-
+            var m = new Dictionary<string, object>
+            {
+                { "@theme", theme },
+                { "@style", style },
+                {"@id", u.ID }
+            };
+            var rowChanged = db.ExecuteCommand($"UPDATE users SET theme=@name,accent=@price where userID=@id", m);
+            if (rowChanged == 0) throw new Exception("Failed while updating the style");
         }
 
         public int AddProductToDB(Product p)
@@ -197,7 +204,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             DataTable dt = db.Select("SELECT * FROM products where nameProduct = @name and prix = @price", m);
             if (dt.Rows.Count == 0) throw new Exception("Insertion failed");
             DataRow dr = dt.Rows[0];
-            var id = int.Parse(dr["id"].ToString());
+            var id = int.Parse(dr["idProduct"].ToString());
             return id;
         }
 
