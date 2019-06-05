@@ -67,15 +67,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Models\iut.GestionCaisseInterBDE.Models.csproj">
-      <Project>{54DB34DC-6D7D-4F59-95BC-0EFD88A0DDF2}</Project>
+      <Project>{4270684a-ec74-4449-b7c0-3874a9bdf457}</Project>
       <Name>iut.GestionCaisseInterBDE.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Utilities\iut.GestionCaisseInterBDE.Utilities.csproj">
-      <Project>{A1B96BFD-DA23-440E-8443-F47114014FD4}</Project>
+      <Project>{3e61b5f7-0d51-4c11-836b-b9961119355a}</Project>
       <Name>iut.GestionCaisseInterBDE.Utilities</Name>
     </ProjectReference>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Wpf\iut.GestionCaisseInterBDE.Wpf.csproj">
-      <Project>{33B28758-5BA9-4653-9FB6-FF18FDF0CE81}</Project>
+      <Project>{33b28758-5ba9-4653-9fb6-ff18fdf0ce81}</Project>
       <Name>iut.GestionCaisseInterBDE.Wpf</Name>
     </ProjectReference>
   </ItemGroup>

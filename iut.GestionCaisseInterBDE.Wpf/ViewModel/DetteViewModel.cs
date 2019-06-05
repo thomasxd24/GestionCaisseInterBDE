@@ -14,7 +14,6 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
     public class DetteViewModel : BaseViewModel
     {
         private ObservableCollection<BDE> listBDE;
-        private IDialogCoordinator dialogCoordinator;
 
         public ObservableCollection<BDE> ListBDE
         {

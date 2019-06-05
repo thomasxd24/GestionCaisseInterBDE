@@ -16,7 +16,6 @@ namespace GestionCaisseInterBDE.ViewModel
     {
         private IPersistance persistance;
         private ObservableCollection<Ticket> ticketList;
-        private IDialogCoordinator dialogCoordinator;
 
         public ObservableCollection<Ticket> TicketList
         {
