@@ -112,14 +112,13 @@ namespace GestionCaisseInterBDE.ViewModel
         {
             Modifiable = false;
             var originalProduct = Singleton<Collection<Product>>.GetInstance();
-            if(!originalProduct.Contains(oldProduct))
+            if(!originalProduct.Any(p => p.ID == oldProduct.ID))
             {
                 var id = persistance.AddProductToDB(SelectedProduct);
                 SelectedProduct.ID = id;
             }
             else
             {
-                originalProduct[originalProduct.IndexOf(oldProduct)] = SelectedProduct;
                 oldProduct = null;
                 persistance.UpdateProductDB(SelectedProduct);
             }

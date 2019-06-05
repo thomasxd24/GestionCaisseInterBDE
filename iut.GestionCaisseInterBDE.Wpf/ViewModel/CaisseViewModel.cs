@@ -146,7 +146,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             DeleteBasketItemCommand = new RelayCommand(DeleteBasketItem);
             this.dialogCoordinator = instance;
             this.persistance = Singleton<IPersistance>.GetInstance();
-            Singleton<Event>.GetInstance().OnUpdateProduct += OnUpdateProduct;
+
         }
 
         public void OnUpdateProduct(object sender)
