@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>iut.GestionCaisseInterBDE.Persistance</RootNamespace>
     <AssemblyName>iut.GestionCaisseInterBDE.Persistance</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -94,11 +94,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Models\iut.GestionCaisseInterBDE.Models.csproj">
-      <Project>{54db34dc-6d7d-4f59-95bc-0efd88a0ddf2}</Project>
+      <Project>{4270684A-EC74-4449-B7C0-3874A9BDF457}</Project>
       <Name>iut.GestionCaisseInterBDE.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Utilities\iut.GestionCaisseInterBDE.Utilities.csproj">
-      <Project>{a1b96bfd-da23-440e-8443-f47114014fd4}</Project>
+      <Project>{3E61B5F7-0D51-4C11-836B-B9961119355A}</Project>
       <Name>iut.GestionCaisseInterBDE.Utilities</Name>
     </ProjectReference>
   </ItemGroup>

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>iut.GestionCaisseInterBDE.Wpf</RootNamespace>
     <AssemblyName>GestionCaisseInterBDE</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -268,7 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Models\iut.GestionCaisseInterBDE.Models.csproj">
-      <Project>{2038D013-9D09-4F09-AC37-84E54C258137}</Project>
+      <Project>{4270684a-ec74-4449-b7c0-3874a9bdf457}</Project>
       <Name>iut.GestionCaisseInterBDE.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Persistance\iut.GestionCaisseInterBDE.Persistance.csproj">
@@ -276,7 +276,7 @@
       <Name>iut.GestionCaisseInterBDE.Persistance</Name>
     </ProjectReference>
     <ProjectReference Include="..\iut.GestionCaisseInterBDE.Utilities\iut.GestionCaisseInterBDE.Utilities.csproj">
-      <Project>{A1B96BFD-DA23-440E-8443-F47114014FD4}</Project>
+      <Project>{3e61b5f7-0d51-4c11-836b-b9961119355a}</Project>
       <Name>iut.GestionCaisseInterBDE.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
