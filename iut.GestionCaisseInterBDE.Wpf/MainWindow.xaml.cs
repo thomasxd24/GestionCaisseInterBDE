@@ -124,6 +124,8 @@ namespace iut.GestionCaisseInterBDE.Wpf
             currentUser.Accent = text;
             ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(text), theme);
             Singleton<IPersistance>.GetInstance().ChangeStyle(currentUser,currentUser.Theme, text);
+
+
         }
 
         private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
