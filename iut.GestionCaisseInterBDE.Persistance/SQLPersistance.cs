@@ -27,14 +27,14 @@ namespace iut.GestionCaisseInterBDE.Persistance
         /// <param name="p">Product</param>
         /// <param name="quantity">Quantity of the product added</param>
         /// <returns></returns>
-        public void AddTicket(string ticketID, BDE bde, Collection<BasketItem> basketItems)
+        public void AddTicket(Ticket t)
         {
-            var bdeID = bde.ID;
+            var bdeID = t.BDESale.ID;
 
-            foreach (var basketitem in basketItems)
+            foreach (var basketitem in t.ProductItems)
             {
                 var productID = basketitem.ItemProduct.ID;
-                db.ExecuteCommand($"INSERT INTO ligneTicket values('{ticketID}','{productID}','{bdeID}',{basketitem.Quantity},date('now'))");
+                db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},date('now'))");
             }
 
         }
@@ -105,16 +105,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         public bool UpdateProductDB(Product p)
         {
-            var m = new Dictionary<string, object>
-            {
-                { "@name", p.Name },
-            { "@price", p.Price },
-            { "@buyprice", p.BuyPrice },
-            { "@stock", p.Stock },
-            { "@imageurl", p.ImageURL },
-            { "@discountable", p.IsDiscountable },
-            { "@id", p.ID }
-            };
+            var m = getDictionaryFromProduct(p);
             var rowChanged = db.ExecuteCommand($"UPDATE products SET nameProduct=@name,prix=@price,prixAchat=@buyprice,stock=@stock,imageUrl=@imageurl,isDiscountable=@discountable where idProduct=@id", m);
             if (rowChanged == 0) return false;
             return true;
@@ -189,16 +180,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         public int AddProductToDB(Product p)
         {
-            var m = new Dictionary<string, object>
-            {
-                { "@name", p.Name },
-            { "@price", p.Price },
-            { "@buyprice", p.BuyPrice },
-            { "@stock", p.Stock },
-            { "@imageurl", p.ImageURL },
-            { "@discountable", p.IsDiscountable },
-            { "@id", p.ID }
-            };
+            var m = getDictionaryFromProduct(p);
             var rowChanged = db.ExecuteCommand($"INSERT INTO products (nameProduct,prix,prixAchat,stock,imageUrl,isDiscountable) VALUES (@name, @price, @buyprice,@stock,@imageurl,@discountable)", m);
             if (rowChanged == 0) throw new Exception("Insertion failed");
             DataTable dt = db.Select("SELECT * FROM products where nameProduct = @name and prix = @price", m);
@@ -206,6 +188,21 @@ namespace iut.GestionCaisseInterBDE.Persistance
             DataRow dr = dt.Rows[0];
             var id = int.Parse(dr["idProduct"].ToString());
             return id;
+        }
+
+        private Dictionary<string, object> getDictionaryFromProduct(Product p)
+        {
+            var m = new Dictionary<string, object>
+            {
+                { "@name", p.Name },
+                { "@price", p.Price },
+                { "@buyprice", p.BuyPrice },
+                { "@stock", p.Stock },
+                { "@imageurl", p.ImageURL },
+                { "@discountable", p.IsDiscountable },
+                { "@id", p.ID }
+            };
+            return m;
         }
 
 

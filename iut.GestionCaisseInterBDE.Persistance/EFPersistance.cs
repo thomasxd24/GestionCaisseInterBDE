@@ -10,13 +10,12 @@ namespace iut.GestionCaisseInterBDE.Persistance
 {
     public class EFPersistance : IPersistance
     {
-        public void AddTicket(string ticketID, BDE bde, Collection<BasketItem> basketItems)
+        public void AddTicket(Ticket t)
         {
             using (CaisseContext db = new CaisseContext())
             {
-                var ticket = new Ticket(ticketID, new DateTime(), bde, basketItems);
 
-                db.Tickets.Add(ticket);
+                db.Tickets.Add(t);
                 db.SaveChanges();
             }
         }
@@ -109,7 +108,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
         {
             using (CaisseContext db = new CaisseContext())
             {
-                var user = Singleton<User>.GetInstance();
+                var user = u;
                 user.Accent = style;
                 user.Theme = theme;
                 db.SaveChanges();
@@ -118,7 +117,12 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         public int AddProductToDB(Product p)
         {
-            return 1;
+            throw new NotImplementedException();
+        }
+
+        public Collection<Ticket> GetSaleTicketsFromProduct(Product p)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
 {
     public interface IPersistance
     {
-        void AddTicket(string ticketID, BDE bde, Collection<BasketItem> basketItems);
+        void AddTicket(Ticket t);
 
         Collection<BDE> GetBDEList();
 

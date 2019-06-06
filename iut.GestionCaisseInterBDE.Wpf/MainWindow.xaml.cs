@@ -75,10 +75,9 @@ namespace iut.GestionCaisseInterBDE.Wpf
             var db = new SQLPersistance(new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db"));
             //var db = new EFPersistance();
             Singleton<IPersistance>.SetInstance(db);
-            var persistance = Singleton<IPersistance>.GetInstance();
-            Singleton<Collection<BDE>>.SetInstance(persistance.GetBDEList());
-            Singleton<Collection<Product>>.SetInstance(persistance.GetProductList());
-
+            Singleton<Collection<BDE>>.SetInstance(db.GetBDEList());
+            Singleton<Collection<Product>>.SetInstance(db.GetProductList());
+            Singleton<Collection<Ticket>>.SetInstance(db.GetTicketsDB());
             comboColors.ItemsSource = Colors;
             comboThemes.ItemsSource = Themes;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;

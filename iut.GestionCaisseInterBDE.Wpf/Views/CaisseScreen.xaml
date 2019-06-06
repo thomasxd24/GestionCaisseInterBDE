@@ -19,7 +19,7 @@
                 <Controls:Tile Title="{Binding Name}" Width="150" Height="150" Tag="{Binding Path=.}" Background="{Binding ColorTile}" Command="{Binding Path=DataContext.AddProductCommand, ElementName=CaissePage}" CommandParameter="{Binding Path=.}">
                     <DockPanel VerticalAlignment="Stretch" Width="150" HorizontalAlignment="Center" Margin="0,0,0,35">
                         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                            <Label DockPanel.Dock="Right"  HorizontalAlignment="Right" Content="{Binding PriceString}"></Label>
+                            <Label DockPanel.Dock="Right"  HorizontalAlignment="Right" Content="{Binding Price}" ContentStringFormat="C2"></Label>
                             <Label DockPanel.Dock="Left" HorizontalAlignment="Right" Content="{Binding Stock}" ContentStringFormat="Stock: {0}"></Label>
                         </DockPanel>
                         <Image Source="{Binding ImageURL}" Width="120" Height="120" VerticalAlignment="Center">

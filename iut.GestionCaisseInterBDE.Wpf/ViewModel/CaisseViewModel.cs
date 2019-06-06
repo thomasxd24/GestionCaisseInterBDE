@@ -251,7 +251,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         {
             var totalPrice = TotalPrice;
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
-            persistance.AddTicket(key, bdeChosen, BasketItems);
+            var ticket = new Ticket(key, new DateTime(), bdeChosen, BasketItems);
+            persistance.AddTicket(ticket);
             await dialogCoordinator.HideMetroDialogAsync(this,dialog);
             await dialogCoordinator.ShowMessageAsync(this,"Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
             ClearBasket();

@@ -27,6 +27,11 @@ namespace GestionCaisseInterBDE.ViewModel
         private Product _selectedProduct;
         private bool modifiable;
 
+        public Collection<Ticket> VenteTickets
+        {
+            get { return new Collection<Ticket>(Singleton<Collection<Ticket>>.GetInstance().Where(t => t.ProductItems.Any(it => it.ItemProduct.ID == SelectedProduct.ID)).ToList()); }
+        }
+
         public bool Modifiable
         {
             get { return !modifiable; }
@@ -82,6 +87,7 @@ namespace GestionCaisseInterBDE.ViewModel
             set { _selectedProduct = value;
                 OnPropertyChanged("SelectedProduct");
                 OnPropertyChanged("ProductPageVisible");
+                OnPropertyChanged("VenteTickets");
             }
         }
 

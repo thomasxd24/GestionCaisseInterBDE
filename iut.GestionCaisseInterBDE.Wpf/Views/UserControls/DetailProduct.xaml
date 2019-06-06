@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800"  d:DesignHeight="800">
     <DockPanel x:Name="productPanel" Grid.Column="2"  Margin="20" Visibility="{Binding ProductPageVisible}">
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
             <Button Margin="5" Command="{Binding ModifyCommand}" DockPanel.Dock="Left" IsEnabled="{Binding Modifiable}">Modifier</Button>
@@ -51,34 +50,43 @@
             <Label HorizontalAlignment="Right" Grid.Row="5" Grid.Column="0">Discountable:</Label>
             <Controls:ToggleSwitch x:Name="toggleDiscount" Grid.Row="5" Grid.Column="1" Height="20" IsEnabled="{Binding Enable}" OnLabel="Oui" OffLabel="Non" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{Binding SelectedProduct.IsDiscountable}"/>
         </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="1"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <DockPanel Grid.Column="0">
-                <Label FontSize="18" DockPanel.Dock="Top">Ventes</Label>
-                <Separator DockPanel.Dock="Top"></Separator>
-                <DataGrid IsReadOnly="True" x:Name="testDG" ColumnWidth="*">
-                    <DataGrid.Columns>
+        <DockPanel Grid.Column="0">
+            <Label FontSize="18" DockPanel.Dock="Top">Ventes</Label>
+            <Separator DockPanel.Dock="Top"></Separator>
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding VenteTickets}" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="1.2*"/>
+                    <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding BDESale.Name}"  Header="BDE Encaissé" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding TotalPaid}"  Header="Total" Width="*">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <ItemsControl ItemsSource="{Binding ProductItems}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Label DockPanel.Dock="Left">Produit:</Label>
+                                        <Label Content="{Binding TotalPriceString}" Width="110" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                                        <Label DockPanel.Dock="Right">Total:</Label>
+                                        <Label Content="{Binding Quantity}" DockPanel.Dock="Right" Width="50"/>
+                                        <Label DockPanel.Dock="Right">Quantity:</Label>
+                                        <Label Content="{Binding ProductName}" />
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
 
-                    </DataGrid.Columns>
 
-                </DataGrid>
-            </DockPanel >
-            <Separator Grid.Column="1">
-                <Separator.LayoutTransform>
-                    <RotateTransform Angle="90" />
-                </Separator.LayoutTransform>
-            </Separator>
-            <DockPanel Grid.Column="2">
-                <Label FontSize="18" DockPanel.Dock="Top">Achats</Label>
-                <Separator DockPanel.Dock="Top"></Separator>
-                <DataGrid  IsReadOnly="True">
-                </DataGrid>
-            </DockPanel>
-
-        </Grid>
+            </DataGrid>
+        </DockPanel >
     </DockPanel>
 </UserControl>
