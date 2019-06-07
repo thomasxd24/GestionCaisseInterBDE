@@ -8,18 +8,61 @@ using System.Text;
 namespace iut.GestionCaisseInterBDE.Models
 {
     [Table("TableUsers")]
-    public class User
+    public class User:ObservableObject
     {
-        [Key]
-        public int ID { get; set; }
+        private int id;
 
-        public string Username { get; }
+        public int ID
+        {
+            get { return id; }
+        }
 
-        public string Md5password { get; }
 
-        public string Name { get; }
+        private string username;
 
-        public BDE BDE { get; }
+        public string Username
+        {
+            get { return username; }
+            set
+            {
+                username = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string md5password;
+
+        public string Md5password
+        {
+            get { return md5password; }
+            set { md5password = value; }
+        }
+
+
+        private string name;
+
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+        private BDE bde;
+
+        public BDE BDE
+        {
+            get { return bde; }
+            set
+            {
+                bde = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         private string theme;
@@ -27,7 +70,10 @@ namespace iut.GestionCaisseInterBDE.Models
         public string Theme
         {
             get { return theme; }
-            set { theme = value;
+            set
+            {
+                theme = value;
+                OnPropertyChanged();
             }
         }
 
@@ -36,13 +82,16 @@ namespace iut.GestionCaisseInterBDE.Models
         public string Accent
         {
             get { return accent; }
-            set { accent = value;
+            set
+            {
+                accent = value;
+                OnPropertyChanged();
             }
         }
 
         public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password)
         {
-            this.ID = id;
+            this.id = id;
             this.Username = username;
             this.Name = name;
             this.BDE = bde;

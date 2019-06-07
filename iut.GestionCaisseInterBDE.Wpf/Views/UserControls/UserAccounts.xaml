@@ -20,6 +20,11 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Grid.Column="1">
+            <DockPanel>
+                <Button HorizontalAlignment="Left" Margin="5" Command="{Binding AddUserCommand}">Ajouter unne utilisateur</Button>
+
+            </DockPanel>
+            
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label>Nom: </Label>
                 <TextBox Width="200" Text="{Binding SelectedUser.Name ,UpdateSourceTrigger=LostFocus}"></TextBox>
@@ -34,15 +39,15 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label>Theme:</Label>
-                <ComboBox Width="100" ItemsSource="{Binding Window.Themes , ElementName=root}"></ComboBox>
+                <ComboBox Width="100" ItemsSource="{Binding Window.Themes , ElementName=root}" SelectedItem="{Binding SelectedUser.Theme}"></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label>Accent:</Label>
-                <ComboBox Width="100" ItemsSource="{Binding Window.Colors , ElementName=root}"></ComboBox>
+                <ComboBox Width="100" ItemsSource="{Binding Window.Colors , ElementName=root}" SelectedItem="{Binding SelectedUser.Style}"></ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label>BDE:</Label>
-                <ComboBox Width="100" ItemsSource="{Binding ListBDE}" SelectedItem="{Binding SelectedUser.BDE}">
+                <ComboBox Width="100" ItemsSource="{Binding ListBDE}" SelectedItem="{Binding SelectedBDEUser}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <Label Content="{Binding Name}"></Label>

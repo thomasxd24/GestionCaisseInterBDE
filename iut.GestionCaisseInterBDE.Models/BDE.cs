@@ -32,5 +32,13 @@ namespace iut.GestionCaisseInterBDE.Models
             this.ImageURL = imageURL;
         }
 
+        public virtual bool Equals(object obj)
+        {
+            var objT = obj as BDE;
+            if (objT == null) return false;
+            if (objT.ID != this.ID) return false;
+            return true;
+
+        }
     }
 }
