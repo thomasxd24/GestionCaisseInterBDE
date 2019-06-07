@@ -75,9 +75,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
             var db = new SQLPersistance(new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db"));
             //var db = new EFPersistance();
             Singleton<IPersistance>.SetInstance(db);
-            Singleton<Collection<BDE>>.SetInstance(db.GetBDEList());
-            Singleton<Collection<Product>>.SetInstance(db.GetProductList());
-            Singleton<Collection<Ticket>>.SetInstance(db.GetTicketsDB());
+            Singleton<Event>.SetInstance(new Event());
             comboColors.ItemsSource = Colors;
             comboThemes.ItemsSource = Themes;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
@@ -188,6 +186,16 @@ namespace iut.GestionCaisseInterBDE.Wpf
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Login();
+            
+        }
+
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                Singleton<Event>.GetInstance().InvolveUpdateProduct();
+                await Task.Delay(50);
+            }
             
         }
     }

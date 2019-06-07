@@ -124,5 +124,15 @@ namespace iut.GestionCaisseInterBDE.Persistance
         {
             throw new NotImplementedException();
         }
+
+        public User GetUserfromID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<User> GetUsersDB()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

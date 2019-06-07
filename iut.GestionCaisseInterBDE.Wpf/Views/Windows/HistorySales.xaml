@@ -15,8 +15,9 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding TicketList}" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="150"/>
-                <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="150"/>
-                <DataGridTextColumn Binding="{Binding BDESale.Name}"  Header="BDE Encaissé" Width="150"/>
+                <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="125"/>
+                <DataGridTextColumn Binding="{Binding BDESale.Name}"  Header="BDE" Width="75"/>
+                <DataGridTextColumn Binding="{Binding SellerUser.Name}"  Header="Vendeur" Width="100"/>
                 <DataGridTextColumn Binding="{Binding TotalPaid}"  Header="Total" Width="*">
                 </DataGridTextColumn>
             </DataGrid.Columns>

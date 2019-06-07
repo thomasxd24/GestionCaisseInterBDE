@@ -34,7 +34,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             foreach (var basketitem in t.ProductItems)
             {
                 var productID = basketitem.ItemProduct.ID;
-                db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},date('now'))");
+                db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},datetime('now'),{t.SellerUser.ID})");
             }
 
         }
@@ -139,7 +139,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
                     if (oneTicket != null) ticketList.Add(oneTicket);
                     numTicket = dr["idTicket"].ToString();
                     var bde = GetBDEByID(int.Parse(dr["idBDE"].ToString()));
-                    oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>());
+                    var u = GetUserfromID(int.Parse(dr["idUserSeller"].ToString()));
+                    oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>(),u);
                     var product = GetProductByID(int.Parse(dr["idProduit"].ToString()));
                     if (product == null) continue;
                     var basketItem = new BasketItem(product, int.Parse(dr["quantity"].ToString()));
@@ -148,6 +149,20 @@ namespace iut.GestionCaisseInterBDE.Persistance
             }
             ticketList.Add(oneTicket);
             return ticketList;
+        }
+
+        public IEnumerable<User> GetUsersDB()
+        {
+            DataTable dt = db.Select("SELECT * FROM users");
+            Collection<User> users = new Collection<User>();
+            
+            foreach (DataRow dr in dt.Rows)
+            {
+                BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
+                User u = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString());
+                users.Add(u);
+            }
+            return users;
         }
 
         public User GetUserfromCredentials(string username, string password)
@@ -205,6 +220,18 @@ namespace iut.GestionCaisseInterBDE.Persistance
             return m;
         }
 
-
+        public User GetUserfromID(int id)
+        {
+            var m = new Dictionary<string, object>()
+            {
+                {"@id",id}
+            };
+            DataTable dt = db.Select("SELECT * FROM users where userID=@id", m);
+            if (dt.Rows.Count == 0) return null;
+            DataRow dr = dt.Rows[0];
+            BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
+            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString());
+            return authedUser;
+        }
     }
 }

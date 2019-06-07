@@ -11,7 +11,7 @@ namespace iut.GestionCaisseInterBDE.Utilities
         public delegate void MyEventHandler(object sender);
         public  event MyEventHandler OnUpdateProduct;
 
-        public void InvolveUpdate()
+        public void InvolveUpdateProduct()
         {
             OnUpdateProduct?.Invoke(this);
         }

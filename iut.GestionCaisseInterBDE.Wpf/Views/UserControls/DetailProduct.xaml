@@ -58,6 +58,7 @@
                     <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="1.2*"/>
                     <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="*"/>
                     <DataGridTextColumn Binding="{Binding BDESale.Name}"  Header="BDE Encaissé" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding SellerUser.Name}"  Header="Vendeur" Width="*"/>
                     <DataGridTextColumn Binding="{Binding TotalPaid}"  Header="Total" Width="*">
                     </DataGridTextColumn>
                 </DataGrid.Columns>

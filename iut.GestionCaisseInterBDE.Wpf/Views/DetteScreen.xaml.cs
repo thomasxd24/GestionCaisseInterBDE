@@ -19,7 +19,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
     /// <summary>
     /// Interaction logic for Tresorie.xaml
     /// </summary>
-    public partial class DetteScreen : Page
+    public partial class DetteScreen : UserControl
     {
         public DetteScreen()
         {

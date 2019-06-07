@@ -29,7 +29,11 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         Collection<Ticket> GetTicketsDB();
 
+        IEnumerable<User> GetUsersDB();
+
         void ChangeStyle(User u,string theme, string style);
+
+        User GetUserfromID(int id);
 
 
     }

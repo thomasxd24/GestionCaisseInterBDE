@@ -8,7 +8,9 @@
         Title="Liste des Consommaable" Height="840.984" Width="1058.459"
      xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views.UserControls"  
     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-    Dialog:DialogParticipation.Register="{Binding}">
+    Dialog:DialogParticipation.Register="{Binding}"
+    Closed="ProductListWindow_OnClosed"
+    >
     <Controls:MetroWindow.OverlayFadeIn>
         <Storyboard
              AccelerationRatio=".97" 

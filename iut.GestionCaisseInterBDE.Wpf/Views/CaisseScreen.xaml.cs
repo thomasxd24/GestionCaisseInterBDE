@@ -23,13 +23,14 @@ using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 using MahApps.Metro;
 using GestionCaisseInterBDE.Views.Windows;
 using AutoUpdaterDotNET;
+using iut.GestionCaisseInterBDE.Persistance;
 
 namespace iut.GestionCaisseInterBDE.Wpf.Views
 {
     /// <summary>
     /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class CaisseScreen : Page
+    public partial class CaisseScreen : UserControl
     {
         MainWindow window;
         
@@ -42,7 +43,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             var dialog = (BaseMetroDialog)this.Resources["CustomCloseDialogTest"];
             var dp = ((StackPanel)dialog.Content);
             var itemC = ((ItemsControl)dp.Children[0]);
-            itemC.ItemsSource = Singleton<Collection<BDE>>.GetInstance();
+            itemC.ItemsSource = Singleton<IPersistance>.GetInstance().GetBDEList();
             var dc = new CaisseViewModel(DialogCoordinator.Instance);
             this.DataContext = dc;
 

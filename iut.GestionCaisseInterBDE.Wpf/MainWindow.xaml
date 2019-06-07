@@ -70,7 +70,9 @@
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Button x:Name="settingsBtn" Content="Réglage" Click="SettingsBtn_Click"/>
+            <Button Content="Mode Arc en Ciel" Click="ButtonBase_OnClick"></Button>
             <Button x:Name="username" Content="Non Connecté"/>
+
         </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
 

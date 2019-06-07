@@ -25,11 +25,12 @@ namespace GestionCaisseInterBDE.ViewModel
         private Product nullProduct = new Product(999999, "", 0,0, "", 0, false);
         private Product oldProduct;
         private Product _selectedProduct;
+        private Collection<Ticket> listTickets;
         private bool modifiable;
 
         public Collection<Ticket> VenteTickets
         {
-            get { return new Collection<Ticket>(Singleton<Collection<Ticket>>.GetInstance().Where(t => t.ProductItems.Any(it => it.ItemProduct.ID == SelectedProduct.ID)).ToList()); }
+            get { return new Collection<Ticket>(listTickets.Where(t => t.ProductItems.Any(it => it.ItemProduct.ID == SelectedProduct.ID)).ToList()); }
         }
 
         public bool Modifiable
@@ -117,8 +118,8 @@ namespace GestionCaisseInterBDE.ViewModel
         private void ConfirmEdit()
         {
             Modifiable = false;
-            var originalProduct = Singleton<Collection<Product>>.GetInstance();
-            if(!originalProduct.Any(p => p.ID == oldProduct.ID))
+            var originalProduct = persistance.GetProductList();
+            if(oldProduct ==null)
             {
                 var id = persistance.AddProductToDB(SelectedProduct);
                 SelectedProduct.ID = id;
@@ -183,12 +184,13 @@ namespace GestionCaisseInterBDE.ViewModel
         public ProductListViewModel(IDialogCoordinator dialogCoordinator)
         {
             persistance = Singleton<IPersistance>.GetInstance();
-            ProductsView = new ObservableCollection<Product>(Singleton<Collection<Product>>.GetInstance() as Collection<Product>);
+            ProductsView = new ObservableCollection<Product>(persistance.GetProductList() as Collection<Product>);
             ModifyCommand = new RelayCommand(ModifyProduct);
             ConfirmCommand = new RelayCommand(ConfirmEdit);
             CancelCommand = new RelayCommand(CancelEdit);
             AddProductToListCommand = new RelayCommand(AddProductToList);
             DeleteProductCommand = new RelayCommand(DeleteProduct);
+            listTickets = persistance.GetTicketsDB();
             this.dialogCoordinator = dialogCoordinator;
         }
     }

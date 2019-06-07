@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using iut.GestionCaisseInterBDE.Utilities;
 
 namespace GestionCaisseInterBDE.Windows
 {
@@ -36,6 +37,11 @@ namespace GestionCaisseInterBDE.Windows
         {
             var list = sender as ListView;
             list?.ScrollIntoView(list.SelectedItem);
+        }
+
+        private void ProductListWindow_OnClosed(object sender, EventArgs e)
+        {
+            Singleton<Event>.GetInstance().InvolveUpdateProduct();
         }
     }
 }

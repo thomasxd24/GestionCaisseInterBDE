@@ -138,13 +138,16 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public CaisseViewModel(IDialogCoordinator instance)
         {
-            LoadProducts();
+            
             BasketItems = new ObservableCollection<BasketItem>();
             AddProductCommand = new RelayCommand<Product>(AddProductToBasket);
             ClearBasketCommand = new RelayCommand(ClearBasket);
             DeleteBasketItemCommand = new RelayCommand(DeleteBasketItem);
             this.dialogCoordinator = instance;
             this.persistance = Singleton<IPersistance>.GetInstance();
+            LoadProducts();
+            Singleton<Event>.GetInstance().OnUpdateProduct += OnUpdateProduct;
+
 
         }
 
@@ -180,7 +183,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         {
             fullProductList = new Collection<Product>();
 
-            foreach (Product p in Singleton<Collection<Product>>.GetInstance())
+            foreach (Product p in persistance.GetProductList())
             {
                 if (p.Stock != 0) fullProductList.Add(p);
             }
@@ -251,7 +254,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         {
             var totalPrice = TotalPrice;
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
-            var ticket = new Ticket(key, new DateTime(), bdeChosen, BasketItems);
+            var u = Singleton<User>.GetInstance();
+            var ticket = new Ticket(key, new DateTime(), bdeChosen, BasketItems,u);
             persistance.AddTicket(ticket);
             await dialogCoordinator.HideMetroDialogAsync(this,dialog);
             await dialogCoordinator.ShowMessageAsync(this,"Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");

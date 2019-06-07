@@ -1,4 +1,4 @@
-﻿<Page x:Class="iut.GestionCaisseInterBDE.Wpf.Views.CaisseScreen"
+﻿<UserControl x:Class="iut.GestionCaisseInterBDE.Wpf.Views.CaisseScreen"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,9 +10,8 @@
       Dialog:DialogParticipation.Register="{Binding}"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1200"
-      x:Name="CaissePage"
-      Title="Page1">
-    <Page.Resources> 
+      x:Name="CaissePage">
+    <UserControl.Resources> 
         
         <ResourceDictionary>
             <DataTemplate x:Key="productTile" DataType="{x:Type model:Product}">
@@ -64,7 +63,7 @@
 
             </Dialog:CustomDialog>
         </ResourceDictionary>
-    </Page.Resources>
+    </UserControl.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -168,4 +167,4 @@
         
 
     </Grid>
-</Page>
+</UserControl>
