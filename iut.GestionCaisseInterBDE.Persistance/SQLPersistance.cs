@@ -189,7 +189,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
                 { "@style", style },
                 {"@id", u.ID }
             };
-            var rowChanged = db.ExecuteCommand($"UPDATE users SET theme=@name,accent=@price where userID=@id", m);
+            var rowChanged = db.ExecuteCommand($"UPDATE users SET theme=@theme,accent=@style where userID=@id", m);
             if (rowChanged == 0) throw new Exception("Failed while updating the style");
         }
 

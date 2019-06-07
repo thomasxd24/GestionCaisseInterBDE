@@ -7,6 +7,7 @@ using iut.GestionCaisseInterBDE.Models;
 using System.Collections.ObjectModel;
 using iut.GestionCaisseInterBDE.Utilities;
 using MahApps.Metro.Controls.Dialogs;
+using iut.GestionCaisseInterBDE.Persistance;
 
 namespace iut.GestionCaisseInterBDE.Test
 {
@@ -24,12 +25,11 @@ namespace iut.GestionCaisseInterBDE.Test
 
         public CaisseViewModelTest()
         {
+            
             testP = new Product(5555, "hi", 2.5f, 2.8f, "hihiih", 85, true);
             testBDE = new BDE(85, "hibde", "info", "fdfdsfd");
             collectionP.Add(testP);
             collectionBDE.Add(testBDE);
-            Singleton<Collection<BDE>>.SetInstance(collectionBDE);
-            Singleton<Collection<Product>>.SetInstance(collectionP);
         }
 
         private TestContext testContextInstance;
@@ -66,7 +66,8 @@ namespace iut.GestionCaisseInterBDE.Test
         [TestInitialize()]
         public void MyTestInitialize()
         {
-
+            Singleton<Event>.SetInstance(new Event());
+            Singleton<IPersistance>.SetInstance(new SQLPersistance(new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db")));
             cVm = new CaisseViewModel(DialogCoordinator.Instance);
         }
         //

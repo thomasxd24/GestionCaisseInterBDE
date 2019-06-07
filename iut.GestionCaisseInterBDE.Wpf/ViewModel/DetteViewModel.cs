@@ -71,7 +71,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         private IEnumerable<User> listUsers;
         public IEnumerable<User> ListMembre
         {
-            get { return listUsers.Where(u => u.BDE.ID == selectedBDE.ID).ToList(); }
+            get { return listUsers.Where(u => u.BDE.ID == selectedBDE?.ID).ToList(); }
         }
 
 
