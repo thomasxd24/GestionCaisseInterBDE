@@ -19,6 +19,7 @@ using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Persistance;
 using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
 using iut.GestionCaisseInterBDE.Utilities;
+using iut.GestionCaisseInterBDE.Wpf.Views;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -32,14 +33,14 @@ namespace iut.GestionCaisseInterBDE.Wpf
     {
 
 
-        public readonly Collection<string> Themes = new Collection<string>()
+        public Collection<string> Themes  => new Collection<string>()
         {
             "BaseDark",
             "BaseLight"
         };
 
 
-        public readonly Collection<string> Colors = new Collection<string>()
+        public Collection<string> Colors => new Collection<string>()
         {
             "Red",
             "Green",
@@ -197,6 +198,11 @@ namespace iut.GestionCaisseInterBDE.Wpf
                 await Task.Delay(50);
             }
             
+        }
+
+        private void AdminBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            new AccountScreen().ShowDialog();
         }
     }
 }

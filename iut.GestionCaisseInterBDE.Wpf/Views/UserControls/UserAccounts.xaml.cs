@@ -12,18 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MahApps.Metro.Controls;
+using iut.GestionCaisseInterBDE.Wpf.ViewModel;
 
-namespace iut.GestionCaisseInterBDE.Wpf.Views
+namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for AccountScreen.xaml
+    /// Interaction logic for UserAccounts.xaml
     /// </summary>
-    public partial class AccountScreen : MetroWindow
+    public partial class UserAccounts : UserControl
     {
-        public AccountScreen()
+        public MainWindow Window { get; }
+        public UserAccounts()
         {
+            Window= Application.Current.MainWindow as MainWindow;
             InitializeComponent();
+            DataContext = new UserAccountViewModel();
         }
     }
 }

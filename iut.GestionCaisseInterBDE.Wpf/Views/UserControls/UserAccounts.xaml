@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="iut.GestionCaisseInterBDE.Wpf.Views.UserControls.UserAccounts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding ListUsers}" SelectedItem="{Binding SelectedUser}" Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"></Label>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label>Nom: </Label>
+                <TextBox Width="200" Text="{Binding SelectedUser.Name ,UpdateSourceTrigger=LostFocus}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label>Username:</Label>
+                <TextBox Width="200" Text="{Binding SelectedUser.Username ,UpdateSourceTrigger=LostFocus}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label>MD5 Mot de passe:</Label>
+                <TextBox Width="200" Text="{Binding SelectedUser.Md5password ,UpdateSourceTrigger=LostFocus}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label>Theme:</Label>
+                <ComboBox Width="100" ItemsSource="{Binding Window.Themes , ElementName=root}"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label>Accent:</Label>
+                <ComboBox Width="100" ItemsSource="{Binding Window.Colors , ElementName=root}"></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label>BDE:</Label>
+                <ComboBox Width="100" ItemsSource="{Binding ListBDE}" SelectedItem="{Binding SelectedUser.BDE}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Name}"></Label>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

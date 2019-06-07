@@ -106,11 +106,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utilities\RelayCommand.cs" />
+    <Compile Include="ViewModel\BDEAccountViewModel.cs" />
     <Compile Include="ViewModel\CaisseViewModel.cs" />
     <Compile Include="ViewModel\DetteViewModel.cs" />
     <Compile Include="ViewModel\HistorySaleViewModel.cs" />
     <Compile Include="ViewModel\LoginDialogViewModel.cs" />
     <Compile Include="ViewModel\ProductListViewModel.cs" />
+    <Compile Include="ViewModel\UserAccountViewModel.cs" />
+    <Compile Include="Views\UserControls\BDEAccounts.xaml.cs">
+      <DependentUpon>BDEAccounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\UserAccounts.xaml.cs">
+      <DependentUpon>UserAccounts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AccountScreen.xaml.cs">
       <DependentUpon>AccountScreen.xaml</DependentUpon>
     </Compile>
@@ -147,6 +155,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UserControls\BDEAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\UserAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AccountScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
