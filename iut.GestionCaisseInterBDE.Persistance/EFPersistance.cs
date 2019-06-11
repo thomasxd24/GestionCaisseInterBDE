@@ -134,5 +134,10 @@ namespace iut.GestionCaisseInterBDE.Persistance
         {
             throw new NotImplementedException();
         }
+
+        public void RemoveTicketFromDB(Ticket t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

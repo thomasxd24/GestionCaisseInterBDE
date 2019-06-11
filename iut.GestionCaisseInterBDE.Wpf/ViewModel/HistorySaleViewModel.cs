@@ -16,6 +16,18 @@ namespace GestionCaisseInterBDE.ViewModel
     {
         private IPersistance persistance;
         private ObservableCollection<Ticket> ticketList;
+        private Ticket selectedTicket;
+
+        public Ticket SelectedTicket
+        {
+            get { return selectedTicket; }
+            set { selectedTicket = value;
+                OnPropertyChanged();
+                    }
+        }
+
+
+        public RelayCommand CancelTicketCommand { get; private set; }
 
         public ObservableCollection<Ticket> TicketList
         {
@@ -30,7 +42,16 @@ namespace GestionCaisseInterBDE.ViewModel
             this.persistance = Singleton<IPersistance>.GetInstance();
             var ticketList = persistance.GetTicketsDB();
             TicketList = new ObservableCollection<Ticket>(ticketList);
-            
+            CancelTicketCommand = new RelayCommand(cancelTicket);
+
+
+        }
+
+        private void cancelTicket()
+        {
+            var t = selectedTicket;
+            persistance.RemoveTicketFromDB(t);
+            ticketList.Remove(t);
         }
     }
 }

@@ -35,6 +35,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         User GetUserfromID(int id);
 
+        void RemoveTicketFromDB(Ticket t);
+
 
     }
 }

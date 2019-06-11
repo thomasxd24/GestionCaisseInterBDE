@@ -10,9 +10,9 @@
     <DockPanel>
         <Label DockPanel.Dock="Top" Content="Ventes" FontSize="30" Margin="10"/>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="10">
-            <Button>Annuler le ticket</Button>
+            <Button Command="{Binding CancelTicketCommand}">Annuler le ticket</Button>
         </StackPanel>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding TicketList}" IsReadOnly="True">
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding TicketList}" IsReadOnly="True" SelectedItem="{Binding SelectedTicket}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="150"/>
                 <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="125"/>

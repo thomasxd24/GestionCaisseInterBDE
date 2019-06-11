@@ -233,5 +233,15 @@ namespace iut.GestionCaisseInterBDE.Persistance
             User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString());
             return authedUser;
         }
+
+        public void RemoveTicketFromDB(Ticket t)
+        {
+            var m = new Dictionary<string, object>()
+            {
+                {"@id",t.IDTicket }
+            };
+            var i = db.ExecuteCommand("DELETE FROM ligneTicket where idTicket=@id", m);
+            if (i == 0) throw new Exception("Error while deleting the ticket");
+        }
     }
 }
