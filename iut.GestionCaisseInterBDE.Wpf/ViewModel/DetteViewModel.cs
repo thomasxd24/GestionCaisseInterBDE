@@ -48,7 +48,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
                 OnPropertyChanged("ListTickets");
             }
         }
-        private DateTime toDateTime = DateTime.Today;
+        private DateTime toDateTime = DateTime.Today.AddDays(1);
         public DateTime ToDateTime
         {
             get { return toDateTime; }
