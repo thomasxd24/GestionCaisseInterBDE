@@ -200,9 +200,9 @@ namespace iut.GestionCaisseInterBDE.Wpf
             
         }
 
-        private void AdminBtn_OnClick(object sender, RoutedEventArgs e)
+        private void updateBtn_Click(object sender, RoutedEventArgs e)
         {
-            new AccountScreen().ShowDialog();
+            AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
         }
     }
 }

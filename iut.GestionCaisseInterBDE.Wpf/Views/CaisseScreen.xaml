@@ -26,42 +26,6 @@
                     </DockPanel>
                 </Controls:Tile>
             </DataTemplate>
-            <Dialog:CustomDialog x:Key="CustomCloseDialogTest"
-                                 x:Name="CustomCloseDialogTest"
-                                 Title="Choissisez le BDE a encaisser">
-                <StackPanel Orientation="Vertical">
-                    
-                    <ItemsControl  x:Name="BDEList">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Controls:Tile Title="{Binding Name}" Width="175" Height="175" Click="BdeChoiceBtn_Click" Tag="{Binding Path=.}">
-                                    <Image Source="{Binding ImageURL}" VerticalAlignment="Top" Margin="0,0,0,40" >
-                                    </Image>
-                                </Controls:Tile>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel x:Name="BDEPanel" Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl> 
-                    <Button x:Name="cancelBtn" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="10" FontSize="15" Padding="7" Click="CancelBtn_Click">Annuler</Button>
-
-                </StackPanel>
-                
-
-
-            </Dialog:CustomDialog>
-            <Dialog:CustomDialog x:Key="FinalCaisseDialog"
-                                 x:Name="FinalCaisseDialog"
-                                 Title="Encaissement Réussi">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="Auto">
-
-                </StackPanel>
-
-
-            </Dialog:CustomDialog>
         </ResourceDictionary>
     </UserControl.Resources>
     
@@ -130,7 +94,7 @@
                 <Label FontSize="30" x:Name="totalPrice"  DockPanel.Dock="Right" Content="{Binding TotalPrice}" ContentStringFormat="{}{0:C}"></Label>
                 <Label FontSize="30"  Content="Total:"></Label>
             </DockPanel>
-            <Button Grid.Row="6" Margin="7" FontSize="20" x:Name="encaisserBtn" IsEnabled="{Binding CanEncaisse}" Click="EncaisserBtn_Click">Encaisser</Button>
+            <Button Grid.Row="6" Margin="7" FontSize="20" x:Name="encaisserBtn" IsEnabled="{Binding CanEncaisse}" Command="{Binding EncaisseCommand}">Encaisser</Button>
             
         </Grid>
         <DockPanel Grid.Column="1" >
@@ -144,7 +108,6 @@
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="4" Margin="5" x:Name="historyBtn" Click="HistoryBtn_Click">Historique</Button>
                 <Button Grid.Column="3" Margin="5" x:Name="productListBtn" Click="ProductListBtn_Click">Gérer les produits</Button>
-                <Button Grid.Column="2" Margin="5" Click="Button_Click">Réapprovisionnement</Button>
             </Grid>
             <DockPanel>
                 <TextBox Width="200" x:Name="searchBar" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Text="{Binding ProductSearchText, Delay=100, UpdateSourceTrigger=PropertyChanged}"></TextBox>

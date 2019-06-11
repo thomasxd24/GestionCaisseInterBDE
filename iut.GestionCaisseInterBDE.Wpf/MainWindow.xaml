@@ -69,8 +69,8 @@
     </Controls:MetroWindow.Flyouts>
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
+            <Button x:Name="updateBtn" Content="Mise à jour" Click="updateBtn_Click"/>
             <Button x:Name="settingsBtn" Content="Réglage" Click="SettingsBtn_Click"/>
-            <Button x:Name="adminBtn" Content="Réglage Administrateur" Click="AdminBtn_OnClick"/>
             <Button Content="Mode Arc en Ciel" Click="ButtonBase_OnClick"></Button>
             <Button x:Name="username" Content="Non Connecté"/>
 

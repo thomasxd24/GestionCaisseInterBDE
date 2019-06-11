@@ -20,6 +20,8 @@ namespace GestionCaisseInterBDE.ViewModel
         public RelayCommand ModifyCommand { get; private set; }
         public RelayCommand ConfirmCommand { get; private set; }
         public RelayCommand CancelCommand { get; private set; }
+
+        public RelayCommand<string> SortCommand { get; private set; }
         public RelayCommand AddProductToListCommand { get; private set; }
         public RelayCommand DeleteProductCommand { get; private set; }
         private Product nullProduct = new Product(999999, "", 0,0, "", 0, false);
@@ -180,6 +182,24 @@ namespace GestionCaisseInterBDE.ViewModel
             Modifiable = true;
         }
 
+        private void sortProductView(string type)
+        {
+            switch (type)
+            {
+                case "libelle":
+                    ProductsView = new ObservableCollection<Product>(ProductsView.OrderBy(p => p.Name));
+                    break;
+                case "prix":
+                    ProductsView = new ObservableCollection<Product>(ProductsView.OrderBy(p => p.Price));
+                    break;
+                case "stock":
+                    ProductsView = new ObservableCollection<Product>(ProductsView.OrderBy(p => p.Stock));
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         public ProductListViewModel(IDialogCoordinator dialogCoordinator)
         {
@@ -188,6 +208,7 @@ namespace GestionCaisseInterBDE.ViewModel
             ModifyCommand = new RelayCommand(ModifyProduct);
             ConfirmCommand = new RelayCommand(ConfirmEdit);
             CancelCommand = new RelayCommand(CancelEdit);
+            SortCommand = new RelayCommand<string>(sortProductView);
             AddProductToListCommand = new RelayCommand(AddProductToList);
             DeleteProductCommand = new RelayCommand(DeleteProduct);
             listTickets = persistance.GetTicketsDB();

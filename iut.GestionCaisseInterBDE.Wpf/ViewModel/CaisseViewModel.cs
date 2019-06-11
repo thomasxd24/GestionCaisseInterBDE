@@ -2,6 +2,7 @@
 using iut.GestionCaisseInterBDE.Persistance;
 using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
+using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
@@ -22,6 +23,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         private IPersistance persistance;
         private Collection<Product> fullProductList;
         private IDialogCoordinator dialogCoordinator;
+        private Event currEvent;
 
         private ObservableCollection<Product> productsView;
         public ObservableCollection<Product> ProductsView
@@ -34,6 +36,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             }
         }
 
+        
         public ObservableCollection<BasketItem> BasketItems { get; set; }
         private BasketItem _selectedItem;
         public BasketItem SelectedItem
@@ -81,6 +84,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
 
         public RelayCommand<Product> AddProductCommand { get; private set; }
+        public RelayCommand EncaisseCommand { get; private set; }
         public RelayCommand DeleteBasketItemCommand { get; private set; }
         public RelayCommand ClearBasketCommand { get; private set; }
 
@@ -146,14 +150,30 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             this.dialogCoordinator = instance;
             this.persistance = Singleton<IPersistance>.GetInstance();
             LoadProducts();
-            Singleton<Event>.GetInstance().OnUpdateProduct += OnUpdateProduct;
+            currEvent  = Singleton<Event>.GetInstance();
+            currEvent.OnUpdateProduct += OnUpdateProduct;
+            currEvent.OnClearBasket += OnClearBasket;
+            EncaisseCommand = new RelayCommand(startEncaisse);
 
 
+        }
+
+        private void startEncaisse()
+        {
+            var dialog = new CustomDialog();
+            var content = new ChoiceBDEUC(dialog,BasketItems);
+            dialog.Content = content;
+            dialogCoordinator.ShowMetroDialogAsync(this, dialog);
         }
 
         public void OnUpdateProduct(object sender)
         {
             LoadProducts();
+        }
+
+        public void OnClearBasket(object sender)
+        {
+            ClearBasket();
         }
 
         private void UpdateSearchResult(string searchString)

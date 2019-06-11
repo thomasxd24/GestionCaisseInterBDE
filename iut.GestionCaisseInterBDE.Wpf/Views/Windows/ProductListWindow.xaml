@@ -43,18 +43,27 @@
                 <ColumnDefinition Width="4"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding ProductsView}" SelectedItem="{Binding SelectedProduct}" SelectionChanged="Selector_OnSelectionChanged" IsEnabled="{Binding Modifiable}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel>
-                            <Label DockPanel.Dock="Right" Content="{Binding Price}" ContentStringFormat="{}{0:C}"></Label>
-                            <Label DockPanel.Dock="Right" Content="{Binding Stock}" ContentStringFormat="x{0}"></Label>
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" >
+                    <Label>Trier Par:</Label>
+                    <Button Command="{Binding SortCommand}" CommandParameter="libelle">Libelle</Button>
+                    <Button Command="{Binding SortCommand}" CommandParameter="prix">Prix</Button>
+                    <Button Command="{Binding SortCommand}" CommandParameter="stock">Stock</Button>
+                </StackPanel>
+                <ListView ItemsSource="{Binding ProductsView}" SelectedItem="{Binding SelectedProduct}" SelectionChanged="Selector_OnSelectionChanged" IsEnabled="{Binding Modifiable}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Label DockPanel.Dock="Right" Content="{Binding Price}" ContentStringFormat="{}{0:C}"></Label>
+                                <Label DockPanel.Dock="Right" Content="{Binding Stock}" ContentStringFormat="x{0}"></Label>
 
-                            <Label Content="{Binding Name}"/>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                <Label Content="{Binding Name}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </DockPanel>
+            
             <GridSplitter ResizeDirection="Columns" Grid.Column="1" Height="Auto" Width="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <local:DetailProduct Grid.Column="2"></local:DetailProduct>
         </Grid>

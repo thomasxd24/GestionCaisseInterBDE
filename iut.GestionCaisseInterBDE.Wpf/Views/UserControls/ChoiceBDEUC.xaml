@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="iut.GestionCaisseInterBDE.Wpf.Views.UserControls.ChoiceBDEUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views.UserControls"
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+      Dialog:DialogParticipation.Register="{Binding}"
+             x:Name="root">
+    <StackPanel Orientation="Vertical">
+
+        <ItemsControl ItemsSource="{Binding ListBDE}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Controls:Tile Title="{Binding Name}" Width="175" Height="175" Command="{Binding DataContext.PickBDE,ElementName=root}" CommandParameter="{Binding .}" Tag="{Binding Path=.}">
+                        <Image Source="{Binding ImageURL}" VerticalAlignment="Top" Margin="0,0,0,40" >
+                        </Image>
+                    </Controls:Tile>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel x:Name="BDEPanel" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        <Button x:Name="cancelBtn" HorizontalAlignment="Right" DockPanel.Dock="Bottom" Margin="10" FontSize="15" Padding="7" Command="{Binding CancelChoice}">Annuler</Button>
+
+    </StackPanel>
+</UserControl>

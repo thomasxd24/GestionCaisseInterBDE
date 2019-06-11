@@ -65,7 +65,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         public IEnumerable<Ticket> ListTickets
         {
             get { return listTickets.Where(c => c.DateCreated >= fromDateTime
-                                          && c.DateCreated <= toDateTime && c.BDESale.ID == selectedBDE.ID).ToList(); }
+                                          && c.DateCreated <= toDateTime && c.BDESale.ID == selectedBDE?.ID).ToList(); }
         }
 
         private IEnumerable<User> listUsers;
