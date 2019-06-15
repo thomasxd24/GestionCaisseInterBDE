@@ -33,7 +33,7 @@
     <DockPanel>
         <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
             <Button Margin="10" DockPanel.Dock="Left" Command="{Binding AddProductToListCommand}">Ajouter un produit</Button>
-            <Button Margin="10" DockPanel.Dock="Right">Fermer</Button>
+            <Button Margin="10" DockPanel.Dock="Right" Click="ButtonBase_OnClick">Fermer</Button>
         </DockPanel>
         <Separator DockPanel.Dock="Bottom"></Separator>
 
@@ -50,7 +50,7 @@
                     <Button Command="{Binding SortCommand}" CommandParameter="prix">Prix</Button>
                     <Button Command="{Binding SortCommand}" CommandParameter="stock">Stock</Button>
                 </StackPanel>
-                <ListView ItemsSource="{Binding ProductsView}" SelectedItem="{Binding SelectedProduct}" SelectionChanged="Selector_OnSelectionChanged" IsEnabled="{Binding Modifiable}">
+                <ListView ItemsSource="{Binding ProductsView}" SelectedItem="{Binding SelectedProduct}" SelectionChanged="Selector_OnSelectionChanged" IsEnabled="{Binding EditMode}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <DockPanel>

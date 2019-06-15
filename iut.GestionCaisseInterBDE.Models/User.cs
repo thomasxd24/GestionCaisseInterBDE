@@ -89,7 +89,9 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
-        public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password)
+        public bool isAdmin { get; private set; }
+
+        public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password,bool isAdmin)
         {
             this.id = id;
             this.Username = username;
@@ -98,6 +100,7 @@ namespace iut.GestionCaisseInterBDE.Models
             this.theme = theme;
             this.accent = accent;
             this.Md5password = md5Password;
+            this.isAdmin = isAdmin;
         }
     }
 }

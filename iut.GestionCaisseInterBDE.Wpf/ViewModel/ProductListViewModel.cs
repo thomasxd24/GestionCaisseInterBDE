@@ -37,14 +37,17 @@ namespace GestionCaisseInterBDE.ViewModel
 
         public bool Modifiable
         {
-            get { return !modifiable; }
+            get { return !modifiable && Singleton<User>.GetInstance().isAdmin; }
             set { modifiable = value;
                 OnPropertyChanged("Modifiable");
                 OnPropertyChanged("ThicknessModify");
                 OnPropertyChanged("Enable");
                 OnPropertyChanged("VisibleToModify");
+                OnPropertyChanged("EditMode");
             }
         }
+
+        public bool EditMode => !modifiable;
 
         public string ThicknessModify
         {

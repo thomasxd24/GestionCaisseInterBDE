@@ -43,5 +43,10 @@ namespace GestionCaisseInterBDE.Windows
         {
             Singleton<Event>.GetInstance().InvolveUpdateProduct();
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

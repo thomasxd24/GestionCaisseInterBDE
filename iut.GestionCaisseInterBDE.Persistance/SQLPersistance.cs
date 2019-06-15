@@ -159,7 +159,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             foreach (DataRow dr in dt.Rows)
             {
                 BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
-                User u = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString());
+                User u = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(),dr["isAdmin"].ToString() == "1");
                 users.Add(u);
             }
             return users;
@@ -177,7 +177,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             if (dt.Rows.Count == 0) return null;
             DataRow dr = dt.Rows[0];
             BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
-            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString());
+            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(), dr["isAdmin"].ToString() == "1");
             return authedUser;
         }
 
@@ -230,7 +230,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             if (dt.Rows.Count == 0) return null;
             DataRow dr = dt.Rows[0];
             BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
-            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString());
+            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(), dr["isAdmin"].ToString() == "1");
             return authedUser;
         }
 

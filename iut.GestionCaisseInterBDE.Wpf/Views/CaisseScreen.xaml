@@ -110,7 +110,15 @@
                 <Button Grid.Column="3" Margin="5" x:Name="productListBtn" Click="ProductListBtn_Click">Gérer les produits</Button>
             </Grid>
             <DockPanel>
-                <TextBox Width="200" x:Name="searchBar" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Text="{Binding ProductSearchText, Delay=100, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                    <TextBox Width="200" x:Name="searchBar"  HorizontalAlignment="Left" DockPanel.Dock="Left" Margin="5" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Text="{Binding ProductSearchText, Delay=100, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                        <Label>Trier Par:</Label>
+                        <Button Command="{Binding SortCommand}" CommandParameter="libelle">Libelle</Button>
+                        <Button Command="{Binding SortCommand}" CommandParameter="prix">Prix</Button>
+                        <Button Command="{Binding SortCommand}" CommandParameter="stock">Stock</Button>
+                    </StackPanel>
+                </DockPanel>
                 <ScrollViewer >
 
                     <ItemsControl x:Name="productList" ItemsSource="{Binding ProductsView}" ItemTemplate="{StaticResource productTile}">

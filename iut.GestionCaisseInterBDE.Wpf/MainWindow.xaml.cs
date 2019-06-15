@@ -204,5 +204,10 @@ namespace iut.GestionCaisseInterBDE.Wpf
         {
             AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
         }
+
+        private void Disco_OnClick(object sender, RoutedEventArgs e)
+        {
+            Login();
+        }
     }
 }

@@ -42,12 +42,13 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
             Application.Current.Shutdown();
         }
 
-        public void HideCurrentDialog()
+        public async Task HideCurrentDialog()
         {
-            main.HideMetroDialogAsync(dialog);
             var user = Singleton<User>.GetInstance();
             ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(user.Accent), ThemeManager.GetAppTheme(user.Theme));
             main.username.Content = user.Name;
+            await main.HideMetroDialogAsync(dialog);
+
         }
     }
 }

@@ -36,7 +36,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
             InitializeComponent();
 
         }
-        public async void HideCurrentDialog()
+        public async Task HideCurrentDialog()
         {
             await main.HideMetroDialogAsync(dialog);
         }
