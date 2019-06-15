@@ -88,6 +88,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         public RelayCommand DeleteBasketItemCommand { get; private set; }
         public RelayCommand ClearBasketCommand { get; private set; }
 
+        public RelayCommand<string> SortCommand { get; private set; }
+
 
         private float totalPrice;
         public float TotalPrice
@@ -154,8 +156,27 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             currEvent.OnUpdateProduct += OnUpdateProduct;
             currEvent.OnClearBasket += OnClearBasket;
             EncaisseCommand = new RelayCommand(startEncaisse);
+            SortCommand = new RelayCommand<string>(SortList);
 
 
+        }
+
+        private void SortList(string type)
+        {
+            switch (type)
+            {
+                case "libelle":
+                    ProductsView = new ObservableCollection<Product>(ProductsView.OrderBy(p => p.Name));
+                    break;
+                case "prix":
+                    ProductsView = new ObservableCollection<Product>(ProductsView.OrderBy(p => p.Price));
+                    break;
+                case "stock":
+                    ProductsView = new ObservableCollection<Product>(ProductsView.OrderBy(p => p.Stock));
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void startEncaisse()
