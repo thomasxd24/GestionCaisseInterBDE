@@ -24,8 +24,10 @@ namespace iut.GestionCaisseInterBDE.Test
         Collection<BDE> collectionBDE = new Collection<BDE>();
         public ProductListViewModelTest()
         {
+            
             testP = new Product(5555, "hi", 2.5f, 2.8f, "hihiih", 85, true);
             testBDE = new BDE(85, "hibde", "info", "fdfdsfd");
+            Singleton<User>.SetInstance(new User(0, "hi","hi",testBDE,"BaseDark","Indigo","thomas",true));
             collectionP.Add(testP);
             collectionBDE.Add(testBDE);
         }
