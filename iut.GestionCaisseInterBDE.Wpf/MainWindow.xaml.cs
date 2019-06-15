@@ -126,35 +126,29 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         }
 
-        private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
+        private async void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
         {
             if (args != null)
             {
                 if (args.IsUpdateAvailable)
                 {
-                    MessageBoxResult dialogResult;
+                    MessageDialogResult dialogResult;
                     if (args.Mandatory)
                     {
-                        dialogResult =
-                            MessageBox.Show(
-                                $@"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. This is required update. Press Ok to begin updating the application.", @"Update Available",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information);
+                        dialogResult = await this.ShowMessageAsync(@"Mise a jour disponible",
+                            $@"La version {args.CurrentVersion} est maintenant disponible. Vous utilisez la version {args.InstalledVersion}. Appuyer sur OK pour commencer la mise a jour.",
+                            MessageDialogStyle.Affirmative);
                     }
                     else
                     {
-                        dialogResult =
-                            MessageBox.Show(
-                                $@"There is new version {args.CurrentVersion} available. You are using version {
-                                        args.InstalledVersion
-                                    }. Do you want to update the application now?", @"Update Available",
-                                MessageBoxButton.YesNo,
-                                MessageBoxImage.Information);
+                        dialogResult = await this.ShowMessageAsync(@"Mise a jour disponible",
+                            $@"La version {args.CurrentVersion} est maintenant disponible. Vous utilisez la version {args.InstalledVersion}. Voulez-vous faire la mise a jour?.",
+                            MessageDialogStyle.AffirmativeAndNegative);
                     }
 
                     // Uncomment the following line if you want to show standard update dialog instead.
 
-                    if (dialogResult.Equals(MessageBoxResult.Yes))
+                    if (dialogResult.Equals(MessageDialogResult.Affirmative))
                     {
                         try
                         {
@@ -172,8 +166,10 @@ namespace iut.GestionCaisseInterBDE.Wpf
                 }
                 else
                 {
-                    MessageBox.Show(@"There is no update available please try again later.", @"No update available",
-                        MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    await this.ShowMessageAsync(@"Mise a jour indisponible",
+                        @"Pas de mise a jour disponible. Veuillez reessayez plus tard.",
+                        MessageDialogStyle.Affirmative);
                 }
             }
             else
@@ -202,7 +198,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         private void updateBtn_Click(object sender, RoutedEventArgs e)
         {
-            AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
+            AutoUpdater.Start("http://thomasxd24.com/update.xml");
         }
 
         private void Disco_OnClick(object sender, RoutedEventArgs e)
