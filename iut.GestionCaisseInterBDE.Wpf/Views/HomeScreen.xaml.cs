@@ -29,6 +29,12 @@ namespace iut.GestionCaisseInterBDE.Wpf
         {
             int i;
             int.TryParse((sender as Tile).Uid,out i);
+            if (i == 2)
+            {
+                var main = Application.Current.MainWindow as MainWindow;
+                main.SettingsBtn_Click(sender, e);
+                return;
+            }
             ((MainWindow)Application.Current.MainWindow).mainTab.SelectedIndex = i;
         }
     }

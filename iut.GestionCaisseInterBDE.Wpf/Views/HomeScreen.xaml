@@ -42,9 +42,6 @@
         <Controls:Tile Title="Dettes" Grid.Row="0" Grid.Column="1" Background="Purple" Click="Tile_Click" x:Uid="2" >
             <iconPacks:PackIconMaterial Kind="Bank" />
         </Controls:Tile>
-        <Controls:Tile Title="Réglage" Grid.Row="0" Grid.Column="2" Background="DarkCyan" Click="Tile_Click" x:Uid="3">
-            <iconPacks:PackIconMaterial Kind="ContentSave" />
-        </Controls:Tile>
 
     </Grid>
 </Page>

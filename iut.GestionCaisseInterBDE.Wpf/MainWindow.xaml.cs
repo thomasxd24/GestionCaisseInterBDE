@@ -98,7 +98,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
 
 
-        private void SettingsBtn_Click(object sender, RoutedEventArgs e)
+        public void SettingsBtn_Click(object sender, RoutedEventArgs e)
         {
             var flyout = this.Flyouts.Items[0] as Flyout;
             flyout.IsOpen = !flyout.IsOpen;
