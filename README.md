@@ -1,10 +1,16 @@
 # GestionCaisseInterBDE
-[![Build status](https://ci.appveyor.com/api/projects/status/9lra3jqoo39quxh1/branch/master?svg=true)](https://ci.appveyor.com/project/thomasxd24/gestioncaisseinterbde/branch/master)
-a C# WPF Application for drinks and snacks management. Features multi-BDE
-# Pre-requisite
-- Visual Studio 2019 or 2017
-- [MahApps.Metro](https://github.com/MahApps/MahApps.Metro) (Should be installed aloneside with Nuget)
-- MySql Server
 
-# Screenshots
-![](https://i.imgur.com/QepFgPx.png "Test")
+[![Build status](https://ci.appveyor.com/api/projects/status/6dtoxtowx2tsad4e?svg=true)](https://ci.appveyor.com/project/thomasxd24/gestioncaisseinterbde)
+
+Bienvenue au Wiki de Gestion Caisse Inter-BDE! Ici vous retrouverez tous les références du projet dont les diagrams et les schémas a votre droit.
+
+Ce projet est open source et CI avec appveyor: https://ci.appveyor.com/project/thomasxd24/gestioncaisseinterbde
+
+
+Artifact: https://ci.appveyor.com/project/thomasxd24/gestioncaisseinterbde/build/artifacts
+
+Vous pouvez télécharger l'application ici: https://github.com/thomasxd24/GestionCaisseInterBDE/releases
+
+# Compte préconfiguré
+- Admin : username: admin password: admin
+- Thomas Tse (User) username : thomasxd24 password: thomas
