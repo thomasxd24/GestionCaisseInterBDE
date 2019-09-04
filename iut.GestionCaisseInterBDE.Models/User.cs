@@ -38,6 +38,8 @@ namespace iut.GestionCaisseInterBDE.Models
             set { md5password = value; }
         }
 
+        public Account Account{ get; set; }
+
 
         private string name;
 
@@ -91,7 +93,7 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public bool isAdmin { get; private set; }
 
-        public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password,bool isAdmin)
+        public User(int id, string username, string name, BDE bde, string theme, string accent,string md5Password,bool isAdmin,Account acc)
         {
             this.id = id;
             this.Username = username;
@@ -101,6 +103,7 @@ namespace iut.GestionCaisseInterBDE.Models
             this.accent = accent;
             this.Md5password = md5Password;
             this.isAdmin = isAdmin;
+            this.Account = acc;
         }
     }
 }

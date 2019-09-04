@@ -23,6 +23,8 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public User SellerUser { get; }
 
+        public Account Account { get; }
+
 
         [NotMapped]
         public string TotalPaid
@@ -37,13 +39,14 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
-        public Ticket(string idTicket, DateTime dateCreated, BDE bde, Collection<BasketItem> productItems, User u)
+        public Ticket(string idTicket, DateTime dateCreated, BDE bde, Collection<BasketItem> productItems, User u,Account acc)
         {
             this.IDTicket = idTicket;
             this.DateCreated = dateCreated;
             this.BDESale = bde;
             this.ProductItems = productItems;
             this.SellerUser = u;
+            this.Account = acc;
         }
 
 

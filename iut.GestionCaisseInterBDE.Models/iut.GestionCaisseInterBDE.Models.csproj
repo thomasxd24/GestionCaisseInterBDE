@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
     <Compile Include="BasketItem.cs" />
     <Compile Include="BDE.cs" />
     <Compile Include="Product.cs" />

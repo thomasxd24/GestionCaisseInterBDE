@@ -17,6 +17,7 @@ namespace iut.GestionCaisseInterBDE.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
+
         public string Name { get; }
 
         public string Departement { get; }

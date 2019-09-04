@@ -139,5 +139,10 @@ namespace iut.GestionCaisseInterBDE.Persistance
         {
             throw new NotImplementedException();
         }
+
+        public Account GetAccountFromID(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

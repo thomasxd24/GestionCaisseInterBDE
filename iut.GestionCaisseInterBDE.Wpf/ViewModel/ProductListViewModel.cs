@@ -24,7 +24,7 @@ namespace GestionCaisseInterBDE.ViewModel
         public RelayCommand<string> SortCommand { get; private set; }
         public RelayCommand AddProductToListCommand { get; private set; }
         public RelayCommand DeleteProductCommand { get; private set; }
-        private Product nullProduct = new Product(999999, "", 0,0, "", 0, false);
+        private Product nullProduct = new Product(999999, "", 0,0, "", 0, false,null);
         private Product oldProduct;
         private Product _selectedProduct;
         private Collection<Ticket> listTickets;
@@ -117,7 +117,8 @@ namespace GestionCaisseInterBDE.ViewModel
                 SelectedProduct.BuyPrice,
                 SelectedProduct.ImageURL,
                 SelectedProduct.Stock,
-                SelectedProduct.IsDiscountable);
+                SelectedProduct.IsDiscountable,
+                SelectedProduct.Account);
         }
 
         private void ConfirmEdit()
@@ -179,7 +180,7 @@ namespace GestionCaisseInterBDE.ViewModel
 
         public void AddProductToList()
         {
-            var newP = new Product(999999, "", 0, 0, "", 0, false);
+            var newP = new Product(999999, "", 0, 0, "", 0, false,null);
             ProductsView.Add(newP);
             SelectedProduct = newP;
             Modifiable = true;

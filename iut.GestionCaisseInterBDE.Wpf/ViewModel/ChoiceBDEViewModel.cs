@@ -42,9 +42,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             var totalPrice = baskets.Sum(items => items.quantity * items.ItemProduct.Price);
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
             var u = Singleton<User>.GetInstance();
-            var ticket = new Ticket(key, new DateTime(), bdeChosen, baskets, u);
+            var ticket = new Ticket(key, new DateTime(), bdeChosen, baskets, u,u.Account);
             persistance.AddTicket(ticket);
-            dialog.HideCurrentDialog();
+            await dialog.HideCurrentDialog();
             await dialogCoordinator.ShowMessageAsync(this, "Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
             Singleton<Event>.GetInstance()?.InvolveClearBasket();
         }

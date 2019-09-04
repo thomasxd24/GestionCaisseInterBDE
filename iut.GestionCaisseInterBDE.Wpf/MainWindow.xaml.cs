@@ -20,6 +20,7 @@ using iut.GestionCaisseInterBDE.Persistance;
 using iut.GestionCaisseInterBDE.Wpf.Views.UserControls;
 using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Views;
+using iut.GestionCaisseInterBDE.Wpf.Views.Windows;
 using MahApps.Metro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -74,7 +75,6 @@ namespace iut.GestionCaisseInterBDE.Wpf
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("fr-FR");
             InitializeComponent();
             var db = new SQLPersistance(new SQLiteDatabase($"Data Source={System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}/bde.db"));
-            //var db = new EFPersistance();
             Singleton<IPersistance>.SetInstance(db);
             Singleton<Event>.SetInstance(new Event());
             comboColors.ItemsSource = Colors;
@@ -88,10 +88,31 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         private async void Login()
         {
-            var customDialog = new CustomDialog() { Title = "Identifiez-vous" };
-            customDialog.Content = new Views.UserControls.LoginDialog(customDialog,this);
+            var status = "8=========D";
+            while (true)
+            {
+                var persistance = Singleton<IPersistance>.GetInstance();
+                LoginDialogData result = await this.ShowLoginAsync("Authentication",status , new LoginDialogSettings { ColorScheme = this.MetroDialogOptions.ColorScheme, ShouldHideUsername = false, EnablePasswordPreview = true , NegativeButtonVisibility= Visibility.Visible});
+                if (result == null)
+                {
+                    Application.Current.Shutdown();
+                    break;
+                }
 
-            await this.ShowMetroDialogAsync(customDialog);
+                    
+                User user = persistance.GetUserfromCredentials(result.Username, result.Password);
+                if (user != null)
+                {
+                    username.Content = user.Name;
+                    Singleton<User>.SetInstance(user);
+                    break;
+                }
+
+                status = "Nom d'utilisateur ou mot de passe non reconnu";
+
+
+            }
+            
 
 
         }
@@ -204,6 +225,11 @@ namespace iut.GestionCaisseInterBDE.Wpf
         private void Disco_OnClick(object sender, RoutedEventArgs e)
         {
             Login();
+        }
+
+        private void AccountBtn_OnClick(object sender, RoutedEventArgs e)
+        {
+            new AccountScreen().ShowDialog();
         }
     }
 }

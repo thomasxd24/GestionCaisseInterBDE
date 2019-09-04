@@ -90,8 +90,10 @@ namespace iut.GestionCaisseInterBDE.Models
             }
         }
 
+        public  Account Account { get; }
 
-        public Product(int id,string name,float price ,float buyPrice,string imageUrl,int stock, bool isDiscountable)
+
+        public Product(int id,string name,float price ,float buyPrice,string imageUrl,int stock, bool isDiscountable,Account acc)
         {
             this.ID = id;
             this.name = name;
@@ -101,6 +103,7 @@ namespace iut.GestionCaisseInterBDE.Models
             this.ColorTile = ColorPicker.getRandomColor();
             this.stock = stock;
             this.isDiscountable = isDiscountable;
+            this.Account = acc;
         }
        
     }

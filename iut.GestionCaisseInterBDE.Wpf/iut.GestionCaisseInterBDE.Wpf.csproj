@@ -115,6 +115,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Utilities\RelayCommand.cs" />
+    <Compile Include="ViewModel\AccountViewModel.cs" />
     <Compile Include="ViewModel\CaisseViewModel.cs" />
     <Compile Include="ViewModel\ChoiceBDEViewModel.cs" />
     <Compile Include="ViewModel\DetteViewModel.cs" />
@@ -138,6 +139,9 @@
     </Compile>
     <Compile Include="Views\UserControls\LoginDialog.xaml.cs">
       <DependentUpon>LoginDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\AccountScreen.xaml.cs">
+      <DependentUpon>AccountScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\HistorySales.xaml.cs">
       <DependentUpon>HistorySales.xaml</DependentUpon>
@@ -182,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\LoginDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AccountScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -71,6 +71,7 @@
         <Controls:WindowCommands>
             <Button x:Name="updateBtn" Content="Mise à jour" Click="updateBtn_Click"/>
             <Button x:Name="settingsBtn" Content="Réglage" Click="SettingsBtn_Click"/>
+            <Button x:Name="AccountBtn" Content="Compte" Click="AccountBtn_OnClick"/>
             <Button Content="Mode Arc en Ciel" Click="ButtonBase_OnClick"></Button>
             <Button x:Name="username" Content="Non Connecté"/>
             <Button x:Name="disco" Content="Déconnexion" Click="Disco_OnClick"/>

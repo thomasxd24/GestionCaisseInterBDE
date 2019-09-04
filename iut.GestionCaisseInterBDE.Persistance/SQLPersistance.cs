@@ -34,7 +34,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             foreach (var basketitem in t.ProductItems)
             {
                 var productID = basketitem.ItemProduct.ID;
-                db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},datetime('now'),{t.SellerUser.ID})");
+                db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},datetime('now'),{t.SellerUser.ID},{t.Account})");
             }
 
         }
@@ -76,6 +76,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             Collection<Product> products = new Collection<Product>();
             foreach (DataRow dr in dt.Rows)
             {
+                var acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
                 Product product = new Product(
                     int.Parse(dr[0].ToString()),
                     dr[1].ToString(),
@@ -83,7 +84,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
                     float.Parse(dr[3].ToString()),
                     dr[5].ToString(),
                     int.Parse(dr[4].ToString()),
-                    (bool)(int.Parse(dr[6].ToString()) != 0)
+                    (bool)(int.Parse(dr[6].ToString()) != 0),
+                    acc
                     );
                 products.Add(product);
             }
@@ -140,7 +142,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
                     numTicket = dr["idTicket"].ToString();
                     var bde = GetBDEByID(int.Parse(dr["idBDE"].ToString()));
                     var u = GetUserfromID(int.Parse(dr["idUserSeller"].ToString()));
-                    oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>(),u);
+                    var acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
+                    oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>(),u,acc);
                     var product = GetProductByID(int.Parse(dr["idProduit"].ToString()));
                     if (product == null) continue;
                     var basketItem = new BasketItem(product, int.Parse(dr["quantity"].ToString()));
@@ -159,7 +162,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
             foreach (DataRow dr in dt.Rows)
             {
                 BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
-                User u = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(),dr["isAdmin"].ToString() == "1");
+                Account acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
+                User u = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(),dr["isAdmin"].ToString() == "1", acc);
                 users.Add(u);
             }
             return users;
@@ -177,7 +181,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
             if (dt.Rows.Count == 0) return null;
             DataRow dr = dt.Rows[0];
             BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
-            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(), dr["isAdmin"].ToString() == "1");
+            Account acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
+            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(), dr["isAdmin"].ToString() == "1", acc);
             return authedUser;
         }
 
@@ -215,7 +220,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
                 { "@stock", p.Stock },
                 { "@imageurl", p.ImageURL },
                 { "@discountable", p.IsDiscountable },
-                { "@id", p.ID }
+                { "@id", p.ID },
+                {"@account",p.Account }
             };
             return m;
         }
@@ -230,7 +236,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
             if (dt.Rows.Count == 0) return null;
             DataRow dr = dt.Rows[0];
             BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
-            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(), dr["isAdmin"].ToString() == "1");
+            Account acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
+            User authedUser = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(), dr["isAdmin"].ToString() == "1", acc);
             return authedUser;
         }
 
@@ -242,6 +249,19 @@ namespace iut.GestionCaisseInterBDE.Persistance
             };
             var i = db.ExecuteCommand("DELETE FROM ligneTicket where idTicket=@id", m);
             if (i == 0) throw new Exception("Error while deleting the ticket");
+        }
+
+        public Account GetAccountFromID(int id)
+        {
+            var m = new Dictionary<string, object>()
+            {
+                {"@id",id}
+            };
+            DataTable dt = db.Select("SELECT * FROM account where id=@id", m);
+            if (dt.Rows.Count == 0) return null;
+            DataRow dr = dt.Rows[0];
+            Account acc = new Account(int.Parse(dr["id"].ToString()), dr["name"].ToString());
+            return acc;
         }
     }
 }

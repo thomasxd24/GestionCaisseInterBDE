@@ -151,7 +151,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             DeleteBasketItemCommand = new RelayCommand(DeleteBasketItem);
             this.dialogCoordinator = instance;
             this.persistance = Singleton<IPersistance>.GetInstance();
-            LoadProducts();
+            //LoadProducts();
             currEvent  = Singleton<Event>.GetInstance();
             currEvent.OnUpdateProduct += OnUpdateProduct;
             currEvent.OnClearBasket += OnClearBasket;
@@ -296,7 +296,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             var totalPrice = TotalPrice;
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
             var u = Singleton<User>.GetInstance();
-            var ticket = new Ticket(key, new DateTime(), bdeChosen, BasketItems,u);
+            var ticket = new Ticket(key, new DateTime(), bdeChosen, BasketItems,u,u.Account);
             persistance.AddTicket(ticket);
             await dialogCoordinator.HideMetroDialogAsync(this,dialog);
             await dialogCoordinator.ShowMessageAsync(this,"Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
