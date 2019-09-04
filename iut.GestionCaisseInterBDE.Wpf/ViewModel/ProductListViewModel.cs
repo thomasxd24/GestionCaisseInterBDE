@@ -32,7 +32,9 @@ namespace GestionCaisseInterBDE.ViewModel
 
         public Collection<Ticket> VenteTickets
         {
-            get { return new Collection<Ticket>(listTickets.Where(t => t.ProductItems.Any(it => it.ItemProduct.ID == SelectedProduct.ID)).ToList()); }
+            get {
+                if (listTickets.FirstOrDefault() == null) return null;
+                return new Collection<Ticket>(listTickets.Where(t => t.ProductItems.Any(it => it.ItemProduct.ID == SelectedProduct.ID)).ToList()); }
         }
 
         public bool Modifiable
@@ -180,7 +182,8 @@ namespace GestionCaisseInterBDE.ViewModel
 
         public void AddProductToList()
         {
-            var newP = new Product(999999, "", 0, 0, "", 0, false,null);
+            var user = Singleton<User>.GetInstance();
+            var newP = new Product(999999, "", 0, 0, "", 0, false,user.Account);
             ProductsView.Add(newP);
             SelectedProduct = newP;
             Modifiable = true;

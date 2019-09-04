@@ -24,13 +24,16 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public string ImageURL { get; }
 
+        public Account Account { get; }
 
-        public BDE(int id,string name,string departement,string imageURL)
+
+        public BDE(int id,string name,string departement,string imageURL,Account acc)
         {
             this.ID = id;
             this.Name = name;
             this.Departement = departement;
             this.ImageURL = imageURL;
+            this.Account = acc;
         }
     }
 }

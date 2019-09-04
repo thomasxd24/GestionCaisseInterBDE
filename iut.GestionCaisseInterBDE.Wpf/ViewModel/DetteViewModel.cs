@@ -64,7 +64,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public IEnumerable<Ticket> ListTickets
         {
-            get { return listTickets.Where(c => c.DateCreated >= fromDateTime
+            get { return listTickets == null? null: listTickets.Where(c => c.DateCreated >= fromDateTime
                                           && c.DateCreated <= toDateTime && c.BDESale.ID == selectedBDE?.ID).ToList(); }
         }
 
@@ -78,8 +78,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         public DetteViewModel()
         {
             persistance = Singleton<IPersistance>.GetInstance();
-            listBDE = new ObservableCollection<BDE>(persistance.GetBDEList());
-            listTickets = persistance.GetTicketsDB();
+           listBDE = new ObservableCollection<BDE>(persistance.GetBDEList());
+            //listTickets = persistance.GetTicketsDB();
+            listTickets = null;
             listUsers = persistance.GetUsersDB();
         }
 

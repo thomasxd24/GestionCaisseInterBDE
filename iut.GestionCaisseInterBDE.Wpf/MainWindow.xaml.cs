@@ -91,7 +91,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
             var status = "8=========D";
             while (true)
             {
-                var persistance = Singleton<IPersistance>.GetInstance();
+                var persistance = Singleton<IPersistance>.GetInstance();    
                 LoginDialogData result = await this.ShowLoginAsync("Authentication",status , new LoginDialogSettings { ColorScheme = this.MetroDialogOptions.ColorScheme, ShouldHideUsername = false, EnablePasswordPreview = true , NegativeButtonVisibility= Visibility.Visible});
                 if (result == null)
                 {
@@ -105,6 +105,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
                 {
                     username.Content = user.Name;
                     Singleton<User>.SetInstance(user);
+                    Singleton<Event>.GetInstance().InvolveUpdateProduct();
                     break;
                 }
 

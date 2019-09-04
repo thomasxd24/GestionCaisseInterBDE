@@ -49,7 +49,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
             DataTable dt = db.Select("SELECT * FROM bde");
             foreach (DataRow dr in dt.Rows)
             {
-                BDE bde = new BDE(int.Parse(dr["idBDE"].ToString()), dr["name"].ToString(), dr["departement"].ToString(), dr["imageUrl"].ToString());
+                var acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
+                BDE bde = new BDE(int.Parse(dr["idBDE"].ToString()), dr["name"].ToString(), dr["departement"].ToString(), dr["imageUrl"].ToString(),acc);
                 bdeList.Add(bde);
             }
             return bdeList;
@@ -71,8 +72,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
 
         public Collection<Product> GetProductList()
         {
-
-            DataTable dt = db.Select("SELECT * FROM products");
+            var user = Singleton<User>.GetInstance();
+            DataTable dt = db.Select($"SELECT * FROM products WHERE accountid={user.Account.ID}");
             Collection<Product> products = new Collection<Product>();
             foreach (DataRow dr in dt.Rows)
             {
@@ -124,7 +125,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
         public Collection<Ticket> GetTicketsDB()
         {
             var ticketList = new Collection<Ticket>();
-            DataTable dt = db.Select("SELECT * FROM ligneTicket ORDER BY idTicket ASC");
+            var user = Singleton<User>.GetInstance();
+            DataTable dt = db.Select($"SELECT * FROM ligneTicket WHERE accountid={user.Account.ID} ORDER BY idTicket ASC");
             Ticket oneTicket = null;
             string numTicket = "";
             foreach (DataRow dr in dt.Rows)
@@ -201,7 +203,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
         public int AddProductToDB(Product p)
         {
             var m = getDictionaryFromProduct(p);
-            var rowChanged = db.ExecuteCommand($"INSERT INTO products (nameProduct,prix,prixAchat,stock,imageUrl,isDiscountable) VALUES (@name, @price, @buyprice,@stock,@imageurl,@discountable)", m);
+            var rowChanged = db.ExecuteCommand($"INSERT INTO products (nameProduct,prix,prixAchat,stock,imageUrl,isDiscountable,accountid) VALUES (@name, @price, @buyprice,@stock,@imageurl,@discountable,@account)", m);
             if (rowChanged == 0) throw new Exception("Insertion failed");
             DataTable dt = db.Select("SELECT * FROM products where nameProduct = @name and prix = @price", m);
             if (dt.Rows.Count == 0) throw new Exception("Insertion failed");
@@ -221,7 +223,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
                 { "@imageurl", p.ImageURL },
                 { "@discountable", p.IsDiscountable },
                 { "@id", p.ID },
-                {"@account",p.Account }
+                {"@account",p.Account.ID }
             };
             return m;
         }
