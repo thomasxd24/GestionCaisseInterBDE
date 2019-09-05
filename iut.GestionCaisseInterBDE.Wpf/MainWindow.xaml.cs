@@ -106,6 +106,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
                     username.Content = user.Name;
                     Singleton<User>.SetInstance(user);
                     Singleton<Event>.GetInstance().InvolveUpdateProduct();
+                    Singleton<Event>.GetInstance().InvolveChangeUser();
                     break;
                 }
 

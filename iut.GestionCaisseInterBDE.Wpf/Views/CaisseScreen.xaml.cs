@@ -40,7 +40,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views
             window = Application.Current.MainWindow as MainWindow;
 
             InitializeComponent();
-            var dc = new CaisseViewModel(DialogCoordinator.Instance);
+            var dc = new CaisseViewModel(DialogCoordinator.Instance,window);
             this.DataContext = dc;
 
         }

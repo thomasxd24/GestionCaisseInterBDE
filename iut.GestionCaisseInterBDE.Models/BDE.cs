@@ -35,5 +35,24 @@ namespace iut.GestionCaisseInterBDE.Models
             this.ImageURL = imageURL;
             this.Account = acc;
         }
+
+        public override bool Equals(Object obj)
+        {
+            //Check for null and compare run-time types.
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+               BDE bde = (BDE)obj;
+                return this.ID == bde.ID;
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

@@ -44,11 +44,11 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label>Theme:</Label>
-                        <ComboBox Width="100" ItemsSource="{Binding Window.Themes , ElementName=root}" SelectedItem="{Binding SelectedUser.Theme}"></ComboBox>
+                        <ComboBox Width="100" ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedUser.Theme}"></ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label>Accent:</Label>
-                        <ComboBox Width="100" ItemsSource="{Binding Window.Colors , ElementName=root}" SelectedItem="{Binding SelectedUser.Style}"></ComboBox>
+                        <ComboBox Width="100" ItemsSource="{Binding Accents}" SelectedItem="{Binding SelectedUser.Accent}"></ComboBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="5">
                         <Label>BDE:</Label>

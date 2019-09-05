@@ -25,6 +25,8 @@ namespace iut.GestionCaisseInterBDE.Models
 
         public Account Account { get; }
 
+        public float Reduction { get; }
+
 
         [NotMapped]
         public string TotalPaid
@@ -35,11 +37,12 @@ namespace iut.GestionCaisseInterBDE.Models
                 {
                     totalPaid = totalPaid + basketItem.TotalPrice;
                 }
+                totalPaid = totalPaid - Reduction;
                 return totalPaid.ToString("C2");
             }
         }
 
-        public Ticket(string idTicket, DateTime dateCreated, BDE bde, Collection<BasketItem> productItems, User u,Account acc)
+        public Ticket(string idTicket, DateTime dateCreated, BDE bde, Collection<BasketItem> productItems, User u,Account acc,float reduc)
         {
             this.IDTicket = idTicket;
             this.DateCreated = dateCreated;
@@ -47,6 +50,7 @@ namespace iut.GestionCaisseInterBDE.Models
             this.ProductItems = productItems;
             this.SellerUser = u;
             this.Account = acc;
+            this.Reduction = reduc;
         }
 
 

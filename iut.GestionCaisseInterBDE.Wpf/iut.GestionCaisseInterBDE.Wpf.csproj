@@ -143,6 +143,9 @@
     <Compile Include="Views\Windows\AccountScreen.xaml.cs">
       <DependentUpon>AccountScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddUserScreen.xaml.cs">
+      <DependentUpon>AddUserScreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\HistorySales.xaml.cs">
       <DependentUpon>HistorySales.xaml</DependentUpon>
     </Compile>
@@ -190,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\AccountScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AddUserScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

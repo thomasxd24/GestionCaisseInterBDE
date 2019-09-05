@@ -1,0 +1,32 @@
+﻿<mah:MetroWindow x:Class="iut.GestionCaisseInterBDE.Wpf.Views.Windows.AddUserScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iut.GestionCaisseInterBDE.Wpf.Views.Windows"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="AddUserScreen" Height="200" Width="500">
+    <StackPanel Orientation="Vertical">
+        <DockPanel>
+            <Label DockPanel.Dock="Left">Nom</Label>
+            <TextBox x:Name="nameTB"></TextBox>
+        </DockPanel>
+        <DockPanel>
+            <Label DockPanel.Dock="Left">Username</Label>
+            <TextBox x:Name="usernameTB"></TextBox>
+        </DockPanel>
+        <DockPanel>
+            <Label DockPanel.Dock="Left">Mot de passe (en MD5)</Label>
+           
+            <TextBlock DockPanel.Dock="Bottom">           
+    <Hyperlink NavigateUri="https://www.md5online.org/" RequestNavigate="Hyperlink_RequestNavigate">
+        Click here
+    </Hyperlink> pour generer un hash md5 a partir de la mot de passe clair
+            </TextBlock>
+            <TextBox x:Name="md5TB"></TextBox>
+        </DockPanel>
+        <Button x:Name="submitBtn" Click="SubmitBtn_Click">C'est bon</Button>
+
+    </StackPanel>
+</mah:MetroWindow>

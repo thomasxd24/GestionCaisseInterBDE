@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -34,7 +35,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             foreach (var basketitem in t.ProductItems)
             {
                 var productID = basketitem.ItemProduct.ID;
-                db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},datetime('now'),{t.SellerUser.ID},{t.Account})");
+                db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},datetime('now'),{t.SellerUser.ID},{t.Account.ID},{t.Reduction.ToString("F", CultureInfo.InvariantCulture)})");
             }
 
         }
@@ -46,7 +47,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
         public Collection<BDE> GetBDEList()
         {
             var bdeList = new Collection<BDE>();
-            DataTable dt = db.Select("SELECT * FROM bde");
+            var user = Singleton<User>.GetInstance();
+            DataTable dt = db.Select($"SELECT * FROM bde");
             foreach (DataRow dr in dt.Rows)
             {
                 var acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
@@ -145,7 +147,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
                     var bde = GetBDEByID(int.Parse(dr["idBDE"].ToString()));
                     var u = GetUserfromID(int.Parse(dr["idUserSeller"].ToString()));
                     var acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
-                    oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>(),u,acc);
+                    oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>(),u,acc,float.Parse(dr["reduction"].ToString()));
                     var product = GetProductByID(int.Parse(dr["idProduit"].ToString()));
                     if (product == null) continue;
                     var basketItem = new BasketItem(product, int.Parse(dr["quantity"].ToString()));

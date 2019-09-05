@@ -15,6 +15,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
     public class DetteViewModel : BaseViewModel
     {
         private ObservableCollection<BDE> listBDE;
+        public RelayCommand ShowAllCommand { get; private set; }
         private IPersistance persistance;
 
         public ObservableCollection<BDE> ListBDE
@@ -26,6 +27,40 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         }
 
         private BDE selectedBDE;
+        public float SaleTotal
+        {
+            get
+            {
+                if (Singleton<User>.GetInstance() == null) return 0;
+                return ListTickets.Sum(t => float.Parse(t.TotalPaid.Replace(" €", string.Empty)));
+            }
+        }
+
+        public float ProfitTotal
+        {
+            get
+            {
+                if (Singleton<User>.GetInstance() == null) return 0;
+                float totalBuyPrice = 0;
+                foreach (var ticket in ListTickets)
+                {
+                    foreach (var item in ticket.ProductItems)
+                    {
+                        totalBuyPrice = totalBuyPrice + (item.ItemProduct.BuyPrice * item.Quantity);
+                    }
+                }
+                return SaleTotal - totalBuyPrice;
+            }
+        }
+
+        public float MargeTotal
+        {
+            get
+            {
+                if (Singleton<User>.GetInstance() == null) return 0;
+                return ProfitTotal/ SaleTotal;
+            }
+        }
 
         public BDE SelectedBDE
         {
@@ -34,6 +69,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
                 OnPropertyChanged("SelectedBDE");
                 OnPropertyChanged("ListTickets");
                 OnPropertyChanged("ListMembre");
+                OnPropertyChanged("SaleTotal");
+                OnPropertyChanged("ProfitTotal");
+                OnPropertyChanged("MargeTotal");
             }
         }
 
@@ -46,9 +84,12 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
                 fromDateTime = value;
                 OnPropertyChanged();
                 OnPropertyChanged("ListTickets");
+                OnPropertyChanged("SaleTotal");
+                OnPropertyChanged("ProfitTotal");
+                OnPropertyChanged("MargeTotal");
             }
         }
-        private DateTime toDateTime = DateTime.Today.AddDays(1);
+        private DateTime toDateTime = DateTime.Today;
         public DateTime ToDateTime
         {
             get { return toDateTime; }
@@ -57,31 +98,51 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
                 toDateTime = value;
                 OnPropertyChanged();
                 OnPropertyChanged("ListTickets");
+                OnPropertyChanged("SaleTotal");
+                OnPropertyChanged("ProfitTotal");
+                OnPropertyChanged("MargeTotal");
             }
         }
 
         private IEnumerable<Ticket> listTickets;
-
         public IEnumerable<Ticket> ListTickets
         {
-            get { return listTickets == null? null: listTickets.Where(c => c.DateCreated >= fromDateTime
-                                          && c.DateCreated <= toDateTime && c.BDESale.ID == selectedBDE?.ID).ToList(); }
+            get {if(selectedBDE == null)
+                {
+                    return listTickets?.Where(c => c.DateCreated >= fromDateTime.AddDays(-1)
+                                          && c.DateCreated <= toDateTime.AddDays(+1) ).ToList(); ;
+                }
+                return listTickets?.Where(c => c.DateCreated >= fromDateTime.AddDays(-1)
+                                          && c.DateCreated <= toDateTime.AddDays(+1) && c.BDESale.ID == selectedBDE?.ID).ToList(); }
         }
 
-        private IEnumerable<User> listUsers;
-        public IEnumerable<User> ListMembre
-        {
-            get { return listUsers.Where(u => u.BDE.ID == selectedBDE?.ID).ToList(); }
-        }
+
 
 
         public DetteViewModel()
         {
             persistance = Singleton<IPersistance>.GetInstance();
-           listBDE = new ObservableCollection<BDE>(persistance.GetBDEList());
-            //listTickets = persistance.GetTicketsDB();
-            listTickets = null;
-            listUsers = persistance.GetUsersDB();
+            Singleton<Event>.GetInstance().OnChangeUser += updateInfo;
+            ShowAllCommand = new RelayCommand(ShowAll);
+        }
+        private void updateInfo(object sender)
+        {
+            ListBDE = new ObservableCollection<BDE>(persistance.GetBDEList().Where(b=>b.Account.ID == Singleton<User>.GetInstance().Account.ID).ToList());
+            listTickets = persistance.GetTicketsDB();
+            selectedBDE = null;
+            OnPropertyChanged("ListTickets");
+            OnPropertyChanged("SaleTotal");
+            OnPropertyChanged("ProfitTotal");
+            OnPropertyChanged("MargeTotal");
+        }
+
+        private void ShowAll()
+        {
+            selectedBDE = null;
+            OnPropertyChanged("ListTickets");
+            OnPropertyChanged("SaleTotal");
+            OnPropertyChanged("ProfitTotal");
+            OnPropertyChanged("MargeTotal");
         }
 
 

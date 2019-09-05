@@ -11,6 +11,7 @@ namespace iut.GestionCaisseInterBDE.Utilities
         public delegate void MyEventHandler(object sender);
         public event MyEventHandler OnUpdateProduct;
         public event MyEventHandler OnClearBasket;
+        public event MyEventHandler OnChangeUser;
 
         public void InvolveUpdateProduct()
         {
@@ -20,6 +21,11 @@ namespace iut.GestionCaisseInterBDE.Utilities
         public void InvolveClearBasket()
         {
             OnClearBasket?.Invoke(this);
+        }
+
+        public void InvolveChangeUser()
+        {
+            OnChangeUser?.Invoke(this);
         }
 
     }

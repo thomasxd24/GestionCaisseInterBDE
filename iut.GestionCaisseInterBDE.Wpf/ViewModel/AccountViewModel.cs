@@ -8,6 +8,7 @@ using iut.GestionCaisseInterBDE.Models;
 using iut.GestionCaisseInterBDE.Persistance;
 using iut.GestionCaisseInterBDE.Utilities;
 using iut.GestionCaisseInterBDE.Wpf.Utilities;
+using iut.GestionCaisseInterBDE.Wpf.Views.Windows;
 
 namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 {
@@ -15,6 +16,50 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
     {
         private User selectedUser;
         private IPersistance persistance;
+        private IEnumerable<String> accents => new Collection<string>()
+        {
+            "Red",
+            "Green",
+            "Blue",
+            "Purple",
+            "Orange",
+            "Lime",
+            "Emerald",
+            "Teal",
+            "Cyan",
+            "Cobalt",
+            "Indigo",
+            "Violet",
+            "Pink",
+            "Magenta",
+            "Crimson",
+            "Amber",
+            "Yellow",
+            "Brown",
+            "Olive",
+            "Steel",
+            "Mauve",
+            "Taupe",
+            "Sienna"
+
+        };
+        private IEnumerable<String> themes => new Collection<string>()
+        {
+            "BaseDark",
+            "BaseLight"
+        };
+
+        public IEnumerable<String> Themes
+        { get
+            { return themes; }
+        }
+
+        public IEnumerable<String> Accents
+        {
+            get
+            { return accents; }
+        }
+        public IEnumerable<BDE> BDE;
 
         public RelayCommand AddUserCommand { get; private set; }
         public User SelectedUser
@@ -51,9 +96,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public void AddUser()
         {
-            var newU = new User(99999, "", "", null, "", "", "",false,null);
-            ListUsers.Add(newU);
-            SelectedUser = newU;
+            new AddUserScreen().ShowDialog();
         }
     }
 }

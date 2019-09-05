@@ -140,9 +140,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
 
 
+        private MainWindow main;
 
-
-        public CaisseViewModel(IDialogCoordinator instance)
+        public CaisseViewModel(IDialogCoordinator instance,MainWindow main)
         {
             
             BasketItems = new ObservableCollection<BasketItem>();
@@ -151,6 +151,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             DeleteBasketItemCommand = new RelayCommand(DeleteBasketItem);
             this.dialogCoordinator = instance;
             this.persistance = Singleton<IPersistance>.GetInstance();
+            this.main = main;
             //LoadProducts();
             currEvent  = Singleton<Event>.GetInstance();
             currEvent.OnUpdateProduct += OnUpdateProduct;
@@ -182,7 +183,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         private void startEncaisse()
         {
             var dialog = new CustomDialog();
-            var content = new ChoiceBDEUC(dialog,BasketItems);
+            var content = new ChoiceBDEUC(dialog,BasketItems, ReductionPrice*-1);
             dialog.Content = content;
             dialogCoordinator.ShowMetroDialogAsync(this, dialog);
         }
@@ -296,10 +297,10 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             var totalPrice = TotalPrice;
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
             var u = Singleton<User>.GetInstance();
-            var ticket = new Ticket(key, new DateTime(), bdeChosen, BasketItems,u,u.Account);
+            var ticket = new Ticket(key, new DateTime(), bdeChosen, BasketItems,u,u.Account, reductionQuantity * 0.2f);
             persistance.AddTicket(ticket);
             await dialogCoordinator.HideMetroDialogAsync(this,dialog);
-            await dialogCoordinator.ShowMessageAsync(this,"Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
+            await main.ShowMessageAsync("Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
             ClearBasket();
         }
 

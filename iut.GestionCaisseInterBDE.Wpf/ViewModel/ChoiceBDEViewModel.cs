@@ -22,19 +22,22 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
         private IPersistance persistance;
 
         private IDialogCoordinator dialogCoordinator;
-
+        private float reduction;
         private Collection<BasketItem> baskets;
         private IDialog dialog;
+        private MainWindow main;
 
-        public ChoiceBDEViewModel(IDialogCoordinator instance, Collection<BasketItem> items, IDialog dialog)
+        public ChoiceBDEViewModel(IDialogCoordinator instance, Collection<BasketItem> items, IDialog dialog,MainWindow main,float reduc)
         {
             persistance = Singleton<IPersistance>.GetInstance();
             this.dialog = dialog;
-            ListBDE = persistance.GetBDEList();
+            ListBDE = new Collection<BDE>(persistance.GetBDEList().Where(b=> b.Account.ID == Singleton<User>.GetInstance().Account.ID).ToList<BDE>());
             PickBDE = new RelayCommand<BDE>(addBasketToDB);
             dialogCoordinator = instance;
             CancelChoice = new RelayCommand(cancelChoice);
             baskets = items;
+            this.main = main;
+            this.reduction = reduc;
         }
 
         private async void addBasketToDB(BDE bdeChosen)
@@ -42,10 +45,10 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             var totalPrice = baskets.Sum(items => items.quantity * items.ItemProduct.Price);
             var key = DateTime.Now.ToString().GetHashCode().ToString("x");
             var u = Singleton<User>.GetInstance();
-            var ticket = new Ticket(key, new DateTime(), bdeChosen, baskets, u,u.Account);
+            var ticket = new Ticket(key, new DateTime(), bdeChosen, baskets, u,u.Account,reduction);
             persistance.AddTicket(ticket);
             await dialog.HideCurrentDialog();
-            await dialogCoordinator.ShowMessageAsync(this, "Encaissement Réussi", $"Un montant de {totalPrice.ToString("C2")} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
+            await main.ShowMessageAsync("Encaissement Réussi", $"Un montant de {ticket.TotalPaid} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
             Singleton<Event>.GetInstance()?.InvolveClearBasket();
         }
 

@@ -14,43 +14,44 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="0" ItemsSource="{Binding ListBDE}" SelectedItem="{Binding SelectedBDE}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel>
-                        <Image DockPanel.Dock="Left" Width="70" Height="70" Source="{Binding ImageURL}"  />
-                        <Label DockPanel.Dock="Left" Content="{Binding Name}" VerticalAlignment="Center" FontSize="20" FontFamily="{StaticResource PTFont}"></Label>
+        <DockPanel Grid.Column="0">
+            <Button DockPanel.Dock="Top" Command="{Binding ShowAllCommand}">Afficher Tout
+                </Button>
+            <ListView ItemsSource="{Binding ListBDE}" SelectedItem="{Binding SelectedBDE}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image DockPanel.Dock="Left" Width="70" Height="70" Source="{Binding ImageURL}"  />
+                            <Label DockPanel.Dock="Left" Content="{Binding Name}" VerticalAlignment="Center" FontSize="20" FontFamily="{StaticResource PTFont}"></Label>
 
 
-                    </DockPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </DockPanel>
+        
         <DockPanel Grid.Column="1">
 
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Label FontSize="25" DockPanel.Dock="Right">Ventes:</Label>
-                    <Label FontSize="25" DockPanel.Dock="Right">32.50</Label>
-                </StackPanel>
+                <DockPanel DockPanel.Dock="Top">
+                    <Label FontSize="25" DockPanel.Dock="Left">Ventes:</Label>
+                    <Label FontSize="25" DockPanel.Dock="Left" Content="{Binding SaleTotal}" ContentStringFormat="C2"></Label>
+
+                    <Label FontSize="25" DockPanel.Dock="Left">Benefice:</Label>
+                    <Label FontSize="25" DockPanel.Dock="Left" Content="{Binding ProfitTotal}" ContentStringFormat="C2"></Label>
+
+                    <Label FontSize="25" DockPanel.Dock="Left">Marge:</Label>
+                    <Label FontSize="25" DockPanel.Dock="Left" Content="{Binding MargeTotal}" ContentStringFormat="P2"></Label>
+                </DockPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
 
                         <ColumnDefinition/>
-                        <ColumnDefinition Width="3*"/>
 
                     </Grid.ColumnDefinitions>
+                    
                     <DockPanel>
-                        <Label DockPanel.Dock="Top" FontSize="18">Liste des membres</Label>
-                        <ListView ItemsSource="{Binding ListMembre}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Label Content="{Binding Name}"></Label>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </DockPanel>
-                    <DockPanel Grid.Column="1">
                         <Grid DockPanel.Dock="Top" VerticalAlignment="Top" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -63,9 +64,11 @@
                         </Grid>
                         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding ListTickets}" IsReadOnly="True">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="1.2*"/>
+                                <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="*"/>
                                 <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding BDESale.Name}"  Header="BDE Vendu" Width="*"/>
                                 <DataGridTextColumn Binding="{Binding SellerUser.Name}"  Header="Vendeur" Width="*"/>
+                                <DataGridTextColumn Binding="{Binding Reduction}"  Header="Reduction" Width="*"/>
                                 <DataGridTextColumn Binding="{Binding TotalPaid}"  Header="Total" Width="*">
                                 </DataGridTextColumn>
                             </DataGrid.Columns>

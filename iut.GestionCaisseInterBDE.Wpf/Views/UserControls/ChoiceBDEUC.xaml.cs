@@ -27,11 +27,12 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.UserControls
     {
         BaseMetroDialog dialog;
         MainWindow main;
-        public ChoiceBDEUC(BaseMetroDialog dialog,  Collection<BasketItem> items)
+        public ChoiceBDEUC(BaseMetroDialog dialog,  Collection<BasketItem> items,float reduction)
         {
-            DataContext = new ChoiceBDEViewModel(DialogCoordinator.Instance, items ,this);
-            this.dialog = dialog;
             this.main = Application.Current.MainWindow as MainWindow;
+            DataContext = new ChoiceBDEViewModel(DialogCoordinator.Instance, items ,this,this.main,reduction);
+            this.dialog = dialog;
+            
 
             InitializeComponent();
 
