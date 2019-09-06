@@ -70,5 +70,10 @@ namespace iut.GestionCaisseInterBDE.Wpf.Views.Windows
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            md5TB.Text = Crypto.CalculateMD5Hash(PasswordBox.Password);
+        }
     }
 }
