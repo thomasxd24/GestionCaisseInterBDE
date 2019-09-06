@@ -26,6 +26,10 @@
             </TextBlock>
             <TextBox x:Name="md5TB"></TextBox>
         </DockPanel>
+        <DockPanel>
+            <Label DockPanel.Dock="Left">BDE</Label>
+            <ComboBox ItemsSource="{Binding BDE}" SelectedItem="{Binding SelectedBDE}"></ComboBox>
+        </DockPanel>
         <Button x:Name="submitBtn" Click="SubmitBtn_Click">C'est bon</Button>
 
     </StackPanel>

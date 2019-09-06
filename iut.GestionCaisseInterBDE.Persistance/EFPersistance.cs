@@ -144,5 +144,10 @@ namespace iut.GestionCaisseInterBDE.Persistance
         {
             throw new NotImplementedException();
         }
+
+        public void AddUser(User u)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

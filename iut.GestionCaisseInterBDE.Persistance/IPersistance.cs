@@ -10,6 +10,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
     {
         void AddTicket(Ticket t);
 
+        void AddUser(User u);
+
         Collection<BDE> GetBDEList();
 
         BDE GetBDEByID(int id);

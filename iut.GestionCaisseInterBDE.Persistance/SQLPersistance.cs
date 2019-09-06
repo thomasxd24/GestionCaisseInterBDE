@@ -72,6 +72,13 @@ namespace iut.GestionCaisseInterBDE.Persistance
             return bde;
         }
 
+
+        public void AddUser(User u)
+        {
+            db.ExecuteCommand($"INSERT INTO users (name,username,md5password,bdeID,theme,accent,isAdmin,accountid) values('{u.Name}','{u.Username}','{u.Md5password}',{u.BDE.ID},'{u.Theme}','{u.Accent}',{u.isAdmin},{u.Account.ID})");
+
+        }
+
         public Collection<Product> GetProductList()
         {
             var user = Singleton<User>.GetInstance();
