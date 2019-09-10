@@ -50,6 +50,7 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             await dialog.HideCurrentDialog();
             await main.ShowMessageAsync("Encaissement Réussi", $"Un montant de {ticket.TotalPaid} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
             Singleton<Event>.GetInstance()?.InvolveClearBasket();
+            Singleton<Event>.GetInstance()?.InvolveUpdateProduct();
         }
 
         private void cancelChoice()

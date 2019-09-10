@@ -36,6 +36,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
             {
                 var productID = basketitem.ItemProduct.ID;
                 db.ExecuteCommand($"INSERT INTO ligneTicket values('{t.IDTicket}','{productID}','{bdeID}',{basketitem.Quantity},datetime('now'),{t.SellerUser.ID},{t.Account.ID},{t.Reduction.ToString("F", CultureInfo.InvariantCulture)})");
+                db.ExecuteCommand($"UPDATE products SET stock={basketitem.itemProduct.Stock - basketitem.quantity} where idProduct={basketitem.itemProduct.ID}");
+
             }
 
         }
