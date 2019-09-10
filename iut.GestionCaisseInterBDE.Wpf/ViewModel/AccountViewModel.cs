@@ -12,7 +12,7 @@ using iut.GestionCaisseInterBDE.Wpf.Views.Windows;
 
 namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 {
-    class AccountViewModel: BaseViewModel
+    public class AccountViewModel: BaseViewModel
     {
         private User selectedUser;
         private IPersistance persistance;
@@ -59,7 +59,6 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             get
             { return accents; }
         }
-        public IEnumerable<BDE> BDE;
 
         public RelayCommand AddUserCommand { get; private set; }
         public User SelectedUser
@@ -85,7 +84,13 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public ObservableCollection<User> ListUsers { get; private set; }
 
-        public ObservableCollection<BDE> ListBDE => new ObservableCollection<BDE>(Singleton<IPersistance>.GetInstance().GetBDEList());
+        public ObservableCollection<BDE> ListBDE
+        {
+            get
+            {
+                return new ObservableCollection<BDE>(Singleton<IPersistance>.GetInstance().GetBDEList());
+            }
+        }
 
         public AccountViewModel()
         {
@@ -96,7 +101,13 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
         public void AddUser()
         {
-            new AddUserScreen().ShowDialog();
+            new AddUserScreen(ListBDE,this).ShowDialog();
+        }
+
+        public void refreshUsers()
+        {
+            ListUsers = new ObservableCollection<User>(Singleton<IPersistance>.GetInstance().GetUsersDB());
+            OnPropertyChanged("ListUsers");
         }
     }
 }

@@ -17,14 +17,16 @@
             <TextBox x:Name="usernameTB"></TextBox>
         </DockPanel>
         <DockPanel>
-            <Label DockPanel.Dock="Left">Mot de passe (en MD5)</Label>
+            
            
-            <TextBlock DockPanel.Dock="Bottom">           
-    <Hyperlink NavigateUri="https://www.md5online.org/" RequestNavigate="Hyperlink_RequestNavigate">
-        Click here
-    </Hyperlink> pour generer un hash md5 a partir de la mot de passe clair
-            </TextBlock>
-            <TextBox x:Name="md5TB"></TextBox>
+            <TextBox x:Name="md5TB" DockPanel.Dock="Bottom" IsReadOnly="True"></TextBox>
+            <Label DockPanel.Dock="Left">Mot de passe (en MD5)</Label>
+            <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_OnPasswordChanged"></PasswordBox>
+            
+        </DockPanel>
+        <DockPanel>
+            <Label DockPanel.Dock="Left">BDE</Label>
+            <ComboBox ItemsSource="{Binding BDE}" SelectedItem="{Binding SelectedBDE}"></ComboBox>
         </DockPanel>
         <Button x:Name="submitBtn" Click="SubmitBtn_Click">C'est bon</Button>
 

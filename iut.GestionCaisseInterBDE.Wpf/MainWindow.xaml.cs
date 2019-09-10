@@ -104,6 +104,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
                 if (user != null)
                 {
                     username.Content = user.Name;
+                    ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(user.Accent),ThemeManager.GetAppTheme(user.Theme));
                     Singleton<User>.SetInstance(user);
                     Singleton<Event>.GetInstance().InvolveUpdateProduct();
                     Singleton<Event>.GetInstance().InvolveChangeUser();
