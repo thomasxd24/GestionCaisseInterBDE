@@ -5,6 +5,7 @@ using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,6 +146,35 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             OnPropertyChanged("MargeTotal");
         }
 
+        private void GenerateCSV()
+        {
+            string fileName = @"hi.csv";
+
+            try
+            {
+                // Check if file already exists. If yes, delete it.     
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
+                // Create a new file     
+                using (StreamWriter sw = File.CreateText(fileName))
+                {
+                    //sw.WriteLine("New file created: {0}", DateTime.Now.ToString());
+                    //sw.WriteLine("Author: Mahesh Chand");
+                    //sw.WriteLine("Add one more line ");
+                    //sw.WriteLine("Add one more line ");
+                    //sw.WriteLine("Done! ");
+                }
+
+                // Write file contents on console.     
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.ToString());
+            }
+        }
 
 
     }
