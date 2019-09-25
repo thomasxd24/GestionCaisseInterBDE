@@ -88,8 +88,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         private async void Login()
         {
-
-            var status = "8=========D";
+            var status = "8=====D - - - --- -  (O)   - - - --- - O=======8";
             while (true)
             {
                 var persistance = Singleton<IPersistance>.GetInstance();    
