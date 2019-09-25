@@ -137,6 +137,8 @@ namespace iut.GestionCaisseInterBDE.Persistance
         {
             var ticketList = new Collection<Ticket>();
             var user = Singleton<User>.GetInstance();
+            Collection<Product> listProducts = GetProductList();
+            Collection<BDE> bdes = GetBDEList();
             DataTable dt = db.Select($"SELECT * FROM ligneTicket WHERE accountid={user.Account.ID} ORDER BY idTicket ASC");
             Ticket oneTicket = null;
             string numTicket = "";
@@ -144,7 +146,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             {
                 if (numTicket == dr["idTicket"].ToString())
                 {
-                    var product = GetProductByID(int.Parse(dr["idProduit"].ToString()));
+                    var product = listProducts.Where(p=>p.ID == int.Parse(dr["idProduit"].ToString())).FirstOrDefault();
                     if (product == null) continue;
                     var basketItem = new BasketItem(product, int.Parse(dr["quantity"].ToString()));
                     oneTicket.ProductItems.Add(basketItem);
@@ -153,11 +155,11 @@ namespace iut.GestionCaisseInterBDE.Persistance
                 {
                     if (oneTicket != null) ticketList.Add(oneTicket);
                     numTicket = dr["idTicket"].ToString();
-                    var bde = GetBDEByID(int.Parse(dr["idBDE"].ToString()));
+                    var bde = bdes.Where(b=> b.ID == int.Parse(dr["idBDE"].ToString())).FirstOrDefault();
                     var u = GetUserfromID(int.Parse(dr["idUserSeller"].ToString()));
                     var acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
                     oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>(),u,acc,float.Parse(dr["reduction"].ToString()));
-                    var product = GetProductByID(int.Parse(dr["idProduit"].ToString()));
+                    var product = listProducts.Where(p => p.ID == int.Parse(dr["idProduit"].ToString())).FirstOrDefault();
                     if (product == null) continue;
                     var basketItem = new BasketItem(product, int.Parse(dr["quantity"].ToString()));
                     oneTicket.ProductItems.Add(basketItem);
