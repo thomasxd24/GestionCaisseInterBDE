@@ -48,9 +48,43 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             var ticket = new Ticket(key, new DateTime(), bdeChosen, baskets, u,u.Account,reduction);
             persistance.AddTicket(ticket);
             await dialog.HideCurrentDialog();
-            await main.ShowMessageAsync("Encaissement Réussi", $"Un montant de {ticket.TotalPaid} a été encaissé au {bdeChosen.Name} avec le ticket {key}");
+            var mySettings = new MetroDialogSettings()
+            {
+                
+                AffirmativeButtonText = "Deconnexion",
+                NegativeButtonText = "Retour au vente",
+                AnimateShow = true,
+                AnimateHide = true,
+            };
+            var controller = await main.ShowProgressAsync("Encaissement Réussi", $"\nUn montant de {ticket.TotalPaid} a été encaissé au {bdeChosen.Name} avec le ticket {key}\n\nAppuyez sur 'Retour au vente'. Sinon dans 10 seconds, vous allez etre deconnecter.", settings: mySettings);
+            controller.SetCancelable(true);
+            double i = 0.0;
+            while (i < 100.0)
+            {
+                double val = (i / 100.0) ;
+                controller.SetProgress(val);
+                
+
+                if (controller.IsCanceled)
+                    break; //canceled progressdialog auto closes.
+
+                i += 1.0;
+
+                await Task.Delay(100);
+            }
+
+            await controller.CloseAsync();
             Singleton<Event>.GetInstance()?.InvolveClearBasket();
             Singleton<Event>.GetInstance()?.InvolveUpdateProduct();
+            if (controller.IsCanceled)
+            {
+                
+            }
+            else
+            {
+                main.Login();
+            }
+
         }
 
         private void cancelChoice()

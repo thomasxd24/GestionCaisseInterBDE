@@ -86,7 +86,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
 
         }
 
-        private async void Login()
+        public async void Login()
         {
             var status = "8=====D - - - --- -  (O)   - - - --- - O=======8";
             while (true)
@@ -108,6 +108,7 @@ namespace iut.GestionCaisseInterBDE.Wpf
                     Singleton<User>.SetInstance(user);
                     Singleton<Event>.GetInstance().InvolveUpdateProduct();
                     Singleton<Event>.GetInstance().InvolveChangeUser();
+                    Singleton<Event>.GetInstance()?.InvolveClearBasket();
                     break;
                 }
 
