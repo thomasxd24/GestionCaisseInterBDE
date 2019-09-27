@@ -63,7 +63,9 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             {
                 double val = (i / 100.0) ;
                 controller.SetProgress(val);
-                
+                int seconds = (100 - Convert.ToInt32(i)) / 10;
+                controller.SetMessage($"\nUn montant de {ticket.TotalPaid} a été encaissé au {bdeChosen.Name} avec le ticket {key}\n\nAppuyez sur 'Retour au vente'. Sinon dans {seconds} seconds, vous allez etre deconnecter.");
+
 
                 if (controller.IsCanceled)
                     break; //canceled progressdialog auto closes.
