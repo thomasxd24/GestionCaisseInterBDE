@@ -60,7 +60,6 @@ namespace iut.GestionCaisseInterBDE.Persistance
             return bdeList;
         }
 
-
         /// <summary>
         /// return a bde for its ID, null if none found
         /// </summary>
@@ -139,6 +138,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
             var user = Singleton<User>.GetInstance();
             Collection<Product> listProducts = GetProductList();
             Collection<BDE> bdes = GetBDEList();
+            Collection<User> users = new Collection<User>(GetUsersDB().ToList());
             DataTable dt = db.Select($"SELECT * FROM ligneTicket WHERE accountid={user.Account.ID} ORDER BY idTicket ASC");
             Ticket oneTicket = null;
             string numTicket = "";
@@ -156,7 +156,7 @@ namespace iut.GestionCaisseInterBDE.Persistance
                     if (oneTicket != null) ticketList.Add(oneTicket);
                     numTicket = dr["idTicket"].ToString();
                     var bde = bdes.Where(b=> b.ID == int.Parse(dr["idBDE"].ToString())).FirstOrDefault();
-                    var u = GetUserfromID(int.Parse(dr["idUserSeller"].ToString()));
+                    var u = users.Where(userq => userq.ID == int.Parse(dr["idUserSeller"].ToString())).FirstOrDefault();
                     var acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
                     oneTicket = new Ticket(dr["idTicket"].ToString(), DateTime.Parse(dr["dateCreated"].ToString()), bde, new Collection<BasketItem>(),u,acc,float.Parse(dr["reduction"].ToString()));
                     var product = listProducts.Where(p => p.ID == int.Parse(dr["idProduit"].ToString())).FirstOrDefault();
@@ -173,10 +173,11 @@ namespace iut.GestionCaisseInterBDE.Persistance
         {
             DataTable dt = db.Select("SELECT * FROM users");
             Collection<User> users = new Collection<User>();
-            
+            Collection<BDE> bdes = GetBDEList();
+
             foreach (DataRow dr in dt.Rows)
             {
-                BDE bde = GetBDEByID(int.Parse(dr["bdeID"].ToString()));
+                var bde = bdes.Where(b => b.ID == int.Parse(dr["bdeID"].ToString())).FirstOrDefault();
                 Account acc = GetAccountFromID(int.Parse(dr["accountid"].ToString()));
                 User u = new User(int.Parse(dr["userID"].ToString()), dr["username"].ToString(), dr["name"].ToString(), bde, dr["theme"].ToString(), dr["accent"].ToString(), dr["md5password"].ToString(),dr["isAdmin"].ToString() == "1", acc);
                 users.Add(u);
