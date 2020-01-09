@@ -63,8 +63,8 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
             {
                 double val = (i / 100.0) ;
                 controller.SetProgress(val);
-                int seconds = (100 - Convert.ToInt32(i)) / 10;
-                controller.SetMessage($"\nUn montant de {ticket.TotalPaid} a été encaissé au {bdeChosen.Name} avec le ticket {key}\n\nAppuyez sur 'Retour au vente'. Sinon dans {seconds} seconds, vous allez etre deconnecter.");
+                int seconds = (100 - Convert.ToInt32(i)) / 20;
+                controller.SetMessage($"\nUn montant de {ticket.TotalPaid} a été encaissé au {bdeChosen.Name} avec le ticket {key}\n\nRetour au vente dans {seconds} seconds.");
 
 
                 if (controller.IsCanceled)
@@ -72,20 +72,12 @@ namespace iut.GestionCaisseInterBDE.Wpf.ViewModel
 
                 i += 1.0;
 
-                await Task.Delay(100);
+                await Task.Delay(50);
             }
 
             await controller.CloseAsync();
             Singleton<Event>.GetInstance()?.InvolveClearBasket();
             Singleton<Event>.GetInstance()?.InvolveUpdateProduct();
-            if (controller.IsCanceled)
-            {
-                
-            }
-            else
-            {
-                main.Login();
-            }
 
         }
 

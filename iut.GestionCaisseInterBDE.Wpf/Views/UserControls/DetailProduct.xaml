@@ -50,10 +50,18 @@
             <Label HorizontalAlignment="Right" Grid.Row="5" Grid.Column="0" Margin="5">Discountable:</Label>
             <Controls:ToggleSwitch x:Name="toggleDiscount" Margin="5" Grid.Row="5" Grid.Column="1" Height="20" IsEnabled="{Binding Enable}" OnLabel="Oui" OffLabel="Non" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" IsChecked="{Binding SelectedProduct.IsDiscountable}"/>
         </Grid>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Label Content="Semaine: " />
+            <Label Content="{Binding semaineSales}" />
+            <Label Content="| Mois: " />
+            <Label Content="{Binding monthSales}" />
+            <Label Content="| 3 Mois: " />
+            <Label Content="{Binding threeMonthSales}" />
+        </StackPanel>
         <DockPanel Grid.Column="0">
             <Label FontSize="18" DockPanel.Dock="Top">Ventes</Label>
             <Separator DockPanel.Dock="Top"></Separator>
-            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding VenteTickets}" IsReadOnly="True">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding VenteTickets}" IsReadOnly="True" Height="268" Margin="0,-0.4,0,0.4" VerticalAlignment="Bottom">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding DateCreated}"  Header="Date" Width="1.2*"/>
                     <DataGridTextColumn Binding="{Binding IDTicket}"  Header="Numero Ticket" Width="*"/>

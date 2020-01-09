@@ -37,6 +37,41 @@ namespace GestionCaisseInterBDE.ViewModel
                 return new Collection<Ticket>(listTickets.Where(t => t.ProductItems.Any(it => it.ItemProduct.ID == SelectedProduct.ID)).ToList()); }
         }
 
+        private String getSales(int days)
+        {
+            if (listTickets.FirstOrDefault() == null) return "0";
+            return listTickets.Where(t => t.ProductItems.Any(it => it.ItemProduct.ID == SelectedProduct.ID) && (DateTime.Now - t.DateCreated).Days < days)
+                .ToList()
+                .Aggregate(0, (a, ticket) =>
+                {
+                    return a + ticket.ProductItems.Where(it => it.ItemProduct.ID == SelectedProduct.ID).ToList()[0].Quantity;
+                }).ToString();
+        }
+
+        public String semaineSales
+        {
+            get
+            {
+                return getSales(7);
+            }
+        }
+
+        public String monthSales
+        {
+            get
+            {
+                return getSales(30);
+            }
+        }
+
+        public String threeMonthSales
+        {
+            get
+            {
+                return getSales(90);
+            }
+        }
+
         public bool Modifiable
         {
             get { return !modifiable && Singleton<User>.GetInstance().isAdmin; }
@@ -96,6 +131,9 @@ namespace GestionCaisseInterBDE.ViewModel
                 OnPropertyChanged("SelectedProduct");
                 OnPropertyChanged("ProductPageVisible");
                 OnPropertyChanged("VenteTickets");
+                OnPropertyChanged("semaineSales");
+                OnPropertyChanged("monthSales");
+                OnPropertyChanged("threeMonthSales");
             }
         }
 
