@@ -1,4 +1,4 @@
-# GestionCaisseInterBDE 2019
+# GestionCaisseInterBDE
 
 [![Build status](https://ci.appveyor.com/api/projects/status/6dtoxtowx2tsad4e?svg=true)](https://ci.appveyor.com/project/thomasxd24/gestioncaisseinterbde)
 
